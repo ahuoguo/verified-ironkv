@@ -15,73 +15,21 @@ use crate::verus_extra::clone_v::*;
 
 verus! {
 
-impl Ordering {
-    pub open spec fn eq(self) -> bool {
-        matches!(self, Ordering::Equal)
-    }
+// Either broadcast works
 
-    pub open spec fn ne(self) -> bool {
-        !matches!(self, Ordering::Equal)
-    }
+broadcast use
+    KeyTrait::eq_is_equality,
+    eq_refl,
+    eq_comm,
+    eq_trans,
+    ne_asym,
+    ne_connected,
+    trans_le_lt,
+    trans_lt_lt,
+    trans_lt_le
+;
 
-    pub open spec fn lt(self) -> bool {
-        matches!(self, Ordering::Less)
-    }
-
-    pub open spec fn gt(self) -> bool {
-        matches!(self, Ordering::Greater)
-    }
-
-    pub open spec fn le(self) -> bool {
-        !matches!(self, Ordering::Greater)
-    }
-
-    pub open spec fn ge(self) -> bool {
-        !matches!(self, Ordering::Less)
-    }
-
-    pub fn is_eq(self) -> (b: bool)
-        ensures
-            b == self.eq(),
-    {
-        matches!(self, Ordering::Equal)
-    }
-
-    pub fn is_ne(self) -> (b: bool)
-        ensures
-            b == self.ne(),
-    {
-        !matches!(self, Ordering::Equal)
-    }
-
-    pub const fn is_lt(self) -> (b: bool)
-        ensures
-            b == self.lt(),
-    {
-        matches!(self, Ordering::Less)
-    }
-
-    pub const fn is_gt(self) -> (b: bool)
-        ensures
-            b == self.gt(),
-    {
-        matches!(self, Ordering::Greater)
-    }
-
-    pub const fn is_le(self) -> (b: bool)
-        ensures
-            b == self.le(),
-    {
-        !matches!(self, Ordering::Greater)
-    }
-
-    pub const fn is_ge(self) -> (b: bool)
-        ensures
-            b == self.ge(),
-    {
-        !matches!(self, Ordering::Less)
-    }
-}
+// broadcast use group_cmp_properties;
 
 // Stores the entries from smallest to largest
 struct StrictlyOrderedVec<K: KeyTrait> {
@@ -102,7 +50,7 @@ proof fn sorted_subrange<K: KeyTrait>(s: Seq<K>, i: int, j: int)
 {
     let sub = s.subrange(i, j);
     assert forall |m, n| 0 <= m < n < sub.len() implies #[trigger](sub[m].cmp_spec(sub[n]).lt()) by {
-        K::cmp_properties();
+        // K::cmp_properties();
     }
 }
 */
@@ -168,12 +116,12 @@ impl<K: KeyTrait + VerusClone> StrictlyOrderedVec<K> {
         assert forall|m, n| 0 <= m < n < self@.len() implies #[trigger] (self@[m].cmp_spec(
             self@[n],
         ).lt()) by {
-            K::cmp_properties();
+            // K::cmp_properties();
         }
 
         assert forall|i, j| 0 <= i < self@.len() && 0 <= j < self@.len() && i != j implies self@[i]
             != self@[j] by {
-            K::cmp_properties();
+            // K::cmp_properties();
         }
 
     }
@@ -328,7 +276,7 @@ impl<K: KeyTrait + VerusClone> StrictlyOrderedVec<K> {
         assert forall|m, n| 0 <= m < n < self@.len() implies #[trigger] (self@[m].cmp_spec(
             self@[n],
         ).lt()) by {
-            K::cmp_properties();
+            // K::cmp_properties();
         }
         assert(self@.to_set() == old(self)@.to_set().insert(k)) by {
             let new_s = self@.to_set();
@@ -537,7 +485,7 @@ impl<K: KeyTrait + VerusClone> StrictlyOrderedMap<K> {
                     *l.get(),
                 )),
     {
-        K::cmp_properties();
+        // K::cmp_properties();
     }
 
     proof fn gap_means_empty(self, lo: KeyIterator<K>, hi: KeyIterator<K>, k: KeyIterator<K>)
@@ -592,12 +540,12 @@ impl<K: KeyTrait + VerusClone> StrictlyOrderedMap<K> {
             //println!("Loop {} of find_key", i);
             if self.keys.index(i).cmp(&k).is_eq() {
                 proof {
-                    K::cmp_properties();
+                    // K::cmp_properties();
                 }
                 return Some(i);
             } else {
                 proof {
-                    K::cmp_properties();
+                    // K::cmp_properties();
                 }
             }
             i = i + 1;
@@ -634,7 +582,7 @@ impl<K: KeyTrait + VerusClone> StrictlyOrderedMap<K> {
                 }
             } else {
                 proof {
-                    //K::cmp_properties();
+                    //// K::cmp_properties();
                 }
             }
             i = i + 1;
@@ -703,14 +651,14 @@ impl<K: KeyTrait + VerusClone> StrictlyOrderedMap<K> {
     //                    assert(exists |i| 0 <= i < self.keys@.len() && self.keys@[i] == k);
     //                    let i = choose |i| 0 <= i < self.keys@.len() && self.keys@[i] == k;
     //                    assert(lo_index <= i <= hi_index) by {
-    //                        K::cmp_properties();
+    //                        // K::cmp_properties();
     //                    }
     //                }
     //            } else {
     //                let i = choose |i| #![auto] !(lo_index <= i <= hi_index ==> self@[self.keys@[i]]@ == v@);
     //                let k = self.keys@[i];
     //                assert(lo.cmp_spec(k).le() && k.cmp_spec(*hi).le()) by {
-    //                    K::cmp_properties();
+    //                    // K::cmp_properties();
     //                }
     //                assert(self@.contains_key(k));
     //                assert(self@[k]@ != v@);
@@ -768,7 +716,7 @@ impl<K: KeyTrait + VerusClone> StrictlyOrderedMap<K> {
                 assert forall|ki| lo.lt_spec(ki) && ki.lt_spec(hi) implies !(
                 #[trigger] self@.contains_key(*ki.get())) by {
                     // TODO: This was the previous (flaky) proof:
-                    // K::cmp_properties();
+                    // // K::cmp_properties();
                     //
                     assert_by_contradiction!(!old(self)@.contains_key(*ki.get()), {
                         old(self).gap_means_empty(lo, hi, ki);
@@ -782,7 +730,7 @@ impl<K: KeyTrait + VerusClone> StrictlyOrderedMap<K> {
                 )@.contains_key(*ki.get())) by {
                     assert_by_contradiction!(!(old(self)@.contains_key(*ki.get())), {
                         assert(self@.contains_key(*ki.get()));
-                        K::cmp_properties();
+                        // K::cmp_properties();
                     });
                 };
                 assert(old(self).gap(lo, hi));
@@ -825,10 +773,10 @@ impl<K: KeyTrait + VerusClone> StrictlyOrderedMap<K> {
             K::zero_properties();
             assert_by_contradiction!(n == 0, {
                 assert(self.keys@[0].cmp_spec(self.keys@[n]).lt());
-                K::cmp_properties();
+                // K::cmp_properties();
             });
             assert(self.keys@[0] == z);
-            K::cmp_properties();
+            // K::cmp_properties();
         }
 
         // Find the glb's index (bound)
@@ -858,7 +806,7 @@ impl<K: KeyTrait + VerusClone> StrictlyOrderedMap<K> {
             KeyIterator::new_spec(k) != glb && #[trigger] self@.contains_key(k) && iter.above(
                 k,
             ) implies glb.above(k) by {
-            K::cmp_properties();
+            // K::cmp_properties();
         }
 
         proof {
@@ -868,30 +816,30 @@ impl<K: KeyTrait + VerusClone> StrictlyOrderedMap<K> {
                     // Prove self.gap(glb, hi)
                     assert forall|ki| glb.lt_spec(ki) && ki.lt_spec(hi) implies !(
                     #[trigger] self@.contains_key(*ki.get())) by {
-                        K::cmp_properties();
+                        // K::cmp_properties();
                     }
                     assert(self.gap(glb, hi));
                     assert(KeyIterator::between(glb, *iter, hi)) by {
-                        K::cmp_properties();
+                        // K::cmp_properties();
                     }
                 } else {
                     let hi = KeyIterator::new_spec(self.keys@[i as int]);
                     // Prove self.gap(glb, hi)
                     assert forall|ki| glb.lt_spec(ki) && ki.lt_spec(hi) implies !(
                     #[trigger] self@.contains_key(*ki.get())) by {
-                        K::cmp_properties();
+                        // K::cmp_properties();
                     }
                     assert(self.gap(glb, hi));
                     assert(KeyIterator::between(glb, *iter, hi)) by {
                         assert(iter.lt_spec(hi));
-                        K::cmp_properties();
+                        // K::cmp_properties();
                     }
                 }
             }
         }
 
         assert(glb == iter || glb.lt_spec(*iter)) by {
-            K::cmp_properties();
+            // K::cmp_properties();
         }
         return bound;
     }
@@ -959,7 +907,7 @@ impl<K: KeyTrait + VerusClone> StrictlyOrderedMap<K> {
         assert forall|i| start <= i < end implies !lo.above(#[trigger] self.keys@[i]) && hi.above(
             self.keys@[i],
         ) by {
-            K::cmp_properties();
+            // K::cmp_properties();
         }
 
         self.keys.erase(start, end);
@@ -994,7 +942,7 @@ impl<K: KeyTrait + VerusClone> StrictlyOrderedMap<K> {
             let ki = KeyIterator::new_spec(k);
             if ki.geq_spec(*lo) && ki.lt_spec(*hi) {
                 assert_by_contradiction!(!self@.contains_key(k), {
-                    K::cmp_properties();
+                    // K::cmp_properties();
                 });
             }
         }
@@ -1013,13 +961,13 @@ impl<K: KeyTrait + VerusClone> StrictlyOrderedMap<K> {
                 if !old(self).gap(x, *lo) {
                     let kk = old(self).choose_gap_violator(x, *lo);
                     assert(self@.contains_key(*kk.get())); // contradicts self.gap(x, y)
-                    K::cmp_properties();
+                    // K::cmp_properties();
                 } else if !old(self).gap(*hi, y) {
                     let kk = old(self).choose_gap_violator(*hi, y);
                     assert(self@.contains_key(*kk.get())) by {   // contradicts self.gap(x, y)
-                        K::cmp_properties();
+                        // K::cmp_properties();
                     };
-                    K::cmp_properties();
+                    // K::cmp_properties();
                 } else {
                     assert(!(hi.geq_spec(y) || hi.is_end_spec() || !self@.contains_key(*hi.get())));
                     assert(hi.lt_spec(y));
@@ -1051,7 +999,7 @@ impl<K: KeyTrait + VerusClone> StrictlyOrderedMap<K> {
                 assert forall|ki| x.lt_spec(ki) && ki.lt_spec(y) implies !(
                 #[trigger] self@.contains_key(*ki.get())) by {
                     assert(KeyIterator::between(x, ki, y)) by {
-                        K::cmp_properties();
+                        // K::cmp_properties();
                     };
                     K::cmp_properties();  // Flaky
                     if ki.lt_spec(*lo) {
@@ -1229,7 +1177,7 @@ impl<K: KeyTrait + VerusClone> DelegationMap<K> {
                 let ki = KeyIterator::new_spec(K::zero_spec());
                 assert_by_contradiction!(!lo.lt_spec(ki), {
                     K::zero_properties();
-                    K::cmp_properties();
+                    // K::cmp_properties();
                 });
                 if lo == ki {
                 } else {
@@ -1251,9 +1199,9 @@ impl<K: KeyTrait + VerusClone> DelegationMap<K> {
                     assert(self@[k] == dst@);
                     assert_by_contradiction!(ii == lo, {
                         if lo.lt_spec(ii) {
-                            K::cmp_properties();
+                            // K::cmp_properties();
                         } else {
-                            K::cmp_properties();
+                            // K::cmp_properties();
                             assert(ii.lt_spec(*lo));
                             // We have ii < lo < hi && ii <= k < j, and nothing in (ii, j)
                             // and lo <= k < hi
@@ -1268,26 +1216,26 @@ impl<K: KeyTrait + VerusClone> DelegationMap<K> {
                     assert(!(ki.geq_spec(*lo) && ki.lt_spec(*hi)));
                     assert(erased.contains_key(i));
                     assert(ii != hi) by {
-                        K::cmp_properties();
+                        // K::cmp_properties();
                     };
                     assert(old(self).lows@.contains_key(i));
                     assert(self.lows@[i] == old(self).lows@[i]);
                     assert(old(self).lows.gap(ii, j)) by {
                         assert_by_contradiction!(!lo.lt_spec(j), {
-                            K::cmp_properties();
+                            // K::cmp_properties();
                             assert(!self.lows@.contains_key(*lo.get()));    // OBSERVE
                         });
                         // TODO: add a trigger annotation once https://github.com/verus-lang/verus/issues/335 is fixed
                         assert forall|m| KeyIterator::new_spec(m).lt_spec(*lo) implies (old(
                             self,
                         ).lows@.contains_key(m) == #[trigger] self.lows@.contains_key(m)) by {
-                            K::cmp_properties();
+                            // K::cmp_properties();
                         };
                         // TODO: add a trigger annotation once https://github.com/verus-lang/verus/issues/335 is fixed
                         assert forall|mi| ii.lt_spec(mi) && mi.lt_spec(j) implies !(#[trigger] old(
                             self,
                         ).lows@.contains_key(*mi.get())) by {
-                            K::cmp_properties();
+                            // K::cmp_properties();
                         }
                     };
                     assert(old(self)@[k] == old(self).lows@[i]@);
@@ -1306,7 +1254,7 @@ impl<K: KeyTrait + VerusClone> DelegationMap<K> {
                         assert((ii != hi && old(self).lows@.contains_key(i)) || ii == hi) by {
                             assert_by_contradiction!(!ii.lt_spec(*lo), {
                                 // Flaky proof here
-                                K::cmp_properties();
+                                // K::cmp_properties();
                             });
 
                             assert_by_contradiction!(ii != lo, {
@@ -1324,7 +1272,7 @@ impl<K: KeyTrait + VerusClone> DelegationMap<K> {
                             });
 
                             assert(lo.lt_spec(ii)) by {
-                                K::cmp_properties();
+                                // K::cmp_properties();
                             };
                             // lo < i ==>
                             // lo < i <= k < j
@@ -1344,9 +1292,9 @@ impl<K: KeyTrait + VerusClone> DelegationMap<K> {
                                 assert(old(self).lows@.contains_key(i));
                                 //                                assert forall |m| ii.lt_spec(m) && m.lt_spec(j)
                                 //                                        implies !(#[trigger] old(self)@.contains_key(*m.get())) by {
-                                //                                    K::cmp_properties();
+                                //                                    // K::cmp_properties();
                                 ////                                    assert_by_contradiction!(!old(self)@.contains_key(*m.get()), {
-                                ////                                        K::cmp_properties();
+                                ////                                        // K::cmp_properties();
                                 ////                                        assert(self@.contains_key(*m.get()));
                                 ////                                        assert(KeyIterator::between(ii, m, j));
                                 ////                                        self.lows.gap_means_empty(ii, j, m);
@@ -1363,7 +1311,7 @@ impl<K: KeyTrait + VerusClone> DelegationMap<K> {
                             //   lo < (hi == i) < k < j
                             assert(pre_erase[*hi.get()]@ == old(self)@[*hi.get()]);
                             assert(erased[*hi.get()] == pre_erase[*hi.get()]) by {
-                                K::cmp_properties();
+                                // K::cmp_properties();
                             };
                             assert(self@[*hi.get()] == erased[*hi.get()]@);
                             // Above establishes self@[*hi.get()] == old(self)@[*hi.get()]
@@ -1378,7 +1326,7 @@ impl<K: KeyTrait + VerusClone> DelegationMap<K> {
                                 assert(old(self).lows@.contains_key(*glb.get()));
                                 assert(old(self).lows@[*glb.get()]@ == pre_erase[*hi.get()]@);
                                 assert_by_contradiction!(!ii.lt_spec(glb), {
-                                    K::cmp_properties();
+                                    // K::cmp_properties();
                                 });
                                 assert(ii.geq_spec(glb));
                                 // Establish the preconditions to use @old(self).valid() to relate
@@ -1389,7 +1337,7 @@ impl<K: KeyTrait + VerusClone> DelegationMap<K> {
                                     old(self).lows.mind_the_gap();
                                 }
                                 assert(KeyIterator::between(glb, ki, j)) by {
-                                    K::cmp_properties();
+                                    // K::cmp_properties();
                                 };
                                 assert(old(self)@[k] == old(self).lows@[*glb.get()]@);
 
@@ -1399,7 +1347,7 @@ impl<K: KeyTrait + VerusClone> DelegationMap<K> {
                                 assert(old(self)@[k] == self@[*hi.get()]);
                                 assert(self@[k] == self@[*hi.get()]);
                                 assert(*lo.get() != i) by {
-                                    K::cmp_properties();
+                                    // K::cmp_properties();
                                 };
                                 assert(self.lows@[i] == erased[i]);
                                 assert(self@[*hi.get()] == self.lows@[i]@);
@@ -1413,7 +1361,7 @@ impl<K: KeyTrait + VerusClone> DelegationMap<K> {
                             assert_by_contradiction!(!(hi.geq_spec(j) ||
                                                        hi.is_end_spec() ||
                                                        !erased_vec@.contains_key(*hi.get())), {
-                                K::cmp_properties();
+                                // K::cmp_properties();
                             });
                             // Therefore we must be in the first clause, and hence:
                             assert(pre_erase_vec.gap(KeyIterator::new_spec(i), j));
@@ -1423,13 +1371,13 @@ impl<K: KeyTrait + VerusClone> DelegationMap<K> {
 
                     if ii != hi {
                         assert(erased.contains_key(i)) by {
-                            K::cmp_properties();
+                            // K::cmp_properties();
                         };
                         assert(self.lows@[i] == erased[i]) by {
-                            K::cmp_properties();
+                            // K::cmp_properties();
                         };
                         assert(pre_erase.contains_key(i)) by {
-                            K::cmp_properties();
+                            // K::cmp_properties();
                         };
                         assert(erased[i] == pre_erase[i]);
                         assert(old(self).lows@.contains_key(i));
@@ -1442,7 +1390,7 @@ impl<K: KeyTrait + VerusClone> DelegationMap<K> {
         }
         assert forall|ki: KeyIterator<K>| #[trigger]
             KeyIterator::between(*lo, ki, *hi) implies self@[*ki.get()] == dst@ by {
-            K::cmp_properties();
+            // K::cmp_properties();
         };
         // TODO: add a trigger annotation once https://github.com/verus-lang/verus/issues/335 is fixed
         assert forall|ki: KeyIterator<K>|
@@ -1451,7 +1399,7 @@ impl<K: KeyTrait + VerusClone> DelegationMap<K> {
                 ki,
                 *hi,
             )) implies self@[*ki.get()] == old(self)@[*ki.get()] by {
-            K::cmp_properties();
+            // K::cmp_properties();
         };
     }
 
@@ -1512,7 +1460,7 @@ impl<K: KeyTrait + VerusClone> DelegationMap<K> {
         ensures
             self.range_consistent(x_inner, y_inner, dst),
     {
-        K::cmp_properties();
+        // K::cmp_properties();
     }
 
     proof fn empty_key_range_is_consistent(&self, lo: &KeyIterator<K>, hi: &KeyIterator<K>, id: &ID)
@@ -1521,7 +1469,7 @@ impl<K: KeyTrait + VerusClone> DelegationMap<K> {
         ensures
             self.range_consistent(lo, hi, id),
     {
-        K::cmp_properties();
+        // K::cmp_properties();
     }
 
     proof fn all_keys_agree(&self, lo: usize, hi: usize, id: &ID)
@@ -1561,13 +1509,13 @@ impl<K: KeyTrait + VerusClone> DelegationMap<K> {
             self.empty_key_range_is_consistent(&lo_ki, &hi_ki, id);
         } else {
             assert(lo_ki.lt_spec(hi_ki) && lo < hi) by {
-                K::cmp_properties();
+                // K::cmp_properties();
             }
             let lo_next = (lo + 1) as usize;
             let lo_next_k = self.lows.keys@[lo_next as int];
             let lo_next_ki = KeyIterator::new_spec(lo_next_k);
             assert(self.lows.gap(lo_ki, lo_next_ki)) by {
-                K::cmp_properties();
+                // K::cmp_properties();
             }
             assert(self.range_consistent(&lo_ki, &lo_next_ki, id));
             self.almost_all_keys_agree(lo_next, hi, id);
@@ -1587,7 +1535,7 @@ impl<K: KeyTrait + VerusClone> DelegationMap<K> {
             let lo_glb_index = self.lows.greatest_lower_bound_index(lo);
             let hi_glb_index = self.lows.greatest_lower_bound_index(hi);
             assert(lo_glb_index <= hi_glb_index) by {
-                K::cmp_properties();
+                // K::cmp_properties();
             };
             let ghost lo_glb = self.lows.keys@[lo_glb_index as int];
             let hi_glb = self.lows.keys.index(hi_glb_index);
@@ -1623,7 +1571,7 @@ impl<K: KeyTrait + VerusClone> DelegationMap<K> {
                                     KeyIterator::new_spec(k),
                                     end_ki,
                                 ) implies (#[trigger] self@[k]) == dst@ by {
-                                K::cmp_properties();
+                                // K::cmp_properties();
                             }
                             assert(self.range_consistent(&hi_glb_ki, &end_ki, dst));
                             self.extend_range_consistent(&lo_glb_ki, &hi_glb_ki, &end_ki, dst);
@@ -1633,15 +1581,15 @@ impl<K: KeyTrait + VerusClone> DelegationMap<K> {
                             let hi_next = self.lows.keys@[hi_next_index];
                             let hi_next_ki = KeyIterator::new_spec(hi_next);
                             assert(self.lows.gap(hi_glb_ki, hi_next_ki)) by {
-                                K::cmp_properties();
+                                // K::cmp_properties();
                             }
 
                             assert_by_contradiction!(!hi.above(hi_next), {
-                                K::cmp_properties();
+                                // K::cmp_properties();
                                 assert(self.lows@.contains_key(hi_next));   // Trigger conclusion of glb_spec
                             });
                             assert(!hi.is_end_spec()) by {
-                                K::cmp_properties();
+                                // K::cmp_properties();
                             }
                             let upper = choose|u| #[trigger]
                                 self.lows.gap(hi_glb_ki, u) && KeyIterator::between(
@@ -1652,7 +1600,7 @@ impl<K: KeyTrait + VerusClone> DelegationMap<K> {
                             assert(self.range_consistent(&hi_glb_ki, &upper, dst));
                             self.extend_range_consistent(&lo_glb_ki, &hi_glb_ki, &upper, dst);
                             assert(!upper.lt_spec(*hi)) by {
-                                K::cmp_properties();
+                                // K::cmp_properties();
                             }
                             self.range_consistent_subset(&lo_glb_ki, &upper, lo, hi, dst);
                         }
@@ -1697,17 +1645,17 @@ impl<K: KeyTrait + VerusClone> DelegationMap<K> {
                         assert(self.lows@[lo_glb]@ == self.lows@[self.lows.keys@[bad_index]]@);
                         assert(self@[lo_k] != dst@);
                         assert(KeyIterator::between(*lo, *lo, *hi)) by {
-                            K::cmp_properties();
+                            // K::cmp_properties();
                         }
                         self.not_range_consistent(lo, hi, dst, lo);
                     } else {
                         assert(hi.is_end_spec() ==> hi_glb_ki != hi);
                         assert(hi_glb_ki.cmp_spec(*hi).eq() == (hi_glb_ki == hi)) by {
-                            K::cmp_properties();
+                            // K::cmp_properties();
                         };
 
                         assert(bad_index > lo_glb_index && !bad_ki.lt_spec(*lo)) by {
-                            K::cmp_properties();
+                            // K::cmp_properties();
                             assert(self.lows@.contains_key(bad));  // Trigger conclusion of glb_spec
                         };
 
@@ -1721,7 +1669,7 @@ impl<K: KeyTrait + VerusClone> DelegationMap<K> {
                                     assert(false);
                                 } else {
                                     assert(KeyIterator::between(*lo, bad_ki, *hi)) by {
-                                        K::cmp_properties();
+                                        // K::cmp_properties();
                                     };
                                     //assert(self.lows.gap(bad_ki, KeyIterator::new_spec(self.lows.keys@[bad_index + 1])));
 
@@ -1735,10 +1683,10 @@ impl<K: KeyTrait + VerusClone> DelegationMap<K> {
                                     assert(self.lows@.contains_key(bad));
                                     //assert(self.lows.gap(bad_ki, upper));
                                     assert(self.lows.gap(bad_ki, *hi)) by {
-                                        K::cmp_properties();
+                                        // K::cmp_properties();
                                     };
                                     assert(KeyIterator::between(hi_glb_ki, bad_ki, upper)) by {
-                                        K::cmp_properties();
+                                        // K::cmp_properties();
                                     };
                                     assert(self@[bad] == self.lows@[bad]@);
 
@@ -1749,7 +1697,7 @@ impl<K: KeyTrait + VerusClone> DelegationMap<K> {
                                     assert(false);
                                 } else {
                                     assert(KeyIterator::between(*lo, bad_ki, *hi)) by {
-                                        K::cmp_properties();
+                                        // K::cmp_properties();
                                     };
                                     //assert(self.lows.gap(bad_ki, KeyIterator::new_spec(self.lows.keys@[bad_index + 1])));
 
@@ -1757,10 +1705,10 @@ impl<K: KeyTrait + VerusClone> DelegationMap<K> {
                                     assert(self.lows@.contains_key(bad));
                                     //assert(self.lows.gap(bad_ki, upper));
                                     assert(self.lows.gap(bad_ki, *hi)) by {
-                                        K::cmp_properties();
+                                        // K::cmp_properties();
                                     };
                                     assert(KeyIterator::between(hi_glb_ki, bad_ki, *hi)) by {
-                                        K::cmp_properties();
+                                        // K::cmp_properties();
                                     };
                                     assert(self@[bad] == self.lows@[bad]@);
 
@@ -1782,19 +1730,19 @@ impl<K: KeyTrait + VerusClone> DelegationMap<K> {
                                         let bad_next = self.lows.keys@[bad_index + 1];
                                         let bad_next_ki = KeyIterator::new_spec(bad_next);
                                         assert(KeyIterator::between(*lo, bad_ki, *hi)) by {
-                                            K::cmp_properties();
+                                            // K::cmp_properties();
                                         }
                                         assert(self@[bad] != dst@) by {
                                             // Trigger DelegationMap::valid
                                             assert(self.lows.gap(bad_ki, bad_next_ki)) by {
-                                                K::cmp_properties();
+                                                // K::cmp_properties();
                                             };
                                             assert(KeyIterator::between(
                                                 bad_ki,
                                                 bad_ki,
                                                 bad_next_ki,
                                             )) by {
-                                                K::cmp_properties();
+                                                // K::cmp_properties();
                                             };
                                         }
                                         self.not_range_consistent(lo, hi, dst, &bad_ki);
@@ -1806,19 +1754,19 @@ impl<K: KeyTrait + VerusClone> DelegationMap<K> {
                                             let bad_next = self.lows.keys@[bad_index + 1];
                                             let bad_next_ki = KeyIterator::new_spec(bad_next);
                                             assert(KeyIterator::between(*lo, bad_ki, *hi)) by {
-                                                K::cmp_properties();
+                                                // K::cmp_properties();
                                             }
                                             assert(self@[bad] != dst@) by {
                                                 // Trigger DelegationMap::valid
                                                 assert(self.lows.gap(bad_ki, bad_next_ki)) by {
-                                                    K::cmp_properties();
+                                                    // K::cmp_properties();
                                                 };
                                                 assert(KeyIterator::between(
                                                     bad_ki,
                                                     bad_ki,
                                                     bad_next_ki,
                                                 )) by {
-                                                    K::cmp_properties();
+                                                    // K::cmp_properties();
                                                 };
                                             }
                                             self.not_range_consistent(lo, hi, dst, &bad_ki);
@@ -1840,7 +1788,7 @@ impl<K: KeyTrait + VerusClone> DelegationMap<K> {
                                                     hi_glb_ki,
                                                     upper,
                                                 )) by {
-                                                    K::cmp_properties();
+                                                    // K::cmp_properties();
                                                 };  // Trigger: DelegationMap::valid()
                                             }
                                             self.not_range_consistent(lo, hi, dst, &bad_ki);
@@ -1858,19 +1806,19 @@ impl<K: KeyTrait + VerusClone> DelegationMap<K> {
                                             let bad_next = self.lows.keys@[bad_index + 1];
                                             let bad_next_ki = KeyIterator::new_spec(bad_next);
                                             assert(KeyIterator::between(*lo, bad_ki, *hi)) by {
-                                                K::cmp_properties();
+                                                // K::cmp_properties();
                                             }
                                             assert(self@[bad] != dst@) by {
                                                 // Trigger DelegationMap::valid
                                                 assert(self.lows.gap(bad_ki, bad_next_ki)) by {
-                                                    K::cmp_properties();
+                                                    // K::cmp_properties();
                                                 };
                                                 assert(KeyIterator::between(
                                                     bad_ki,
                                                     bad_ki,
                                                     bad_next_ki,
                                                 )) by {
-                                                    K::cmp_properties();
+                                                    // K::cmp_properties();
                                                 };
                                             }
                                             self.not_range_consistent(lo, hi, dst, &bad_ki);
@@ -1892,7 +1840,7 @@ impl<K: KeyTrait + VerusClone> DelegationMap<K> {
                                                     hi_glb_ki,
                                                     upper,
                                                 )) by {
-                                                    K::cmp_properties();
+                                                    // K::cmp_properties();
                                                 };  // Trigger: DelegationMap::valid()
                                             }
                                             self.not_range_consistent(lo, hi, dst, &bad_ki);
@@ -1933,7 +1881,7 @@ impl<K: KeyTrait + VerusClone> DelegationMap<K> {
                                         == self.lows@[self.lows.keys@[bad_index]]@);
                                     assert(self@[lo_k] != dst@);
                                     assert(KeyIterator::between(*lo, *lo, *hi)) by {
-                                        K::cmp_properties();
+                                        // K::cmp_properties();
                                     }
                                     self.not_range_consistent(lo, hi, dst, lo);
                                 } else {
@@ -1942,17 +1890,17 @@ impl<K: KeyTrait + VerusClone> DelegationMap<K> {
                                     let bad_next = self.lows.keys@[bad_index + 1];
                                     let bad_next_ki = KeyIterator::new_spec(bad_next);
                                     assert(KeyIterator::between(*lo, bad_ki, *hi)) by {
-                                        K::cmp_properties();
+                                        // K::cmp_properties();
                                         assert(self.lows@.contains_key(bad));  // Trigger conclusion of glb_spec
                                     }
                                     assert(self@[bad] != dst@) by {
                                         // Trigger DelegationMap::valid
                                         assert(self.lows.gap(bad_ki, bad_next_ki)) by {
-                                            K::cmp_properties();
+                                            // K::cmp_properties();
                                         };
                                         assert(KeyIterator::between(bad_ki, bad_ki, bad_next_ki))
                                             by {
-                                            K::cmp_properties();
+                                            // K::cmp_properties();
                                         };
                                     }
                                     self.not_range_consistent(lo, hi, dst, &bad_ki);
