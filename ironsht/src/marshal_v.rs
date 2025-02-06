@@ -33,8 +33,8 @@ use crate::verus_extra::seq_lib_v::*;
 
 verus! {
 
-// broadcast use vstd::seq_lib::group_seq_properties,
-broadcast use crate::verus_extra::seq_lib_v::lemma_seq_add_subrange;
+broadcast use vstd::seq_lib::group_seq_properties,
+crate::verus_extra::seq_lib_v::lemma_seq_add_subrange;
   
 pub trait Marshalable : Sized {
   spec fn is_marshalable(&self) -> bool;
@@ -147,7 +147,7 @@ impl Marshalable for u64 {
 
     proof {
       assert(data@.subrange(0, old(data)@.len() as int) =~= old(data)@);
-     assert(data@.subrange(old(data)@.len() as int, data@.len() as int) =~= self.ghost_serialize().subrange(0, i as int));
+    //  assert(data@.subrange(old(data)@.len() as int, data@.len() as int) =~= self.ghost_serialize().subrange(0, i as int));
       lemma_auto_spec_u64_to_from_le_bytes();
     }
 
@@ -823,7 +823,7 @@ impl<T: Marshalable> Marshalable for Vec<T> {
     let accf: Ghost<spec_fn(Seq<u8>, T) -> Seq<u8>> = Ghost(|acc: Seq<u8>, x: T| acc + x.ghost_serialize());
 
     proof {
-     assert(data@.subrange(mid as int, end as int) =~= emp@);
+    //  assert(data@.subrange(mid as int, end as int) =~= emp@);
       // assert(emp == seq_lib_v::seq_fold_left(res@, emp@, accf@));
 
       lemma_auto_spec_u64_to_from_le_bytes();
