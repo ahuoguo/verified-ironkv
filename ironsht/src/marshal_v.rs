@@ -34,7 +34,7 @@ use crate::verus_extra::seq_lib_v::*;
 verus! {
 
 // broadcast use vstd::seq_lib::group_seq_properties,
-//   crate::verus_extra::seq_lib_v::lemma_seq_add_subrange;
+broadcast use crate::verus_extra::seq_lib_v::lemma_seq_add_subrange;
   
 pub trait Marshalable : Sized {
   spec fn is_marshalable(&self) -> bool;
@@ -147,7 +147,7 @@ impl Marshalable for u64 {
 
     proof {
       assert(data@.subrange(0, old(data)@.len() as int) =~= old(data)@);
-      assert(data@.subrange(old(data)@.len() as int, data@.len() as int) =~= self.ghost_serialize().subrange(0, i as int));
+     assert(data@.subrange(old(data)@.len() as int, data@.len() as int) =~= self.ghost_serialize().subrange(0, i as int));
       lemma_auto_spec_u64_to_from_le_bytes();
     }
 
@@ -413,7 +413,7 @@ impl Marshalable for Vec<u8> {
       // macro which itself only uses `assert by` which should preclude verifier performance
       // misbehavior.
       // note: this proof is dischaged by automatically by broadcast use
-      assert(data@.subrange(start as int, mid as int) + data@.subrange(mid as int,  end as int) =~= data@.subrange(start as int,  end as int));
+      // assert(data@.subrange(start as int, mid as int) + data@.subrange(mid as int,  end as int) =~= data@.subrange(start as int,  end as int));
       // seq_lib_v::lemma_seq_add_subrange::<u8>(data@, start as int, mid as int, end as int);
       // seq_lib_v::lemma_seq_add_subrange::<u8>(data@, start as int, mid as int, end as int);
     }
@@ -428,7 +428,7 @@ impl Marshalable for Vec<u8> {
     assert(self.ghost_serialize().subrange(0, 8) =~= (self@.len() as usize).ghost_serialize());
     assert(other.ghost_serialize().subrange(0, 8) =~= (other@.len() as usize).ghost_serialize());
     if self.ghost_serialize().len() == other.ghost_serialize().len() {
-      assert(other.ghost_serialize().subrange(0, self.ghost_serialize().len() as int) =~= other.ghost_serialize());
+//      assert(other.ghost_serialize().subrange(0, self.ghost_serialize().len() as int) =~= other.ghost_serialize());
       assert(self.ghost_serialize().subrange(8, self.ghost_serialize().len() as int) =~= self@);
       assert(other.ghost_serialize().subrange(8, self.ghost_serialize().len() as int) =~= other@);
     } else {
@@ -823,7 +823,7 @@ impl<T: Marshalable> Marshalable for Vec<T> {
     let accf: Ghost<spec_fn(Seq<u8>, T) -> Seq<u8>> = Ghost(|acc: Seq<u8>, x: T| acc + x.ghost_serialize());
 
     proof {
-      assert(data@.subrange(mid as int, end as int) =~= emp@);
+     assert(data@.subrange(mid as int, end as int) =~= emp@);
       // assert(emp == seq_lib_v::seq_fold_left(res@, emp@, accf@));
 
       lemma_auto_spec_u64_to_from_le_bytes();
@@ -855,7 +855,7 @@ impl<T: Marshalable> Marshalable for Vec<T> {
         let f = |x: T| x.ghost_serialize();
         // assert(data@.subrange(mid as int, old_end@) == seq_lib_v::seq_fold_left(old_res@, emp@, accf@));
         // note: automatically dischared by lemma_seq_add_subrange
-        seq_lib_v::lemma_seq_add_subrange::<u8>(data@, mid as int, old_end@, end as int);
+        // seq_lib_v::lemma_seq_add_subrange::<u8>(data@, mid as int, old_end@, end as int);
         // assert(data@.subrange(mid as int, end as int) ==
         //        seq_lib_v::seq_fold_left(old_res@, emp@, accf@) + data@.subrange(old_end@, end as int));
         // assert(data@.subrange(mid as int, end as int) ==
@@ -884,9 +884,9 @@ impl<T: Marshalable> Marshalable for Vec<T> {
         lemma_auto_spec_u64_to_from_le_bytes();
       }
     }
-    assert(data@.subrange(start as int, end as int) == res.ghost_serialize()) by {
-      seq_lib_v::lemma_seq_add_subrange::<u8>(data@, start as int, mid as int, end as int);
-    }
+    // assert(data@.subrange(start as int, end as int) == res.ghost_serialize()) by {
+    //   seq_lib_v::lemma_seq_add_subrange::<u8>(data@, start as int, mid as int, end as int);
+    // }
 
     Some((res, end))
   }
@@ -916,13 +916,13 @@ impl<T: Marshalable> Marshalable for Vec<T> {
           let s1 = self@.subrange(0, idx);
           let s2 = self@.subrange(idx, self.len() as int);
           lemma_fold_left_append_merge(s1, s2, g);
-          assert(self@.subrange(0, self.len() as int) =~= s1 + s2);
+//          assert(self@.subrange(0, self.len() as int) =~= s1 + s2);
         }
         assert(gs(self@, idx, self.len() as int) == g(self@[idx]) + gs(self@, idx + 1, self.len() as int)) by {
           let s1 = self@.subrange(idx, idx + 1);
           let s2 = self@.subrange(idx + 1, self.len() as int);
           lemma_fold_left_append_merge(s1, s2, g);
-          assert(self@.subrange(idx, self.len() as int) =~= s1 + s2);
+//          assert(self@.subrange(idx, self.len() as int) =~= s1 + s2);
 //          assert(self@.subrange(idx, idx + 1) =~= seq![self@[idx]]);
           reveal_with_fuel(Seq::fold_left, 2);
 //          assert(emp + g(self@[idx]) =~= g(self@[idx]));
@@ -936,13 +936,13 @@ impl<T: Marshalable> Marshalable for Vec<T> {
           let s1 = other@.subrange(0, idx);
           let s2 = other@.subrange(idx, other.len() as int);
           lemma_fold_left_append_merge(s1, s2, g);
-          assert(other@.subrange(0, other.len() as int) =~= s1 + s2);
+//          assert(other@.subrange(0, other.len() as int) =~= s1 + s2);
         }
         assert(gs(other@, idx, other.len() as int) == g(other@[idx]) + gs(other@, idx + 1, other.len() as int)) by {
           let s1 = other@.subrange(idx, idx + 1);
           let s2 = other@.subrange(idx + 1, other.len() as int);
           lemma_fold_left_append_merge(s1, s2, g);
-          assert(other@.subrange(idx, other.len() as int) =~= s1 + s2);
+//          assert(other@.subrange(idx, other.len() as int) =~= s1 + s2);
 //          assert(other@.subrange(idx, idx + 1) =~= seq![other@[idx]]);
           reveal_with_fuel(Seq::fold_left, 2);
 //          assert(emp + g(other@[idx]) =~= g(other@[idx]));
@@ -1095,7 +1095,7 @@ impl<T: Marshalable, U: Marshalable> Marshalable for (T, U) {
     }, Some(x) => x, };
     let p = (t, u);
     proof {
-      assert(data@.subrange(start as int, end as int) =~= p.ghost_serialize());
+//      assert(data@.subrange(start as int, end as int) =~= p.ghost_serialize());
     }
     Some((p, end))
   }
