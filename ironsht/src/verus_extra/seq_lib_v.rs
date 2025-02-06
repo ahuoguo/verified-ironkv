@@ -3,7 +3,9 @@ use builtin_macros::*;
 use vstd::seq::*;
 use vstd::seq_lib::*;
 
+
 verus! {
+broadcast use vstd::seq_lib::group_seq_properties;
 
 pub proof fn lemma_subrange_subrange<A>(s: Seq<A>, start: int, midsize: int, endsize: int)
   requires
@@ -16,11 +18,12 @@ pub proof fn lemma_subrange_subrange<A>(s: Seq<A>, start: int, midsize: int, end
 }
 
 
-pub proof fn lemma_seq_add_subrange<A>(s: Seq<A>, i: int, j: int, k: int)
+// TODO: this might be good to move in seq_lib
+pub broadcast proof fn lemma_seq_add_subrange<A>(s: Seq<A>, i: int, j: int, k: int)
   requires 0 <= i <= j <= k <= s.len(),
-  ensures s.subrange(i, j) + s.subrange(j, k) == s.subrange(i, k),
+  ensures #[trigger] s.subrange(i, j) + #[trigger]s.subrange(j, k) =~= s.subrange(i, k),
 {
-    assert_seqs_equal!{s.subrange(i, j) + s.subrange(j, k), s.subrange(i, k)}
+    // assert_seqs_equal!{s.subrange(i, j) + s.subrange(j, k), s.subrange(i, k)}
 }
 
 pub proof fn lemma_seq_fold_left_merge_right_assoc<A, B>(s: Seq<A>, init: B, f: spec_fn(A) -> B, g: spec_fn(B, B) -> B)
@@ -165,9 +168,9 @@ pub proof fn lemma_seq_fold_left_sum_le<A>(s: Seq<A>, init: int, high: int, f: s
   }
 }
 
-pub proof fn lemma_if_everything_in_seq_satisfies_filter_then_filter_is_identity<A>(s: Seq<A>, pred: spec_fn(A) -> bool)
+pub broadcast proof fn lemma_if_everything_in_seq_satisfies_filter_then_filter_is_identity<A>(s: Seq<A>, pred: spec_fn(A) -> bool)
     requires forall |i: int| 0 <= i && i < s.len() ==> pred(s[i])
-    ensures  s.filter(pred) == s
+    ensures  #[trigger] s.filter(pred) == s
     decreases s.len()
 {
     reveal(Seq::filter);
@@ -178,9 +181,9 @@ pub proof fn lemma_if_everything_in_seq_satisfies_filter_then_filter_is_identity
     }
 }
 
-pub proof fn lemma_if_nothing_in_seq_satisfies_filter_then_filter_result_is_empty<A>(s: Seq<A>, pred: spec_fn(A) -> bool)
+pub broadcast proof fn lemma_if_nothing_in_seq_satisfies_filter_then_filter_result_is_empty<A>(s: Seq<A>, pred: spec_fn(A) -> bool)
     requires forall |i: int| 0 <= i && i < s.len() ==> !pred(s[i])
-    ensures  s.filter(pred) =~= Seq::<A>::empty()
+    ensures  #[trigger] s.filter(pred) =~= Seq::<A>::empty()
     decreases s.len()
 {
     reveal(Seq::filter);
@@ -191,12 +194,12 @@ pub proof fn lemma_if_nothing_in_seq_satisfies_filter_then_filter_result_is_empt
     }
 }
 
-pub proof fn lemma_filter_skip_rejected<A>(s: Seq<A>, pred: spec_fn(A) -> bool, i: int)
+pub broadcast proof fn lemma_filter_skip_rejected<A>(s: Seq<A>, pred: spec_fn(A) -> bool, i: int)
     requires
         0 <= i <= s.len(),
         forall |j| 0 <= j < i ==> !pred(s[j]),
     ensures
-        s.filter(pred) == s.skip(i).filter(pred)
+        s.filter(pred) == #[trigger] s.skip(i).filter(pred)
     decreases
         s.len()
 {

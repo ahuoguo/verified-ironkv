@@ -40,6 +40,7 @@ use crate::host_impl_t::*; // need some definitions from Rust
 
 verus! {
 
+broadcast use crate::verus_extra::seq_lib_v::lemma_if_everything_in_seq_satisfies_filter_then_filter_is_identity, lemma_if_nothing_in_seq_satisfies_filter_then_filter_result_is_empty, lemma_filter_skip_rejected;
 
 /*
  This file ports this call stack from Ironfleet
@@ -468,7 +469,7 @@ impl HostState {
             proof {
                 assert (abstractify_seq_of_cpackets_to_set_of_sht_packets(packets@) ==
                         extract_packets_from_abstract_ios(ios)) by {
-                    lemma_if_everything_in_seq_satisfies_filter_then_filter_is_identity(ios, |io: LSHTIo| io is Send);
+                    // lemma_if_everything_in_seq_satisfies_filter_then_filter_is_identity(ios, |io: LSHTIo| io is Send);
                     assert (ios.filter(|io: LSHTIo| io is Send) == ios);
                     let set1 = abstractify_seq_of_cpackets_to_set_of_sht_packets(packets@);
                     let set2 = extract_packets_from_abstract_ios(ios);
@@ -491,7 +492,7 @@ impl HostState {
                 }
                 assert (abstractify_outbound_packets_to_seq_of_lsht_packets(packets@) ==
                         extract_sent_packets_from_ios(ios)) by {
-                    lemma_if_everything_in_seq_satisfies_filter_then_filter_is_identity(ios, |io: LSHTIo| io is Send);
+                    // lemma_if_everything_in_seq_satisfies_filter_then_filter_is_identity(ios, |io: LSHTIo| io is Send);
                     assert (ios.filter(|io: LSHTIo| io is Send) == ios);
                     assert_seqs_equal!(abstractify_outbound_packets_to_seq_of_lsht_packets(packets@),
                                        extract_sent_packets_from_ios(ios));
@@ -583,8 +584,8 @@ impl HostState {
                             let r = ios[0]->r;
                             let pkt = Packet{dst: r.dst, src: r.src, msg: r.msg};
                             let sent_packets = extract_packets_from_abstract_ios(ios);
-                            lemma_if_nothing_in_seq_satisfies_filter_then_filter_result_is_empty(
-                                ios, |io: LSHTIo| io is Send);
+                            // lemma_if_nothing_in_seq_satisfies_filter_then_filter_result_is_empty(
+                            //     ios, |io: LSHTIo| io is Send);
                             assert(extract_sent_packets_from_ios(ios) =~= Seq::<LSHTPacket>::empty());
                             assert(sent_packets =~= Set::<Packet>::empty());
                             workaround_dermarshal_not_invertible();
@@ -735,7 +736,7 @@ impl HostState {
         }
         assert(ios_tail =~= ios.skip(1));
         proof {
-            lemma_filter_skip_rejected(ios, |io: LSHTIo| io is Send, 1);
+            // lemma_filter_skip_rejected(ios, |io: LSHTIo| io is Send, 1);
         }
         assert(receive_packet(old(self)@, self@, cpacket@, extract_packets_from_abstract_ios(ios), ack@@)); // trigger
 
@@ -1762,7 +1763,7 @@ impl HostState {
             let extract_seq = extract_sent_packets_from_ios(aios).map_values(|lp: LSHTPacket| extract_packet_from_lsht_packet(lp));
 
             // Skip through the filter in extract_sent_packets_from_ios, which is a no-op here
-            lemma_if_everything_in_seq_satisfies_filter_then_filter_is_identity(aios, |io: LSHTIo| io is Send);
+            // lemma_if_everything_in_seq_satisfies_filter_then_filter_is_identity(aios, |io: LSHTIo| io is Send);
 
             // Reach into an inconvenient trigger
             assert forall |i| 0<=i<extract_seq.len() implies extract_seq[i] == view_seq[i] by {
