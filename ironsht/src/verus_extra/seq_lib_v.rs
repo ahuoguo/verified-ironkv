@@ -4,6 +4,9 @@ use vstd::seq::*;
 use vstd::seq_lib::*;
 
 verus! {
+broadcast use vstd::seq_lib::group_seq_properties,
+              vstd::map_lib::group_map_properties,
+              vstd::set_lib::group_set_properties;
 
 pub proof fn lemma_subrange_subrange<A>(s: Seq<A>, start: int, midsize: int, endsize: int)
   requires
@@ -202,14 +205,14 @@ pub proof fn lemma_filter_skip_rejected<A>(s: Seq<A>, pred: spec_fn(A) -> bool, 
 {
     reveal(Seq::filter);
     if s.len() == 0 {
-        assert(s.skip(i) =~= s);
+//        assert(s.skip(i) =~= s);
     }
     else if i < s.len() {
         assert(s.skip(i).drop_last() =~= s.drop_last().skip(i));
         lemma_filter_skip_rejected(s.drop_last(), pred, i);
     }
     else {
-        assert(s.skip(i) =~= s.drop_last().skip(i - 1));
+//        assert(s.skip(i) =~= s.drop_last().skip(i - 1));
         lemma_filter_skip_rejected(s.drop_last(), pred, i - 1);
     }
 }

@@ -32,6 +32,9 @@ use crate::verus_extra::seq_lib_v::*;
 //   `checked_add`), would be nice to have them in the standard library.
 
 verus! {
+broadcast use vstd::seq_lib::group_seq_properties,
+              vstd::map_lib::group_map_properties,
+              vstd::set_lib::group_set_properties;
 
 pub trait Marshalable : Sized {
   spec fn is_marshalable(&self) -> bool;
@@ -641,12 +644,12 @@ impl<T: Marshalable> Marshalable for Vec<T> {
         total_len = total_len + self[i].serialized_size();
         i = i + 1;
         proof {
-          assert forall |x: T| #[trigger] self@.subrange(0, i as int).contains(x) implies x.is_marshalable() by {
-            if (exists |j:int| 0 <= j < self@.subrange(0, i as int).len() - 1 && self@.subrange(0, i as int)[j] == x) {
-              let j = choose|j:int| 0 <= j < self@.subrange(0, i as int).len() - 1 && self@.subrange(0, i as int)[j] == x;
-              assert(self@.subrange(0, i as int - 1)[j] == x); // OBSERVE
-            }
-          };
+//          assert forall |x: T| #[trigger] self@.subrange(0, i as int).contains(x) implies x.is_marshalable() by {
+//            if (exists |j:int| 0 <= j < self@.subrange(0, i as int).len() - 1 && self@.subrange(0, i as int)[j] == x) {
+//              let j = choose|j:int| 0 <= j < self@.subrange(0, i as int).len() - 1 && self@.subrange(0, i as int)[j] == x;
+////              assert(self@.subrange(0, i as int - 1)[j] == x); // OBSERVE
+//            }
+//          };
           let sl = |x: T| x.ghost_serialize().len() as int;
 //          assert((|acc: int, x: T| acc + x.ghost_serialize().len() as int) =~= (|acc: int, x: T| acc + sl(x)));
           let s = self@.subrange(0 as int, i as int);

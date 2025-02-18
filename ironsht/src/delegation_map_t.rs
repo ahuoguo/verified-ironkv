@@ -16,6 +16,9 @@ use crate::keys_t::*;
 use crate::network_t::*;
 
 verus! {
+broadcast use vstd::seq_lib::group_seq_properties,
+              vstd::map_lib::group_map_properties,
+              vstd::set_lib::group_set_properties;
 
 #[verifier::ext_equal]  // effing INSAASAAAAANNE
 pub struct AbstractDelegationMap(pub Map<AbstractKey, AbstractEndPoint>);

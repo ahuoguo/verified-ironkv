@@ -11,7 +11,10 @@ use crate::args_t::*;
 use crate::io_t::*;
 
 verus! {
-
+broadcast use vstd::seq_lib::group_seq_properties,
+              vstd::map_lib::group_map_properties,
+              vstd::set_lib::group_set_properties;
+    
     // Translates Impl/Common/SeqIsUniqueDef.i.dfy :: SeqIsUnique
     #[verifier::opaque]
     pub open spec fn seq_is_unique<T>(s: Seq<T>) -> bool
@@ -156,13 +159,13 @@ verus! {
         let seq1 = seq![x];
         let set1 = seq1.to_set();
         let set2 = set![x];
-        assert forall |y| set1.contains(y) <==> set2.contains(y) by
-        {
-            if y == x {
-                assert (seq1[0] == y);
-//                assert (set1.contains(y));
-            }
-        }
+//        assert forall |y| set1.contains(y) <==> set2.contains(y) by
+//        {
+//            if y == x {
+////                assert (seq1[0] == y);
+////                assert (set1.contains(y));
+//            }
+//        }
         assert_sets_equal!(seq![x].to_set(), set![x]);
     }
 

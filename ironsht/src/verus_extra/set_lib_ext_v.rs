@@ -6,6 +6,10 @@ use vstd::seq_lib::*;
 use vstd::set_lib::*;
 
 verus! {
+broadcast use vstd::seq_lib::group_seq_properties,
+              vstd::map_lib::group_map_properties,
+              vstd::set_lib::group_set_properties;
+
 /// This fold uses a fixed zero rather than accumulating results in that
 /// argument. This means proofs don't need to generalize over the accumulator,
 /// unlike the Set::fold currently in Verus.
@@ -123,13 +127,13 @@ pub proof fn lemma_flatten_set_seq_spec<A>(sets: Seq<Set<A>>)
     if sets.len() == 0 {
     } else {
         lemma_flatten_set_seq_spec(sets.drop_last());
-        assert forall |x:A| flatten_set_seq(sets).contains(x) implies
-            exists |i: int| 0 <= i < sets.len() && #[trigger] sets[i].contains(x) by {
-            if sets.last().contains(x) {
-            } else {
-                assert(flatten_set_seq(sets.drop_last()).contains(x));
-            }
-        }
+//        assert forall |x:A| flatten_set_seq(sets).contains(x) implies
+//            exists |i: int| 0 <= i < sets.len() && #[trigger] sets[i].contains(x) by {
+//            if sets.last().contains(x) {
+//            } else {
+//                assert(flatten_set_seq(sets.drop_last()).contains(x));
+//            }
+//        }
         assert forall |x:A, i:int| 0 <= i < sets.len() && #[trigger] sets[i].contains(x) implies
             flatten_set_seq(sets).contains(x) by {
             if i == sets.len() - 1 {
@@ -199,16 +203,16 @@ ensures (s+t).to_set() == s.to_set() + t.to_set()
 {
     let left = (s+t).to_set();
     let right = s.to_set() + t.to_set();
-    assert forall |x| right.contains(x) implies left.contains(x) by {
-//        assert(s.to_set()+t.to_set() == s.to_set().union(t.to_set()));
-        if s.to_set().contains(x) {
-            let si = choose |si| 0<=si<s.len() && s[si] == x;
-            assert((s+t)[si] == x);
-        } else {
-            let ti = choose |ti| 0<=ti<t.len() && t[ti] == x;
-            assert((s+t)[s.len() + ti] == x);
-        }
-    }
+//    assert forall |x| right.contains(x) implies left.contains(x) by {
+////        assert(s.to_set()+t.to_set() == s.to_set().union(t.to_set()));
+//        if s.to_set().contains(x) {
+//            let si = choose |si| 0<=si<s.len() && s[si] == x;
+////            assert((s+t)[si] == x);
+//        } else {
+//            let ti = choose |ti| 0<=ti<t.len() && t[ti] == x;
+////            assert((s+t)[s.len() + ti] == x);
+//        }
+//    }
     assert_sets_equal!(left, right);
 }
 
@@ -279,7 +283,7 @@ ensures
     forall |x: A| #[trigger] seq![x].to_set() == set![x],
 {
     assert forall |x: A| #[trigger] seq![x].to_set() =~= set![x] by {
-        assert(seq![x][0] == x);
+//        assert(seq![x][0] == x);
     }
 }
 

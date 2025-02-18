@@ -28,6 +28,9 @@ use vstd::set_lib::*;
 use crate::single_delivery_t::*;
 
 verus! {
+broadcast use vstd::seq_lib::group_seq_properties,
+              vstd::map_lib::group_map_properties,
+              vstd::set_lib::group_set_properties;
 
 /// translates `AckState<MT = CMessage>` (that is, we specialize the message type)
 #[verifier::ext_equal]  // effing INSAASAAAAANNE
@@ -160,7 +163,7 @@ impl CAckState {
         self.num_packets_acked == seqno_acked,
     {
         let mut i: usize = 0;
-        assert( self.un_acked@.skip(0 as int) =~= self.un_acked@ );
+//        assert( self.un_acked@.skip(0 as int) =~= self.un_acked@ );
 
         while (i < self.un_acked.len()
             && match self.un_acked[i] {

@@ -21,6 +21,9 @@ use crate::single_message_t::SingleMessage;
 use crate::verus_extra::clone_v::*;
 
 verus! {
+broadcast use vstd::seq_lib::group_seq_properties,
+              vstd::map_lib::group_map_properties,
+              vstd::set_lib::group_set_properties;
 
 #[allow(inconsistent_fields)]   // Not sure why we need this; v sure looks equivalent to me!
 pub enum CMessage {
