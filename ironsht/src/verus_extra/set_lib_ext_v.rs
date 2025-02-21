@@ -133,7 +133,7 @@ pub proof fn lemma_flatten_set_seq_spec<A>(sets: Seq<Set<A>>)
         assert forall |x:A, i:int| 0 <= i < sets.len() && #[trigger] sets[i].contains(x) implies
             flatten_set_seq(sets).contains(x) by {
             if i == sets.len() - 1 {
-                assert(sets.last().contains(x));
+//                assert(sets.last().contains(x));
                 assert(flatten_set_seq(sets) == flatten_set_seq(sets.drop_last()).union(sets.last()));
             } else {
                 assert(0 <= i < sets.drop_last().len() && sets.drop_last()[i].contains(x));
@@ -200,7 +200,7 @@ ensures (s+t).to_set() == s.to_set() + t.to_set()
     let left = (s+t).to_set();
     let right = s.to_set() + t.to_set();
     assert forall |x| right.contains(x) implies left.contains(x) by {
-        assert(s.to_set()+t.to_set() == s.to_set().union(t.to_set()));
+//        assert(s.to_set()+t.to_set() == s.to_set().union(t.to_set()));
         if s.to_set().contains(x) {
             let si = choose |si| 0<=si<s.len() && s[si] == x;
             assert((s+t)[si] == x);
