@@ -39,8 +39,11 @@ use vstd::set_lib::*; // TODO: prelude doesn't supply the macros?
 use crate::host_impl_t::*; // need some definitions from Rust
 
 verus! {
-
-
+broadcast use vstd::seq_lib::group_seq_properties,
+              vstd::map_lib::group_map_properties,
+              vstd::set_lib::group_set_properties,
+              vstd::multiset::group_multiset_properties;
+    
 /*
  This file ports this call stack from Ironfleet
 
@@ -1130,7 +1133,7 @@ impl HostState {
                             assert_seqs_equal!(abstractify_outbound_packets_to_seq_of_lsht_packets(sent_packets@)
                                                .map_values(|lp: LSHTPacket| extract_packet_from_lsht_packet(lp)),
                                                Seq::<Packet>::empty().push(bp));
-                            assert (Seq::<Packet>::empty().push(bp).index(0) == bp); // needed to show it contains bp
+//                            assert (Seq::<Packet>::empty().push(bp).index(0) == bp); // needed to show it contains bp
                             assert_sets_equal!(Seq::<Packet>::empty().push(bp).to_set(),
                                                Set::<Packet>::empty().insert(bp));
                             assert (next_get_request_reply(

@@ -18,6 +18,10 @@ use std::collections::HashMap;
 use std::net::UdpSocket;
 
 verus! {
+broadcast use vstd::seq_lib::group_seq_properties,
+              vstd::map_lib::group_map_properties,
+              vstd::set_lib::group_set_properties,
+              vstd::multiset::group_multiset_properties;
 
 /// NOTE: no longer need HostEnvironment, its state is inlined in NetClient
 ///

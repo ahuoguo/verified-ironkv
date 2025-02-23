@@ -21,6 +21,10 @@ use crate::single_delivery_t::*;
 use crate::single_message_t::*;
 
 verus! {
+broadcast use vstd::seq_lib::group_seq_properties,
+              vstd::map_lib::group_map_properties,
+              vstd::set_lib::group_set_properties,
+              vstd::multiset::group_multiset_properties;
 
 // io::Error is not supported yet. Placeholder.
 pub struct IronError {

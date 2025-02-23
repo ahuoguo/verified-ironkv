@@ -18,6 +18,10 @@ use crate::seq_is_unique_v::*;
 use crate::verus_extra::clone_v::*;
 
 verus! {
+broadcast use vstd::seq_lib::group_seq_properties,
+              vstd::map_lib::group_map_properties,
+              vstd::set_lib::group_set_properties,
+              vstd::multiset::group_multiset_properties;
 
 impl Ordering {
     pub open spec fn eq(self) -> bool {
@@ -182,15 +186,15 @@ impl<K: KeyTrait + VerusClone> StrictlyOrderedVec<K> {
         proof {
             let old_s = old(self)@.to_set().remove(k);
             let new_s = self@.to_set();
-            assert forall |e| old_s.contains(e) implies new_s.contains(e) by {
-//                assert(old(self)@.to_set().contains(e));
-                let n = choose |n: int| 0 <= n < old(self)@.len() && old(self)@[n] == e;
-                if n < i {
-                    assert(self@[n] == e);  // OBSERVE
-                } else {
-                    assert(self@[n-1] == e);  // OBSERVE
-                }
-            }
+//            assert forall |e| old_s.contains(e) implies new_s.contains(e) by {
+////                assert(old(self)@.to_set().contains(e));
+//                let n = choose |n: int| 0 <= n < old(self)@.len() && old(self)@[n] == e;
+//                if n < i {
+////                    assert(self@[n] == e);  // OBSERVE
+//                } else {
+////                    assert(self@[n-1] == e);  // OBSERVE
+//                }
+//            }
             assert_sets_equal!(self@.to_set(), old(self)@.to_set().remove(k));
         }
         k
@@ -255,25 +259,25 @@ impl<K: KeyTrait + VerusClone> StrictlyOrderedVec<K> {
                 seq_to_set_is_finite::<K>(deleted_seq);
                 deleted_seq.unique_seq_to_set();
 
-                assert forall |e| #[trigger] deleted_set.contains(e)
-                                  implies deleted_seq.to_set().contains(e) by {
-                    if e == target {
-                        assert(deleted_seq[deleted as int - 1] == e); // OBSERVE
-                    } else {
-//                        assert(old_deleted_set.contains(e));
-//                        assert(old_deleted_seq.contains(e));
-                        let i = choose |i| 0 <= i < old_deleted_seq.len() && old_deleted_seq[i] == e;
-                        assert(deleted_seq[i] == e); // OBSERVE
-                    }
-                }
-                assert forall |e| #[trigger] deleted_seq.to_set().contains(e)
-                                  implies deleted_set.contains(e)  by {
-                    if e == target {
-                    } else {
-                        let i = choose |i| 0 <= i < deleted_seq.len() && deleted_seq[i] == e;
-                        assert(old_deleted_seq[i] == e);    // OBSERVE
-                    }
-                }
+//                assert forall |e| #[trigger] deleted_set.contains(e)
+//                                  implies deleted_seq.to_set().contains(e) by {
+//                    if e == target {
+////                        assert(deleted_seq[deleted as int - 1] == e); // OBSERVE
+//                    } else {
+////                        assert(old_deleted_set.contains(e));
+////                        assert(old_deleted_seq.contains(e));
+//                        let i = choose |i| 0 <= i < old_deleted_seq.len() && old_deleted_seq[i] == e;
+////                        assert(deleted_seq[i] == e); // OBSERVE
+//                    }
+//                }
+//                assert forall |e| #[trigger] deleted_seq.to_set().contains(e)
+//                                  implies deleted_set.contains(e)  by {
+//                    if e == target {
+//                    } else {
+//                        let i = choose |i| 0 <= i < deleted_seq.len() && deleted_seq[i] == e;
+////                        assert(old_deleted_seq[i] == e);    // OBSERVE
+//                    }
+//                }
                 assert_sets_equal!(deleted_set,
                                    deleted_seq.to_set());
                 assert_sets_equal!(old(self)@.to_set(),
@@ -309,7 +313,7 @@ impl<K: KeyTrait + VerusClone> StrictlyOrderedVec<K> {
         assert(self@.to_set() == old(self)@.to_set().insert(k)) by {
             let new_s = self@.to_set();
             let old_s = old(self)@.to_set().insert(k);
-            assert(self@[index as int] == k);   // OBSERVE
+//            assert(self@[index as int] == k);   // OBSERVE
             assert forall |e| old_s.contains(e) implies new_s.contains(e) by {
                 if e == k {
                 } else {
@@ -317,7 +321,7 @@ impl<K: KeyTrait + VerusClone> StrictlyOrderedVec<K> {
                     if i < index {
                         assert(self@[i] == e);      // OBSERVE
                     } else {
-                        assert(self@[i+1] == e);    // OBSERVE
+//                        assert(self@[i+1] == e);    // OBSERVE
                     }
                 }
             };
@@ -1200,57 +1204,57 @@ impl<K: KeyTrait + VerusClone> DelegationMap<K> {
 //                    assert(!hi.is_end());
 
                     assert((ii != hi && old(self)@[k] == old(self).lows@[i]@) || self@[k] == self.lows@[i]@) by {
-                        assert((ii != hi && old(self).lows@.contains_key(i)) || ii == hi) by {
-                            assert_by_contradiction!(!ii.lt_spec(*lo), {
-                                // Flaky proof here
-                                K::cmp_properties();
-                            });
-
-                            assert_by_contradiction!(ii != lo, {
-                                // We need the following to prove hi is in self.lows@
-                                assert(!hi.lt_spec(*hi)) by { K::cmp_properties(); };
-                                assert(pre_erase.contains_key(*hi.get()));
-                                assert(erased.contains_key(*hi.get()));
-                                assert(self.lows@.contains_key(*hi.get()));
-
-                                // But we have i < hi < j
-                                assert(hi.lt_spec(j)) by { K::cmp_properties(); };
-
-                                // which violates lows.gap(i, j)
-                                //assert(false);
-                            });
-
-//                            assert(lo.lt_spec(ii)) by { K::cmp_properties(); };
-                            // lo < i ==>
-                            // lo < i <= k < j
-                            // lo < hi <= k < j
-                            assert_by_contradiction!(!ii.lt_spec(*hi), {
-                                // If this were true, we would have i < hi < j,
-                                // which violates gap(i, j)
-                                assert(hi.lt_spec(j)) by { K::cmp_properties(); };
-                                //assert(false);
-                            });
-                            // Therefore hi <= i
-                            if ii == hi {
-                            } else {
-                                // hi < i   ==> keys from i to j in lows didn't change
-//                                assert(erased.contains_key(i));
-//                                assert(pre_erase.contains_key(i));
-//                                assert(old(self).lows@.contains_key(i));
-//                                assert forall |m| ii.lt_spec(m) && m.lt_spec(j)
-//                                        implies !(#[trigger] old(self)@.contains_key(*m.get())) by {
-//                                    K::cmp_properties();
-////                                    assert_by_contradiction!(!old(self)@.contains_key(*m.get()), {
-////                                        K::cmp_properties();
-////                                        assert(self@.contains_key(*m.get()));
-////                                        assert(KeyIterator::between(ii, m, j));
-////                                        self.lows.gap_means_empty(ii, j, m);
-////                                    });
-//                                };
-                                K::cmp_properties();    // Flaky
-//                                assert(old(self).lows.gap(KeyIterator::new_spec(i), j));
-                            }
-                        };
+//                        assert((ii != hi && old(self).lows@.contains_key(i)) || ii == hi) by {
+//                            assert_by_contradiction!(!ii.lt_spec(*lo), {
+//                                // Flaky proof here
+//                                K::cmp_properties();
+//                            });
+//
+//                            assert_by_contradiction!(ii != lo, {
+//                                // We need the following to prove hi is in self.lows@
+//                                assert(!hi.lt_spec(*hi)) by { K::cmp_properties(); };
+//                                assert(pre_erase.contains_key(*hi.get()));
+//                                assert(erased.contains_key(*hi.get()));
+//                                assert(self.lows@.contains_key(*hi.get()));
+//
+//                                // But we have i < hi < j
+//                                assert(hi.lt_spec(j)) by { K::cmp_properties(); };
+//
+//                                // which violates lows.gap(i, j)
+//                                //assert(false);
+//                            });
+//
+////                            assert(lo.lt_spec(ii)) by { K::cmp_properties(); };
+//                            // lo < i ==>
+//                            // lo < i <= k < j
+//                            // lo < hi <= k < j
+//                            assert_by_contradiction!(!ii.lt_spec(*hi), {
+//                                // If this were true, we would have i < hi < j,
+//                                // which violates gap(i, j)
+//                                assert(hi.lt_spec(j)) by { K::cmp_properties(); };
+//                                //assert(false);
+//                            });
+//                            // Therefore hi <= i
+//                            if ii == hi {
+//                            } else {
+//                                // hi < i   ==> keys from i to j in lows didn't change
+////                                assert(erased.contains_key(i));
+////                                assert(pre_erase.contains_key(i));
+////                                assert(old(self).lows@.contains_key(i));
+////                                assert forall |m| ii.lt_spec(m) && m.lt_spec(j)
+////                                        implies !(#[trigger] old(self)@.contains_key(*m.get())) by {
+////                                    K::cmp_properties();
+//////                                    assert_by_contradiction!(!old(self)@.contains_key(*m.get()), {
+//////                                        K::cmp_properties();
+//////                                        assert(self@.contains_key(*m.get()));
+//////                                        assert(KeyIterator::between(ii, m, j));
+//////                                        self.lows.gap_means_empty(ii, j, m);
+//////                                    });
+////                                };
+//                                K::cmp_properties();    // Flaky
+////                                assert(old(self).lows.gap(KeyIterator::new_spec(i), j));
+//                            }
+//                        };
 
                         //assert(erased.gap(i, j));
 
