@@ -27,7 +27,8 @@ use crate::verus_extra::seq_lib_v::*;
 verus! {
 broadcast use vstd::seq_lib::group_seq_properties,
               vstd::map_lib::group_map_properties,
-              vstd::set_lib::group_set_properties;
+              vstd::set_lib::group_set_properties,
+              vstd::multiset::group_multiset_properties;
 
     use crate::keys_t::{SHTKey, CKey, KeyRange, KeyIterator};
     use crate::io_t::EndPoint;
