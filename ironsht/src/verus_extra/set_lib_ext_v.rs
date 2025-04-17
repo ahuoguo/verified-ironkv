@@ -123,13 +123,13 @@ pub proof fn lemma_flatten_set_seq_spec<A>(sets: Seq<Set<A>>)
     if sets.len() == 0 {
     } else {
         lemma_flatten_set_seq_spec(sets.drop_last());
-        assert forall |x:A| flatten_set_seq(sets).contains(x) implies
-            exists |i: int| 0 <= i < sets.len() && #[trigger] sets[i].contains(x) by {
-            if sets.last().contains(x) {
-            } else {
-                assert(flatten_set_seq(sets.drop_last()).contains(x));
-            }
-        }
+//        assert forall |x:A| flatten_set_seq(sets).contains(x) implies
+//            exists |i: int| 0 <= i < sets.len() && #[trigger] sets[i].contains(x) by {
+//            if sets.last().contains(x) {
+//            } else {
+//                assert(flatten_set_seq(sets.drop_last()).contains(x));
+//            }
+//        }
         assert forall |x:A, i:int| 0 <= i < sets.len() && #[trigger] sets[i].contains(x) implies
             flatten_set_seq(sets).contains(x) by {
             if i == sets.len() - 1 {

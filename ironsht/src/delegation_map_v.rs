@@ -1200,57 +1200,57 @@ impl<K: KeyTrait + VerusClone> DelegationMap<K> {
 //                    assert(!hi.is_end());
 
                     assert((ii != hi && old(self)@[k] == old(self).lows@[i]@) || self@[k] == self.lows@[i]@) by {
-                        assert((ii != hi && old(self).lows@.contains_key(i)) || ii == hi) by {
-                            assert_by_contradiction!(!ii.lt_spec(*lo), {
-                                // Flaky proof here
-                                K::cmp_properties();
-                            });
-
-                            assert_by_contradiction!(ii != lo, {
-                                // We need the following to prove hi is in self.lows@
-                                assert(!hi.lt_spec(*hi)) by { K::cmp_properties(); };
-                                assert(pre_erase.contains_key(*hi.get()));
-                                assert(erased.contains_key(*hi.get()));
-                                assert(self.lows@.contains_key(*hi.get()));
-
-                                // But we have i < hi < j
-                                assert(hi.lt_spec(j)) by { K::cmp_properties(); };
-
-                                // which violates lows.gap(i, j)
-                                //assert(false);
-                            });
-
-//                            assert(lo.lt_spec(ii)) by { K::cmp_properties(); };
-                            // lo < i ==>
-                            // lo < i <= k < j
-                            // lo < hi <= k < j
-                            assert_by_contradiction!(!ii.lt_spec(*hi), {
-                                // If this were true, we would have i < hi < j,
-                                // which violates gap(i, j)
-                                assert(hi.lt_spec(j)) by { K::cmp_properties(); };
-                                //assert(false);
-                            });
-                            // Therefore hi <= i
-                            if ii == hi {
-                            } else {
-                                // hi < i   ==> keys from i to j in lows didn't change
-//                                assert(erased.contains_key(i));
-//                                assert(pre_erase.contains_key(i));
-//                                assert(old(self).lows@.contains_key(i));
-//                                assert forall |m| ii.lt_spec(m) && m.lt_spec(j)
-//                                        implies !(#[trigger] old(self)@.contains_key(*m.get())) by {
-//                                    K::cmp_properties();
-////                                    assert_by_contradiction!(!old(self)@.contains_key(*m.get()), {
-////                                        K::cmp_properties();
-////                                        assert(self@.contains_key(*m.get()));
-////                                        assert(KeyIterator::between(ii, m, j));
-////                                        self.lows.gap_means_empty(ii, j, m);
-////                                    });
-//                                };
-                                K::cmp_properties();    // Flaky
-//                                assert(old(self).lows.gap(KeyIterator::new_spec(i), j));
-                            }
-                        };
+//                        assert((ii != hi && old(self).lows@.contains_key(i)) || ii == hi) by {
+//                            assert_by_contradiction!(!ii.lt_spec(*lo), {
+//                                // Flaky proof here
+//                                K::cmp_properties();
+//                            });
+//
+//                            assert_by_contradiction!(ii != lo, {
+//                                // We need the following to prove hi is in self.lows@
+//                                assert(!hi.lt_spec(*hi)) by { K::cmp_properties(); };
+//                                assert(pre_erase.contains_key(*hi.get()));
+//                                assert(erased.contains_key(*hi.get()));
+//                                assert(self.lows@.contains_key(*hi.get()));
+//
+//                                // But we have i < hi < j
+//                                assert(hi.lt_spec(j)) by { K::cmp_properties(); };
+//
+//                                // which violates lows.gap(i, j)
+//                                //assert(false);
+//                            });
+//
+////                            assert(lo.lt_spec(ii)) by { K::cmp_properties(); };
+//                            // lo < i ==>
+//                            // lo < i <= k < j
+//                            // lo < hi <= k < j
+//                            assert_by_contradiction!(!ii.lt_spec(*hi), {
+//                                // If this were true, we would have i < hi < j,
+//                                // which violates gap(i, j)
+//                                assert(hi.lt_spec(j)) by { K::cmp_properties(); };
+//                                //assert(false);
+//                            });
+//                            // Therefore hi <= i
+//                            if ii == hi {
+//                            } else {
+//                                // hi < i   ==> keys from i to j in lows didn't change
+////                                assert(erased.contains_key(i));
+////                                assert(pre_erase.contains_key(i));
+////                                assert(old(self).lows@.contains_key(i));
+////                                assert forall |m| ii.lt_spec(m) && m.lt_spec(j)
+////                                        implies !(#[trigger] old(self)@.contains_key(*m.get())) by {
+////                                    K::cmp_properties();
+//////                                    assert_by_contradiction!(!old(self)@.contains_key(*m.get()), {
+//////                                        K::cmp_properties();
+//////                                        assert(self@.contains_key(*m.get()));
+//////                                        assert(KeyIterator::between(ii, m, j));
+//////                                        self.lows.gap_means_empty(ii, j, m);
+//////                                    });
+////                                };
+//                                K::cmp_properties();    // Flaky
+////                                assert(old(self).lows.gap(KeyIterator::new_spec(i), j));
+//                            }
+//                        };
 
                         //assert(erased.gap(i, j));
 

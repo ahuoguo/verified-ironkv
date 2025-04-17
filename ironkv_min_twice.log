@@ -1,0 +1,671 @@
+    Updating crates.io index
+     Locking 2 packages to latest compatible versions
+      Adding fs_extra v1.3.0
+      Adding minimize v0.1.0 (/local/abai/verus/source/tools/minimize)
+   Compiling syn v2.0.25
+   Compiling console v0.15.7
+   Compiling syn_verus v2.0.96 (/local/abai/verus/dependencies/syn)
+   Compiling indicatif v0.17.7
+   Compiling serde_derive v1.0.171
+warning: unused variable: `tokens`
+    --> tools/minimize/src/main.rs:1511:55
+     |
+1511 | ...ath, delimiter: _, tokens }) => {
+     |                       ^^^^^^ help: try ignoring the field: `tokens: _`
+     |
+     = note: `#[warn(unused_variables)]` on by default
+
+warning: `minimize` (bin "minimize") generated 1 warning
+    Finished `release` profile [optimized] target(s) in 1.22s
+     Running `/local/abai/verus/source/target/release/minimize /local/abai/verified-ironkv/ironsht/src/lib.d -d ironkv-tmp10`
+warning: else branch in let currently not supported
+verus succeeded with time: 12731ms
+minimization of ironkv-tmp10/0/lib.rs is completed
+minimization of ironkv-tmp10/1/abstract_end_point_t.rs is completed
+minimization of ironkv-tmp10/2/abstract_parameters_t.rs is completed
+minimization of ironkv-tmp10/3/abstract_service_t.rs is completed
+minimization of ironkv-tmp10/4/app_interface_t.rs is completed
+minimization of ironkv-tmp10/5/args_t.rs is completed
+minimization of ironkv-tmp10/6/cmessage_v.rs is completed
+minimization of ironkv-tmp10/7/delegation_map_t.rs is completed
+commenting out line Lines { lines: 160..=162 } in "ironkv-tmp10/8/delegation_map_v.rs"
+minimization of ironkv-tmp10/9/endpoint_hashmap_t.rs is completed
+minimization of ironkv-tmp10/10/environment_t.rs is completed
+minimization of ironkv-tmp10/11/hashmap_t.rs is completed
+minimization of ironkv-tmp10/12/host_impl_t.rs is completed
+commenting out line Lines { lines: 312..=312 } in "ironkv-tmp10/13/host_impl_v.rs"
+minimization of ironkv-tmp10/14/host_protocol_t.rs is completed
+minimization of ironkv-tmp10/15/io_t.rs is completed
+commenting out line Lines { lines: 174..=174 } in "ironkv-tmp10/16/keys_t.rs"
+minimization of ironkv-tmp10/17/main_t.rs is completed
+commenting out line Lines { lines: 113..=113 } in "ironkv-tmp10/18/marshal_ironsht_specific_v.rs"
+commenting out line Lines { lines: 145..=145 } in "ironkv-tmp10/19/marshal_v.rs"
+minimization of ironkv-tmp10/20/message_t.rs is completed
+commenting out line Lines { lines: 162..=162 } in "ironkv-tmp10/21/net_sht_v.rs"
+minimization of ironkv-tmp10/22/network_t.rs is completed
+commenting out line Lines { lines: 85..=85 } in "ironkv-tmp10/23/seq_is_unique_v.rs"
+verus failed, reverting
+verus failed, reverting
+verus failed, reverting
+verus failed, reverting
+commenting out line Lines { lines: 186..=186 } in "ironkv-tmp10/16/keys_t.rs"
+commenting out line Lines { lines: 480..=480 } in "ironkv-tmp10/13/host_impl_v.rs"
+commenting out line Lines { lines: 146..=146 } in "ironkv-tmp10/19/marshal_v.rs"
+commenting out line Lines { lines: 405..=405 } in "ironkv-tmp10/21/net_sht_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 164..=166 } in "ironkv-tmp10/8/delegation_map_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 86..=86 } in "ironkv-tmp10/23/seq_is_unique_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 213..=213 } in "ironkv-tmp10/18/marshal_ironsht_specific_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 400..=407 } in "ironkv-tmp10/21/net_sht_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 478..=482 } in "ironkv-tmp10/13/host_impl_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 188..=188 } in "ironkv-tmp10/8/delegation_map_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 82..=88 } in "ironkv-tmp10/23/seq_is_unique_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 166..=166 } in "ironkv-tmp10/19/marshal_v.rs"
+verus failed, reverting
+minimization of ironkv-tmp10/16/keys_t.rs is completed
+commenting out line Lines { lines: 143..=143 } in "ironkv-tmp10/24/single_delivery_model_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 229..=230 } in "ironkv-tmp10/18/marshal_ironsht_specific_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 190..=190 } in "ironkv-tmp10/8/delegation_map_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 485..=485 } in "ironkv-tmp10/13/host_impl_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 95..=97 } in "ironkv-tmp10/23/seq_is_unique_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 148..=148 } in "ironkv-tmp10/24/single_delivery_model_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 417..=417 } in "ironkv-tmp10/21/net_sht_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 168..=168 } in "ironkv-tmp10/19/marshal_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 260..=260 } in "ironkv-tmp10/18/marshal_ironsht_specific_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 237..=237 } in "ironkv-tmp10/24/single_delivery_model_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 111..=111 } in "ironkv-tmp10/23/seq_is_unique_v.rs"
+verus failed, reverting
+minimization of ironkv-tmp10/21/net_sht_v.rs is completed
+verus failed, reverting
+commenting out line Lines { lines: 162..=162 } in "ironkv-tmp10/25/single_delivery_state_v.rs"
+commenting out line Lines { lines: 184..=192 } in "ironkv-tmp10/8/delegation_map_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 169..=169 } in "ironkv-tmp10/19/marshal_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 483..=487 } in "ironkv-tmp10/13/host_impl_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 253..=263 } in "ironkv-tmp10/18/marshal_ironsht_specific_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 231..=239 } in "ironkv-tmp10/24/single_delivery_model_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 161..=161 } in "ironkv-tmp10/23/seq_is_unique_v.rs"
+verus failed, reverting
+verus failed, reverting
+commenting out line Lines { lines: 167..=170 } in "ironkv-tmp10/19/marshal_v.rs"
+commenting out line Lines { lines: 468..=490 } in "ironkv-tmp10/13/host_impl_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 260..=260 } in "ironkv-tmp10/8/delegation_map_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 280..=280 } in "ironkv-tmp10/18/marshal_ironsht_specific_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 168..=168 } in "ironkv-tmp10/25/single_delivery_state_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 244..=244 } in "ironkv-tmp10/24/single_delivery_model_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 175..=175 } in "ironkv-tmp10/19/marshal_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 184..=184 } in "ironkv-tmp10/25/single_delivery_state_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 158..=164 } in "ironkv-tmp10/23/seq_is_unique_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 274..=282 } in "ironkv-tmp10/18/marshal_ironsht_specific_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 491..=497 } in "ironkv-tmp10/13/host_impl_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 265..=265 } in "ironkv-tmp10/8/delegation_map_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 241..=246 } in "ironkv-tmp10/24/single_delivery_model_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 230..=230 } in "ironkv-tmp10/25/single_delivery_state_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 257..=267 } in "ironkv-tmp10/8/delegation_map_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 501..=501 } in "ironkv-tmp10/13/host_impl_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 204..=204 } in "ironkv-tmp10/19/marshal_v.rs"
+verus failed, reverting
+minimization of ironkv-tmp10/23/seq_is_unique_v.rs is completed
+minimization of ironkv-tmp10/26/single_delivery_t.rs is completed
+minimization of ironkv-tmp10/27/single_message_t.rs is completed
+minimization of ironkv-tmp10/28/verus_extra/mod.rs is completed
+minimization of ironkv-tmp10/29/verus_extra/choose_v.rs is completed
+minimization of ironkv-tmp10/30/verus_extra/clone_v.rs is completed
+commenting out line Lines { lines: 14..=14 } in "ironkv-tmp10/31/verus_extra/seq_lib_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 284..=284 } in "ironkv-tmp10/18/marshal_ironsht_specific_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 271..=271 } in "ironkv-tmp10/24/single_delivery_model_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 316..=318 } in "ironkv-tmp10/24/single_delivery_model_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 366..=366 } in "ironkv-tmp10/25/single_delivery_state_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 273..=273 } in "ironkv-tmp10/8/delegation_map_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 241..=241 } in "ironkv-tmp10/19/marshal_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 500..=502 } in "ironkv-tmp10/13/host_impl_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 90..=92 } in "ironkv-tmp10/31/verus_extra/seq_lib_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 267..=285 } in "ironkv-tmp10/18/marshal_ironsht_specific_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 329..=329 } in "ironkv-tmp10/24/single_delivery_model_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 376..=376 } in "ironkv-tmp10/24/single_delivery_model_v.rs"
+verus failed, reverting
+minimization of ironkv-tmp10/25/single_delivery_state_v.rs is completed
+commenting out line Lines { lines: 57..=60 } in "ironkv-tmp10/32/verus_extra/set_lib_ext_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 268..=275 } in "ironkv-tmp10/8/delegation_map_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 498..=504 } in "ironkv-tmp10/13/host_impl_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 300..=300 } in "ironkv-tmp10/18/marshal_ironsht_specific_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 162..=162 } in "ironkv-tmp10/31/verus_extra/seq_lib_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 303..=303 } in "ironkv-tmp10/19/marshal_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 452..=483 } in "ironkv-tmp10/24/single_delivery_model_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 81..=84 } in "ironkv-tmp10/32/verus_extra/set_lib_ext_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 305..=307 } in "ironkv-tmp10/8/delegation_map_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 302..=302 } in "ironkv-tmp10/18/marshal_ironsht_specific_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 508..=508 } in "ironkv-tmp10/13/host_impl_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 203..=203 } in "ironkv-tmp10/31/verus_extra/seq_lib_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 333..=333 } in "ironkv-tmp10/19/marshal_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 446..=487 } in "ironkv-tmp10/24/single_delivery_model_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 103..=106 } in "ironkv-tmp10/32/verus_extra/set_lib_ext_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 311..=311 } in "ironkv-tmp10/8/delegation_map_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 287..=304 } in "ironkv-tmp10/18/marshal_ironsht_specific_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 206..=206 } in "ironkv-tmp10/31/verus_extra/seq_lib_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 505..=509 } in "ironkv-tmp10/13/host_impl_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 353..=353 } in "ironkv-tmp10/19/marshal_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 488..=490 } in "ironkv-tmp10/24/single_delivery_model_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 129..=129 } in "ironkv-tmp10/32/verus_extra/set_lib_ext_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 317..=317 } in "ironkv-tmp10/8/delegation_map_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 210..=210 } in "ironkv-tmp10/31/verus_extra/seq_lib_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 568..=569 } in "ironkv-tmp10/13/host_impl_v.rs"
+verus failed, reverting
+minimization of ironkv-tmp10/18/marshal_ironsht_specific_v.rs is completed
+verus failed, reverting
+commenting out line Lines { lines: 355..=355 } in "ironkv-tmp10/19/marshal_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 500..=500 } in "ironkv-tmp10/24/single_delivery_model_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 125..=131 } in "ironkv-tmp10/32/verus_extra/set_lib_ext_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 319..=319 } in "ironkv-tmp10/8/delegation_map_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 588..=588 } in "ironkv-tmp10/13/host_impl_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 248..=248 } in "ironkv-tmp10/31/verus_extra/seq_lib_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 356..=356 } in "ironkv-tmp10/19/marshal_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 521..=522 } in "ironkv-tmp10/24/single_delivery_model_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 312..=322 } in "ironkv-tmp10/8/delegation_map_v.rs"
+verus succeeded with time: 16777ms
+commenting out line Lines { lines: 136..=136 } in "ironkv-tmp10/32/verus_extra/set_lib_ext_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 590..=590 } in "ironkv-tmp10/13/host_impl_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 249..=249 } in "ironkv-tmp10/31/verus_extra/seq_lib_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 354..=357 } in "ironkv-tmp10/19/marshal_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 568..=568 } in "ironkv-tmp10/24/single_delivery_model_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 308..=324 } in "ironkv-tmp10/8/delegation_map_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 594..=595 } in "ironkv-tmp10/13/host_impl_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 138..=138 } in "ironkv-tmp10/32/verus_extra/set_lib_ext_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 262..=262 } in "ironkv-tmp10/31/verus_extra/seq_lib_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 362..=362 } in "ironkv-tmp10/19/marshal_v.rs"
+verus failed, reverting
+minimization of ironkv-tmp10/24/single_delivery_model_v.rs is completed
+verus failed, reverting
+commenting out line Lines { lines: 611..=611 } in "ironkv-tmp10/8/delegation_map_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 603..=603 } in "ironkv-tmp10/13/host_impl_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 132..=140 } in "ironkv-tmp10/32/verus_extra/set_lib_ext_v.rs"
+verus failed, reverting
+minimization of ironkv-tmp10/31/verus_extra/seq_lib_v.rs is completed
+verus failed, reverting
+commenting out line Lines { lines: 421..=421 } in "ironkv-tmp10/19/marshal_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 615..=615 } in "ironkv-tmp10/13/host_impl_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 618..=618 } in "ironkv-tmp10/8/delegation_map_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 191..=193 } in "ironkv-tmp10/32/verus_extra/set_lib_ext_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 422..=422 } in "ironkv-tmp10/19/marshal_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 747..=747 } in "ironkv-tmp10/13/host_impl_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 714..=721 } in "ironkv-tmp10/8/delegation_map_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 205..=205 } in "ironkv-tmp10/32/verus_extra/set_lib_ext_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 424..=424 } in "ironkv-tmp10/19/marshal_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 751..=751 } in "ironkv-tmp10/13/host_impl_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 726..=731 } in "ironkv-tmp10/8/delegation_map_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 208..=208 } in "ironkv-tmp10/32/verus_extra/set_lib_ext_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 425..=425 } in "ironkv-tmp10/19/marshal_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 707..=738 } in "ironkv-tmp10/8/delegation_map_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 786..=786 } in "ironkv-tmp10/13/host_impl_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 201..=210 } in "ironkv-tmp10/32/verus_extra/set_lib_ext_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 426..=426 } in "ironkv-tmp10/19/marshal_v.rs"
+verus failed, reverting
+verus failed, reverting
+commenting out line Lines { lines: 764..=775 } in "ironkv-tmp10/8/delegation_map_v.rs"
+commenting out line Lines { lines: 813..=813 } in "ironkv-tmp10/13/host_impl_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 218..=220 } in "ironkv-tmp10/32/verus_extra/set_lib_ext_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 428..=428 } in "ironkv-tmp10/19/marshal_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 801..=807 } in "ironkv-tmp10/8/delegation_map_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 825..=825 } in "ironkv-tmp10/13/host_impl_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 271..=273 } in "ironkv-tmp10/32/verus_extra/set_lib_ext_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 429..=429 } in "ironkv-tmp10/19/marshal_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 281..=281 } in "ironkv-tmp10/32/verus_extra/set_lib_ext_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 1083..=1083 } in "ironkv-tmp10/13/host_impl_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 814..=817 } in "ironkv-tmp10/8/delegation_map_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 441..=441 } in "ironkv-tmp10/19/marshal_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 280..=282 } in "ironkv-tmp10/32/verus_extra/set_lib_ext_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 818..=818 } in "ironkv-tmp10/8/delegation_map_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 1132..=1132 } in "ironkv-tmp10/13/host_impl_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 442..=442 } in "ironkv-tmp10/19/marshal_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 296..=296 } in "ironkv-tmp10/32/verus_extra/set_lib_ext_v.rs"
+verus failed, reverting
+verus failed, reverting
+commenting out line Lines { lines: 1135..=1140 } in "ironkv-tmp10/13/host_impl_v.rs"
+commenting out line Lines { lines: 819..=821 } in "ironkv-tmp10/8/delegation_map_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 501..=501 } in "ironkv-tmp10/19/marshal_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 825..=828 } in "ironkv-tmp10/8/delegation_map_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 295..=297 } in "ironkv-tmp10/32/verus_extra/set_lib_ext_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 1148..=1148 } in "ironkv-tmp10/13/host_impl_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 502..=502 } in "ironkv-tmp10/19/marshal_v.rs"
+verus failed, reverting
+verus failed, reverting
+minimization of ironkv-tmp10/32/verus_extra/set_lib_ext_v.rs is completed
+commenting out line Lines { lines: 829..=829 } in "ironkv-tmp10/8/delegation_map_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 1149..=1154 } in "ironkv-tmp10/13/host_impl_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 509..=509 } in "ironkv-tmp10/19/marshal_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 830..=833 } in "ironkv-tmp10/8/delegation_map_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 1200..=1206 } in "ironkv-tmp10/13/host_impl_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 1223..=1225 } in "ironkv-tmp10/13/host_impl_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 510..=510 } in "ironkv-tmp10/19/marshal_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 838..=840 } in "ironkv-tmp10/8/delegation_map_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 1263..=1268 } in "ironkv-tmp10/13/host_impl_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 514..=514 } in "ironkv-tmp10/19/marshal_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 902..=904 } in "ironkv-tmp10/8/delegation_map_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 1316..=1316 } in "ironkv-tmp10/13/host_impl_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 515..=515 } in "ironkv-tmp10/19/marshal_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 917..=932 } in "ironkv-tmp10/8/delegation_map_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 1320..=1320 } in "ironkv-tmp10/13/host_impl_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 540..=540 } in "ironkv-tmp10/19/marshal_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 933..=970 } in "ironkv-tmp10/8/delegation_map_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 1327..=1327 } in "ironkv-tmp10/13/host_impl_v.rs"
+verus failed, reverting
+verus failed, reverting
+commenting out line Lines { lines: 1330..=1330 } in "ironkv-tmp10/13/host_impl_v.rs"
+commenting out line Lines { lines: 550..=550 } in "ironkv-tmp10/19/marshal_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 1429..=1429 } in "ironkv-tmp10/13/host_impl_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 1432..=1432 } in "ironkv-tmp10/13/host_impl_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 985..=1005 } in "ironkv-tmp10/8/delegation_map_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 1434..=1434 } in "ironkv-tmp10/13/host_impl_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 1453..=1453 } in "ironkv-tmp10/13/host_impl_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 554..=554 } in "ironkv-tmp10/19/marshal_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 971..=1007 } in "ironkv-tmp10/8/delegation_map_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 1490..=1494 } in "ironkv-tmp10/13/host_impl_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 555..=555 } in "ironkv-tmp10/19/marshal_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 1127..=1129 } in "ironkv-tmp10/8/delegation_map_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 1500..=1502 } in "ironkv-tmp10/13/host_impl_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 572..=572 } in "ironkv-tmp10/19/marshal_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 1138..=1140 } in "ironkv-tmp10/8/delegation_map_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 1534..=1536 } in "ironkv-tmp10/13/host_impl_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 573..=573 } in "ironkv-tmp10/19/marshal_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 1130..=1142 } in "ironkv-tmp10/8/delegation_map_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 1538..=1540 } in "ironkv-tmp10/13/host_impl_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 581..=581 } in "ironkv-tmp10/19/marshal_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 1170..=1170 } in "ironkv-tmp10/8/delegation_map_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 1549..=1549 } in "ironkv-tmp10/13/host_impl_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 1552..=1552 } in "ironkv-tmp10/13/host_impl_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 599..=601 } in "ironkv-tmp10/19/marshal_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 1754..=1754 } in "ironkv-tmp10/13/host_impl_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 1185..=1188 } in "ironkv-tmp10/8/delegation_map_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 624..=624 } in "ironkv-tmp10/19/marshal_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 1752..=1755 } in "ironkv-tmp10/13/host_impl_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 1173..=1189 } in "ironkv-tmp10/8/delegation_map_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 646..=646 } in "ironkv-tmp10/19/marshal_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 1768..=1768 } in "ironkv-tmp10/13/host_impl_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 1202..=1252 } in "ironkv-tmp10/8/delegation_map_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 643..=648 } in "ironkv-tmp10/19/marshal_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 1767..=1769 } in "ironkv-tmp10/13/host_impl_v.rs"
+verus succeeded with time: 14565ms
+commenting out line Lines { lines: 1279..=1279 } in "ironkv-tmp10/8/delegation_map_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 653..=653 } in "ironkv-tmp10/19/marshal_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 1770..=1770 } in "ironkv-tmp10/13/host_impl_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 1280..=1280 } in "ironkv-tmp10/8/delegation_map_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 669..=669 } in "ironkv-tmp10/19/marshal_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 1772..=1772 } in "ironkv-tmp10/13/host_impl_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 1288..=1288 } in "ironkv-tmp10/8/delegation_map_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 671..=671 } in "ironkv-tmp10/19/marshal_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 1798..=1799 } in "ironkv-tmp10/13/host_impl_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 1201..=1307 } in "ironkv-tmp10/8/delegation_map_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 658..=672 } in "ironkv-tmp10/19/marshal_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 1805..=1806 } in "ironkv-tmp10/13/host_impl_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 1310..=1310 } in "ironkv-tmp10/8/delegation_map_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 695..=695 } in "ironkv-tmp10/19/marshal_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 1819..=1819 } in "ironkv-tmp10/13/host_impl_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 1311..=1311 } in "ironkv-tmp10/8/delegation_map_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 709..=709 } in "ironkv-tmp10/19/marshal_v.rs"
+verus failed, reverting
+minimization of ironkv-tmp10/13/host_impl_v.rs is completed
+verus failed, reverting
+commenting out line Lines { lines: 1143..=1320 } in "ironkv-tmp10/8/delegation_map_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 716..=716 } in "ironkv-tmp10/19/marshal_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 1322..=1324 } in "ironkv-tmp10/8/delegation_map_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 717..=717 } in "ironkv-tmp10/19/marshal_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 1403..=1405 } in "ironkv-tmp10/8/delegation_map_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 734..=734 } in "ironkv-tmp10/19/marshal_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 1409..=1411 } in "ironkv-tmp10/8/delegation_map_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 735..=735 } in "ironkv-tmp10/19/marshal_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 1429..=1431 } in "ironkv-tmp10/8/delegation_map_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 772..=772 } in "ironkv-tmp10/19/marshal_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 1456..=1458 } in "ironkv-tmp10/8/delegation_map_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 783..=783 } in "ironkv-tmp10/19/marshal_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 1480..=1482 } in "ironkv-tmp10/8/delegation_map_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 785..=789 } in "ironkv-tmp10/19/marshal_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 1508..=1508 } in "ironkv-tmp10/8/delegation_map_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 790..=793 } in "ironkv-tmp10/19/marshal_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 1513..=1513 } in "ironkv-tmp10/8/delegation_map_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 773..=794 } in "ironkv-tmp10/19/marshal_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 1517..=1517 } in "ironkv-tmp10/8/delegation_map_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 799..=799 } in "ironkv-tmp10/19/marshal_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 1515..=1518 } in "ironkv-tmp10/8/delegation_map_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 819..=819 } in "ironkv-tmp10/19/marshal_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 1536..=1536 } in "ironkv-tmp10/8/delegation_map_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 862..=862 } in "ironkv-tmp10/19/marshal_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 1551..=1551 } in "ironkv-tmp10/8/delegation_map_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 847..=864 } in "ironkv-tmp10/19/marshal_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 1552..=1552 } in "ironkv-tmp10/8/delegation_map_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 872..=872 } in "ironkv-tmp10/19/marshal_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 1572..=1572 } in "ironkv-tmp10/8/delegation_map_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 866..=873 } in "ironkv-tmp10/19/marshal_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 1573..=1573 } in "ironkv-tmp10/8/delegation_map_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 875..=877 } in "ironkv-tmp10/19/marshal_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 1570..=1574 } in "ironkv-tmp10/8/delegation_map_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 879..=881 } in "ironkv-tmp10/19/marshal_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 1583..=1583 } in "ironkv-tmp10/8/delegation_map_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 890..=890 } in "ironkv-tmp10/19/marshal_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 1586..=1586 } in "ironkv-tmp10/8/delegation_map_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 891..=891 } in "ironkv-tmp10/19/marshal_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 1587..=1587 } in "ironkv-tmp10/8/delegation_map_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 892..=892 } in "ironkv-tmp10/19/marshal_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 1584..=1588 } in "ironkv-tmp10/8/delegation_map_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 897..=897 } in "ironkv-tmp10/19/marshal_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 1615..=1615 } in "ironkv-tmp10/8/delegation_map_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 905..=905 } in "ironkv-tmp10/19/marshal_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 1616..=1616 } in "ironkv-tmp10/8/delegation_map_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 911..=911 } in "ironkv-tmp10/19/marshal_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 1613..=1617 } in "ironkv-tmp10/8/delegation_map_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 907..=912 } in "ironkv-tmp10/19/marshal_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 1650..=1650 } in "ironkv-tmp10/8/delegation_map_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 917..=917 } in "ironkv-tmp10/19/marshal_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 1659..=1659 } in "ironkv-tmp10/8/delegation_map_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 913..=921 } in "ironkv-tmp10/19/marshal_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 1657..=1660 } in "ironkv-tmp10/8/delegation_map_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 923..=923 } in "ironkv-tmp10/19/marshal_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 1663..=1663 } in "ironkv-tmp10/8/delegation_map_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 922..=924 } in "ironkv-tmp10/19/marshal_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 1664..=1664 } in "ironkv-tmp10/8/delegation_map_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 906..=925 } in "ironkv-tmp10/19/marshal_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 1661..=1665 } in "ironkv-tmp10/8/delegation_map_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 931..=931 } in "ironkv-tmp10/19/marshal_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 1701..=1701 } in "ironkv-tmp10/8/delegation_map_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 927..=932 } in "ironkv-tmp10/19/marshal_v.rs"
+verus failed, reverting
+minimization of ironkv-tmp10/8/delegation_map_v.rs is completed
+verus failed, reverting
+commenting out line Lines { lines: 937..=937 } in "ironkv-tmp10/19/marshal_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 933..=941 } in "ironkv-tmp10/19/marshal_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 943..=943 } in "ironkv-tmp10/19/marshal_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 942..=944 } in "ironkv-tmp10/19/marshal_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 926..=945 } in "ironkv-tmp10/19/marshal_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 950..=950 } in "ironkv-tmp10/19/marshal_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 948..=952 } in "ironkv-tmp10/19/marshal_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 947..=954 } in "ironkv-tmp10/19/marshal_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 970..=970 } in "ironkv-tmp10/19/marshal_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 988..=991 } in "ironkv-tmp10/19/marshal_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 999..=1001 } in "ironkv-tmp10/19/marshal_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 985..=1004 } in "ironkv-tmp10/19/marshal_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 1007..=1009 } in "ironkv-tmp10/19/marshal_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 1005..=1011 } in "ironkv-tmp10/19/marshal_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 1018..=1019 } in "ironkv-tmp10/19/marshal_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 1070..=1070 } in "ironkv-tmp10/19/marshal_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 1075..=1075 } in "ironkv-tmp10/19/marshal_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 1090..=1090 } in "ironkv-tmp10/19/marshal_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 1111..=1111 } in "ironkv-tmp10/19/marshal_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 1114..=1114 } in "ironkv-tmp10/19/marshal_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 1131..=1131 } in "ironkv-tmp10/19/marshal_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 1134..=1134 } in "ironkv-tmp10/19/marshal_v.rs"
+verus failed, reverting
+commenting out line Lines { lines: 1152..=1153 } in "ironkv-tmp10/19/marshal_v.rs"
+verus failed, reverting
+minimization of ironkv-tmp10/19/marshal_v.rs is completed
