@@ -1,6 +1,10 @@
 use vstd::prelude::*;
 
 verus! {
+broadcast use vstd::seq_lib::group_seq_properties,
+              vstd::set_lib::group_set_properties,
+              vstd::map_lib::group_map_properties,
+              vstd::multiset::group_multiset_properties;
 
 /// Equivalent to `choose |i:int| low <= i < high && p(i)` except it guarantees to pick the smallest
 /// such value `i` where `p(i)` is true.

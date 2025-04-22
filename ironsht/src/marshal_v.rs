@@ -32,6 +32,10 @@ use crate::verus_extra::seq_lib_v::*;
 //   `checked_add`), would be nice to have them in the standard library.
 
 verus! {
+broadcast use vstd::seq_lib::group_seq_properties,
+              vstd::set_lib::group_set_properties,
+              vstd::map_lib::group_map_properties,
+              vstd::multiset::group_multiset_properties;
 
 pub trait Marshalable : Sized {
   spec fn is_marshalable(&self) -> bool;
@@ -1341,6 +1345,10 @@ macro_rules! define_struct_and_derive_marshalable {
 
     // We first re-generate the struct definition itself, so that the struct exists
     ::builtin_macros::verus! {
+broadcast use vstd::seq_lib::group_seq_properties,
+              vstd::set_lib::group_set_properties,
+              vstd::map_lib::group_map_properties,
+              vstd::multiset::group_multiset_properties;
     $( #[$attr] )*
     $pub
     struct $newstruct $(< $($poly : Marshalable),+ >)? {

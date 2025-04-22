@@ -28,6 +28,10 @@ use vstd::set_lib::*;
 use crate::single_delivery_t::*;
 
 verus! {
+broadcast use vstd::seq_lib::group_seq_properties,
+              vstd::set_lib::group_set_properties,
+              vstd::map_lib::group_map_properties,
+              vstd::multiset::group_multiset_properties;
 
 /// translates `AckState<MT = CMessage>` (that is, we specialize the message type)
 #[verifier::ext_equal]  // effing INSAASAAAAANNE

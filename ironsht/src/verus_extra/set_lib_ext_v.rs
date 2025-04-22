@@ -6,6 +6,10 @@ use vstd::seq_lib::*;
 use vstd::set_lib::*;
 
 verus! {
+broadcast use vstd::seq_lib::group_seq_properties,
+              vstd::set_lib::group_set_properties,
+              vstd::map_lib::group_map_properties,
+              vstd::multiset::group_multiset_properties;
 /// This fold uses a fixed zero rather than accumulating results in that
 /// argument. This means proofs don't need to generalize over the accumulator,
 /// unlike the Set::fold currently in Verus.
