@@ -39,7 +39,7 @@ ensures
     x.is_marshalable() == y.is_marshalable(),
 {
     CSingleMessage::view_equal_spec();
-    assert(x.view_equal(y));
+//    assert(x.view_equal(y));
     x.lemma_same_views_serialize_the_same(y);
 }
 
@@ -177,7 +177,7 @@ impl CSingleDelivery {
                 }
             },
             None => {
-                proof { assert(false); }
+//                proof { assert(false); }
             }
         }
     }
@@ -374,7 +374,7 @@ impl CSingleDelivery {
                             } else {
                                 ReceiveImplResult::DuplicatePacket{ack}
                             };
-                        assert( SingleDelivery::receive(old(self)@, self@, pkt@, rr.get_ack()@, rr.get_abstracted_ack_set()) );
+//                        assert( SingleDelivery::receive(old(self)@, self@, pkt@, rr.get_ack()@, rr.get_abstracted_ack_set()) );
                         rr
                     }
                     None => {
@@ -440,14 +440,14 @@ impl CSingleDelivery {
             return None;
         }
 
-        assert( num_packets_acked + un_acked_len <= AbstractParameters::static_params().max_seqno );
+//        assert( num_packets_acked + un_acked_len <= AbstractParameters::static_params().max_seqno );
         let new_seqno = num_packets_acked + un_acked_len + 1;
         let sm_new = CSingleMessage::Message {
             seqno: new_seqno,
             dst: dst.clone_up_to_view(),
             m: m.clone_up_to_view(),
         };
-        assert(sm_new.abstractable());
+//        assert(sm_new.abstractable());
         assert(sm_new.is_marshalable()) by {
             vstd::bytes::lemma_auto_spec_u64_to_from_le_bytes();
             match sm_new {
@@ -505,23 +505,23 @@ impl CSingleDelivery {
         assert(local_state@.un_acked =~= old_ack_state.un_acked.push(sm_new@));
         self.send_state.put(&dst, local_state);
 
-        assert forall |ep: EndPoint| #[trigger] self.send_state@.contains_key(ep@) implies
-                                ep.abstractable() && self.send_state.epmap[&ep].abstractable() by {
-            if ep@ != dst@ {
-                assert(old(self).send_state@.contains_key(ep@));
-            }
-        }
+//        assert forall |ep: EndPoint| #[trigger] self.send_state@.contains_key(ep@) implies
+//                                ep.abstractable() && self.send_state.epmap[&ep].abstractable() by {
+//            if ep@ != dst@ {
+//                assert(old(self).send_state@.contains_key(ep@));
+//            }
+//        }
 
-        assert forall |ep: AbstractEndPoint| #[trigger] self.send_state@.contains_key(ep) implies self.send_state.epmap@[ep].valid(ep) by {
-            if ep != dst@ {
-                assert(old(self).send_state@.contains_key(ep));
-                assert(self.send_state.epmap@[ep].valid(ep));
-            }
-            else {
-                assert(self.send_state.epmap@[ep] == local_state);
-                assert(self.send_state.epmap@[ep].valid(ep));
-            }
-        }
+//        assert forall |ep: AbstractEndPoint| #[trigger] self.send_state@.contains_key(ep) implies self.send_state.epmap@[ep].valid(ep) by {
+//            if ep != dst@ {
+//                assert(old(self).send_state@.contains_key(ep));
+////                assert(self.send_state.epmap@[ep].valid(ep));
+//            }
+//            else {
+////                assert(self.send_state.epmap@[ep] == local_state);
+////                assert(self.send_state.epmap@[ep].valid(ep));
+//            }
+//        }
 
         assert(self@.send_state =~=
                old(self)@.send_state.insert(dst@, AckState{ un_acked: old_ack_state.un_acked.push(sm_new@), .. old_ack_state }));

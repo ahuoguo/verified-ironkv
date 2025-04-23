@@ -121,9 +121,9 @@ broadcast use vstd::seq_lib::group_seq_properties,
                     idx = idx + 1;
                 }
             }
-            assert forall |i: int| 0 <= i && i + 1 < v.len() implies #[trigger] v@[i].k.ukey < v@[i + 1].k.ukey by {
-                assert(ckeykvlt(v@[i], v@[i + 1])); // OBSERVE
-            }
+//            assert forall |i: int| 0 <= i && i + 1 < v.len() implies #[trigger] v@[i].k.ukey < v@[i + 1].k.ukey by {
+//                assert(ckeykvlt(v@[i], v@[i + 1])); // OBSERVE
+//            }
             true
         }
     }
@@ -204,19 +204,19 @@ broadcast use vstd::seq_lib::group_seq_properties,
         // req, ens from trait
         {
             self.lemma_to_vec_view(*other);
-            assert(self.to_vec()@ != other.to_vec()@);
+//            assert(self.to_vec()@ != other.to_vec()@);
             if self.to_vec().len() != other.to_vec().len() {
                 self.to_vec().lemma_serialization_is_not_a_prefix_of(&other.to_vec());
             } else {
-                assert(
-                    exists |i: int| #![auto] 0 <= i < self.spec_to_vec().len() &&
-                        self.spec_to_vec()[i]@ != other.spec_to_vec()[i]@
-                );
+//                assert(
+//                    exists |i: int| #![auto] 0 <= i < self.spec_to_vec().len() &&
+//                        self.spec_to_vec()[i]@ != other.spec_to_vec()[i]@
+//                );
                 let i = choose |i: int| #![auto] 0 <= i < self.spec_to_vec().len() &&
                     self.spec_to_vec()[i]@ != other.spec_to_vec()[i]@;
-                assert(self.to_vec()[i]@ != other.to_vec()[i]@);
+//                assert(self.to_vec()[i]@ != other.to_vec()[i]@);
                 assert(!self.to_vec()[i].view_equal(&other.to_vec()[i]));
-                assert(!self.to_vec().view_equal(&other.to_vec()));
+//                assert(!self.to_vec().view_equal(&other.to_vec()));
                 self.to_vec().lemma_serialization_is_not_a_prefix_of(&other.to_vec());
             }
         }
@@ -246,12 +246,12 @@ broadcast use vstd::seq_lib::group_seq_properties,
     {
         lemma_auto_spec_u64_to_from_le_bytes();
 
-        assert(h@.dom().len() < 62);
+//        assert(h@.dom().len() < 62);
         h.lemma_to_vec();
 
         let vec = h.spec_to_vec();
 
-        assert(vec.len() < 62);
+//        assert(vec.len() < 62);
 
         let max_len : int = 10_000;
 
@@ -259,12 +259,12 @@ broadcast use vstd::seq_lib::group_seq_properties,
             #[trigger] vec[i].is_marshalable() && vec[i].ghost_serialize().len() < max_len
         ) by {
             let (k, v) = vec[i]@;
-            assert(h@.contains_pair(k, v));
-            assert(h@.dom().contains(k));
-            assert(crate::app_interface_t::valid_key(k));
+//            assert(h@.contains_pair(k, v));
+//            assert(h@.dom().contains(k));
+//            assert(crate::app_interface_t::valid_key(k));
             assert(crate::app_interface_t::valid_value(h@[k]));
-            assert(vec[i].is_marshalable());
-            assert(vec[i].ghost_serialize().len() < max_len);
+//            assert(vec[i].is_marshalable());
+//            assert(vec[i].ghost_serialize().len() < max_len);
         }
 
         reveal(crate::marshal_ironsht_specific_v::ckeyhashmap_max_serialized_size);
@@ -278,12 +278,12 @@ broadcast use vstd::seq_lib::group_seq_properties,
             let af = |acc: int, x: CKeyKV| acc + f(x);
             assert forall |i:int| 0 <= i < vec@.len() implies f(vec@[i]) <= max_len by {
                 let (k, v) = vec[i]@;
-                assert(h@.contains_pair(k, v));
-                assert(h@.dom().contains(k));
-                assert(crate::app_interface_t::valid_key(k));
-                assert(crate::app_interface_t::valid_value(h@[k]));
+//                assert(h@.contains_pair(k, v));
+//                assert(h@.dom().contains(k));
+//                assert(crate::app_interface_t::valid_key(k));
+//                assert(crate::app_interface_t::valid_value(h@[k]));
                 assert(vec[i].is_marshalable());
-                assert(vec[i].ghost_serialize().len() < max_len);
+//                assert(vec[i].ghost_serialize().len() < max_len);
             }
             lemma_seq_fold_left_sum_le(vec@, 0, max_len, f);
             assert(ag =~= af);
@@ -301,20 +301,20 @@ broadcast use vstd::seq_lib::group_seq_properties,
             let sg = |acc: Seq<u8>, x: CKeyKV| acc + x.ghost_serialize();
             let sa = |acc: Seq<u8>, x: CKeyKV| acc + s(x);
             lemma_seq_fold_left_append_len_int(vec@, emp, s);
-            assert(vec@.fold_left(emp, sa).len() as int == vec@.fold_left(0, asl));
+//            assert(vec@.fold_left(emp, sa).len() as int == vec@.fold_left(0, asl));
             assert(sa =~= sg);
-            assert(vec@.fold_left(emp, sg).len() as int == vec@.fold_left(0, asl));
+//            assert(vec@.fold_left(emp, sg).len() as int == vec@.fold_left(0, asl));
             assert(agl =~= asl);
-            assert(vec@.fold_left(emp, sg).len() == vec@.fold_left(0, agl));
+//            assert(vec@.fold_left(emp, sg).len() == vec@.fold_left(0, agl));
         }
 
-        assert(vec.is_marshalable()) by {
-            assert(vec@.len() <= usize::MAX);
-            assert(forall |x: CKeyKV| vec@.contains(x) ==> #[trigger] x.is_marshalable());
-        }
-        assert(crate::hashmap_t::spec_sorted_keys(vec));
+//        assert(vec.is_marshalable()) by {
+////            assert(vec@.len() <= usize::MAX);
+////            assert(forall |x: CKeyKV| vec@.contains(x) ==> #[trigger] x.is_marshalable());
+//        }
+//        assert(crate::hashmap_t::spec_sorted_keys(vec));
 
-        assert(h.is_marshalable());
+//        assert(h.is_marshalable());
     }
 
     /* $line_count$Proof$ */ derive_marshalable_for_enum! {

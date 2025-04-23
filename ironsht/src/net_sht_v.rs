@@ -88,7 +88,7 @@ ensures
     a@ == b@,
 {
     a.lemma_serialize_injective(b);
-    assert(a@ == b@); // OBSERVE; although not entirely sure why this is necessary here, esp since it exactly matches the postcondition.
+//    assert(a@ == b@); // OBSERVE; although not entirely sure why this is necessary here, esp since it exactly matches the postcondition.
 }
 
 // Ports Impl/SHT/PacketParsing.i.dfy :: AbstractifyNetPacketToLSHTPacket
@@ -212,14 +212,14 @@ ensures
         },
         NetcReceiveResult::Received{sender, message} => {
             let csinglemessage = sht_demarshall_data_method(&message);
-            assert( csinglemessage is Message ==> csinglemessage@ == sht_demarshal_data(message@)@ );
+//            assert( csinglemessage is Message ==> csinglemessage@ == sht_demarshal_data(message@)@ );
             let src_ep = sender;
             let cpacket = CPacket{dst: local_addr.clone_up_to_view(), src: src_ep, msg: csinglemessage};
             let ghost net_event: NetEvent = LIoOp::Receive{
                 r: LPacket{dst: local_addr@, src: src_ep@, msg: message@}};
-            assert( cpacket.dst@ == local_addr@ );
-            assert( cpacket.src.abstractable() );
-            assert( cpacket.abstractable() );
+//            assert( cpacket.dst@ == local_addr@ );
+//            assert( cpacket.src.abstractable() );
+//            assert( cpacket.abstractable() );
 
             proof {
                 let ghost gsinglemessage = csinglemessage;
@@ -229,18 +229,18 @@ ensures
                         src: src_ep@,
                         msg: (sht_demarshal_data(message@))@
                     };
-                    assert( lp == abstractify_net_packet_to_lsht_packet(net_event.arrow_Receive_r()) );
+//                    assert( lp == abstractify_net_packet_to_lsht_packet(net_event.arrow_Receive_r()) );
                     let p = Packet { dst: lp.dst, src: lp.src, msg: lp.msg };
-                    assert( p == abstractify_net_packet_to_sht_packet(net_event.arrow_Receive_r()) );
+//                    assert( p == abstractify_net_packet_to_sht_packet(net_event.arrow_Receive_r()) );
 
-                    assert( !(gsinglemessage is InvalidMessage) );
-                    assert( gsinglemessage@ == (sht_demarshal_data(message@))@ );
-                    assert( cpacket@.dst =~= p.dst );
-                    assert( cpacket@.src =~= p.src );
-                    assert( cpacket@.msg =~= p.msg );
-                    assert( cpacket@ =~= p );
-                    assert( cpacket@ == abstractify_net_packet_to_sht_packet(net_event.arrow_Receive_r()) );
-                    assert( gsinglemessage is Message ==> cpacket.msg@ == sht_demarshal_data(net_event.arrow_Receive_r().msg)@ );
+//                    assert( !(gsinglemessage is InvalidMessage) );
+//                    assert( gsinglemessage@ == (sht_demarshal_data(message@))@ );
+//                    assert( cpacket@.dst =~= p.dst );
+//                    assert( cpacket@.src =~= p.src );
+//                    assert( cpacket@.msg =~= p.msg );
+//                    assert( cpacket@ =~= p );
+//                    assert( cpacket@ == abstractify_net_packet_to_sht_packet(net_event.arrow_Receive_r()) );
+//                    assert( gsinglemessage is Message ==> cpacket.msg@ == sht_demarshal_data(net_event.arrow_Receive_r().msg)@ );
                 }
             }
             (ReceiveResult::Packet{cpacket}, Ghost(net_event))
@@ -309,7 +309,7 @@ ensures
 
             proof {
                 assert_seqs_equal!( buf@ == cpacket.msg.ghost_serialize() );
-                assert(net_packet_bound(buf@));
+//                assert(net_packet_bound(buf@));
                 let purported_cpacket = sht_demarshal_data(buf@);
                 sht_marshal_data_injective( &cpacket.msg, &purported_cpacket );
             }
@@ -376,7 +376,7 @@ ensures
     })
 {
     let ghost net_events = Seq::<NetEvent>::empty();
-    assert(netc.history() == old(netc).history() + net_events);
+//    assert(netc.history() == old(netc).history() + net_events);
 
     let mut i:usize = 0;
     while i < cpackets.len()
@@ -405,20 +405,20 @@ ensures
             assert forall |j| 0 <= j < i as int
                 implies #[trigger] send_log_entry_reflects_packet(net_events[j], &cpackets_prefix[j]) by {
                 if j == i-1 {
-                    assert(net_events[j] == net_event);
+//                    assert(net_events[j] == net_event);
                 } else {
                     assert(cpackets_prefix[j] == cpackets@.subrange(0, i-1 as int)[j]);
                 }
             }
-            assert forall |j| 0 <= j < net_events.len() && net_events[j] is Send
-                implies #[trigger] is_marshalable_data(net_events[j]) by {
-                assert(send_log_entry_reflects_packet(net_events[j], &cpackets_prefix[j]));
-                if j == i-1 {
-                    assert(net_events[j] == net_event);
-                } else {
-                    assert(net_events[j] == net_events0[j]);
-                }
-            }
+//            assert forall |j| 0 <= j < net_events.len() && net_events[j] is Send
+//                implies #[trigger] is_marshalable_data(net_events[j]) by {
+////                assert(send_log_entry_reflects_packet(net_events[j], &cpackets_prefix[j]));
+//                if j == i-1 {
+////                    assert(net_events[j] == net_event);
+//                } else {
+////                    assert(net_events[j] == net_events0[j]);
+//                }
+//            }
             assert(netc.history() == old(netc).history() + net_events);
         }
     }

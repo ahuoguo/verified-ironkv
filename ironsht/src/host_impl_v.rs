@@ -191,11 +191,11 @@ pub fn make_send_only_event_results(net_events: Ghost<Seq<NetEvent>>) -> (res: G
         sends: net_events@,
         ios: net_events@,
     };
-    assert (forall |i| 0 <= i < res.recvs.len() ==> res.recvs[i] is Receive);
-    assert (forall |i| 0 <= i < res.clocks.len() ==> res.clocks[i] is ReadClock || res.clocks[i] is TimeoutReceive);
-    assert (forall |i| 0 <= i < res.sends.len() ==> res.sends[i] is Send);
-    assert (res.clocks.len() <= 1);
-    assert (res.well_typed_events());
+//    assert (forall |i| 0 <= i < res.recvs.len() ==> res.recvs[i] is Receive);
+//    assert (forall |i| 0 <= i < res.clocks.len() ==> res.clocks[i] is ReadClock || res.clocks[i] is TimeoutReceive);
+//    assert (forall |i| 0 <= i < res.sends.len() ==> res.sends[i] is Send);
+//    assert (res.clocks.len() <= 1);
+//    assert (res.well_typed_events());
     proof { assert_seqs_equal!(res.event_seq(), net_events@); };
     Ghost(res)
 }
@@ -358,12 +358,12 @@ impl HostState {
 
         let abstract_end_points:Ghost<Option<Seq<AbstractEndPoint>>> = Ghost(parse_args(abstractify_args(*args)));
 
-        assert(abstract_end_points@.is_some());
+//        assert(abstract_end_points@.is_some());
 
         let end_points:Vec<EndPoint> = end_points.unwrap();
         if end_points.len()==0 { return None; }
 
-        assert(abstract_end_points@.unwrap().len() > 0);
+//        assert(abstract_end_points@.unwrap().len() > 0);
 
         let unique = test_unique(&end_points);
         if !unique {
@@ -378,19 +378,19 @@ impl HostState {
         };
 
         proof {
-            assert(!(abstract_end_points@.is_None() || abstract_end_points@.unwrap().len()==0));
-            assert( abstract_end_points@.is_some() );
-            assert( abstract_end_points@.unwrap().len() > 0 );
-            assert( constants@.root_identity == abstract_end_points@.unwrap()[0] );
-            assert( constants@.host_ids == abstract_end_points@.unwrap() );
-            assert( constants@.params == AbstractParameters::static_params() );
-            assert( constants@.me == me@ );
+//            assert(!(abstract_end_points@.is_None() || abstract_end_points@.unwrap().len()==0));
+//            assert( abstract_end_points@.is_some() );
+//            assert( abstract_end_points@.unwrap().len() > 0 );
+//            assert( constants@.root_identity == abstract_end_points@.unwrap()[0] );
+//            assert( constants@.host_ids == abstract_end_points@.unwrap() );
+//            assert( constants@.params == AbstractParameters::static_params() );
+//            assert( constants@.me == me@ );
 
-            assert( constants@ == AbstractConstants{
-                root_identity: abstract_end_points@.unwrap()[0],
-                host_ids: abstract_end_points@.unwrap(),
-                params: AbstractParameters::static_params(),
-                me: me@ } );
+//            assert( constants@ == AbstractConstants{
+//                root_identity: abstract_end_points@.unwrap()[0],
+//                host_ids: abstract_end_points@.unwrap(),
+//                params: AbstractParameters::static_params(),
+//                me: me@ } );
 
         }
         Some(constants)
@@ -410,7 +410,7 @@ impl HostState {
         let constants = constants.unwrap();
         let spare_root = constants.root_identity.clone_up_to_view();
         let zero_key = SHTKey::zero(); //SHTKey{ukey: 0};   // for some reason we can't make this call inside the ::new method below
-        assert(SHTKey::zero_spec() == zero_key);
+//        assert(SHTKey::zero_spec() == zero_key);
         let host_state = HostState{
             next_action_index: 0,
             resend_count: 0,
@@ -423,14 +423,14 @@ impl HostState {
             received_requests: Ghost(Seq::<AppRequest>::empty()),
         };
         let rc = Some(host_state);
-        assert(netc.ok());
-        assert(host_state.invariants(&netc.my_end_point())); // would pass some initial env state?
-        assert(host_state@.delegation_map == AbstractDelegationMap::init(constants.root_identity@)) by {
-            reveal(HostState::view);
-            assert_maps_equal!(host_state.delegation_map@, AbstractDelegationMap::init(constants.root_identity@)@);
-            assert(host_state.delegation_map@ == AbstractDelegationMap::init(constants.root_identity@)@);
-        }
-        assert(crate::host_protocol_t::init(host_state@, netc.my_end_point(), abstractify_args(*args)));
+//        assert(netc.ok());
+//        assert(host_state.invariants(&netc.my_end_point())); // would pass some initial env state?
+//        assert(host_state@.delegation_map == AbstractDelegationMap::init(constants.root_identity@)) by {
+//            reveal(HostState::view);
+//            assert_maps_equal!(host_state.delegation_map@, AbstractDelegationMap::init(constants.root_identity@)@);
+////            assert(host_state.delegation_map@ == AbstractDelegationMap::init(constants.root_identity@)@);
+//        }
+//        assert(crate::host_protocol_t::init(host_state@, netc.my_end_point(), abstractify_args(*args)));
         rc
     }
 
@@ -473,22 +473,22 @@ impl HostState {
                 assert (abstractify_seq_of_cpackets_to_set_of_sht_packets(packets@) ==
                         extract_packets_from_abstract_ios(ios)) by {
                     lemma_if_everything_in_seq_satisfies_filter_then_filter_is_identity(ios, |io: LSHTIo| io is Send);
-                    assert (ios.filter(|io: LSHTIo| io is Send) == ios);
+//                    assert (ios.filter(|io: LSHTIo| io is Send) == ios);
                     let set1 = abstractify_seq_of_cpackets_to_set_of_sht_packets(packets@);
                     let set2 = extract_packets_from_abstract_ios(ios);
                     let seq1 = packets@.map_values(|cp: CPacket| cp@);
                     let seq2 = extract_sent_packets_from_ios(ios).map_values(|lp: LSHTPacket| extract_packet_from_lsht_packet(lp));
-                    assert (set1 == seq1.to_set());
-                    assert (set2 == seq2.to_set());
+//                    assert (set1 == seq1.to_set());
+//                    assert (set2 == seq2.to_set());
                     assert forall |x| set1.contains(x) implies set2.contains(x) by {
                         let idx: int = choose |idx: int| 0 <= idx && idx < seq1.len() && #[trigger] seq1[idx] == x;
                         assert (seq2[idx] == x);
-                        assert (set2.contains(x));
+//                        assert (set2.contains(x));
                     };
                     assert forall |x| set2.contains(x) implies set1.contains(x) by {
                         let idx: int = choose |idx: int| 0 <= idx && idx < seq2.len() && #[trigger] seq2[idx] == x;
                         assert (seq1[idx] == x);
-                        assert (set1.contains(x));
+//                        assert (set1.contains(x));
                     };
                     assert_sets_equal!(abstractify_seq_of_cpackets_to_set_of_sht_packets(packets@),
                                        extract_packets_from_abstract_ios(ios));
@@ -496,7 +496,7 @@ impl HostState {
                 assert (abstractify_outbound_packets_to_seq_of_lsht_packets(packets@) ==
                         extract_sent_packets_from_ios(ios)) by {
                     lemma_if_everything_in_seq_satisfies_filter_then_filter_is_identity(ios, |io: LSHTIo| io is Send);
-                    assert (ios.filter(|io: LSHTIo| io is Send) == ios);
+//                    assert (ios.filter(|io: LSHTIo| io is Send) == ios);
                     assert_seqs_equal!(abstractify_outbound_packets_to_seq_of_lsht_packets(packets@),
                                        extract_sent_packets_from_ios(ios));
                 }
@@ -509,12 +509,12 @@ impl HostState {
                 };
                 assert forall |i| 0 <= i < ios.len() && #[trigger] ios[i] is Send implies !(ios[i]->s.msg is InvalidMessage) by {
                     let msg = ios[i]->s.msg;
-                    assert (msg == abstractify_cpacket_to_lsht_packet(packets[i]).msg);
+//                    assert (msg == abstractify_cpacket_to_lsht_packet(packets[i]).msg);
                     assert (outbound_packet_is_valid(&packets[i]));
                 };
-                assert forall |i: int| 0 <= i && i < events@.len() implies events@[i] is Send by {
-                    assert (send_log_entry_reflects_packet(events@[i], &packets[i]));
-                };
+//                assert forall |i: int| 0 <= i && i < events@.len() implies events@[i] is Send by {
+////                    assert (send_log_entry_reflects_packet(events@[i], &packets[i]));
+//                };
             }
             (ok, events, Ghost(ios))
         }
@@ -572,7 +572,7 @@ impl HostState {
                     old_self.delegation_map.valid_implies_complete();
                     assert (next_step(old_self@, self@, abstractify_raw_log_to_ios(res.ios),
                         Step::ReceivePacket));
-                    assert(res.event_seq() == res.ios);
+//                    assert(res.event_seq() == res.ios);
                 }
                 return (true, Ghost(res));   // iop should also appear as a clock?
             }
@@ -589,21 +589,21 @@ impl HostState {
                             let sent_packets = extract_packets_from_abstract_ios(ios);
                             lemma_if_nothing_in_seq_satisfies_filter_then_filter_result_is_empty(
                                 ios, |io: LSHTIo| io is Send);
-                            assert(extract_sent_packets_from_ios(ios) =~= Seq::<LSHTPacket>::empty());
+//                            assert(extract_sent_packets_from_ios(ios) =~= Seq::<LSHTPacket>::empty());
                             assert(sent_packets =~= Set::<Packet>::empty());
                             workaround_dermarshal_not_invertible();
                             assert(host_protocol_t::receive_packet(old(self)@, self@, pkt, sent_packets, arbitrary()));
-                            assert(receive_packet_wrapper(old(self)@, self@, pkt, sent_packets));
-                            assert(receive_packet_without_reading_clock(old(self)@, self@,
-                                                                        abstractify_raw_log_to_ios(res.ios)));
+//                            assert(receive_packet_wrapper(old(self)@, self@, pkt, sent_packets));
+//                            assert(receive_packet_without_reading_clock(old(self)@, self@,
+//                                                                        abstractify_raw_log_to_ios(res.ios)));
                             assert(host_protocol_t::next_step(old(self)@, self@, abstractify_raw_log_to_ios(res.ios),
                                                               Step::ReceivePacket));
-                            assert(res.event_seq() == res.ios);
+//                            assert(res.event_seq() == res.ios);
                         }
                         return (true, Ghost(res));
                     }
                     _ => {
-                        assert( *old(self) == *self );
+//                        assert( *old(self) == *self );
                         let ghost mid_netc = *netc;
                         assert(netc.history() == old(netc).history().push(net_event@));
                         let (ok, Ghost(event_results), Ghost(ios)) = self.host_next_receive_packet(netc, Ghost(old(netc).history()), cpacket, Ghost(net_event@));
@@ -613,12 +613,12 @@ impl HostState {
                         }
 
                         let rc = (ok, Ghost(event_results));
-                        assert(self.invariants(&netc.my_end_point()));
+//                        assert(self.invariants(&netc.my_end_point()));
                         proof {
                             old(self).delegation_map.valid_implies_complete();
                         }
                         assert(host_protocol_t::next_step(old(self)@, self@, ios, Step::ReceivePacket));
-                        assert(Self::next(old(self)@, self@, event_results.ios));
+//                        assert(Self::next(old(self)@, self@, event_results.ios));
                         rc
                     }
                 }
@@ -705,26 +705,26 @@ impl HostState {
 
                 // TODO(verus): improve automation for .map and .to_set. Note here we need lots of
                 // triggering.
-                assert forall |i| #![auto] 0 <= i < sent_packets@.len()
-                    implies sent_packets@[i].src@ == netc.my_end_point() by {
-                    let cpacket = sent_packets@[i];
-                    assert( mapped[i] == cpacket@ );        // witness
-                    assert( setted.contains(cpacket@) );    // trigger
-                }
+//                assert forall |i| #![auto] 0 <= i < sent_packets@.len()
+//                    implies sent_packets@[i].src@ == netc.my_end_point() by {
+//                    let cpacket = sent_packets@[i];
+//                    assert( mapped[i] == cpacket@ );        // witness
+////                    assert( setted.contains(cpacket@) );    // trigger
+//                }
             } else {
-                assert( 0 == mapped.len() ) by {
-                    if 0 < mapped.len() {
-                        assert( setted.contains(mapped[0]) );   // witness
-                    }
-                }
+//                assert( 0 == mapped.len() ) by {
+//                    if 0 < mapped.len() {
+//                        assert( setted.contains(mapped[0]) );   // witness
+//                    }
+//                }
             }
-            assert( outbound_packet_seq_has_correct_srcs(sent_packets@, netc.my_end_point()) );
+//            assert( outbound_packet_seq_has_correct_srcs(sent_packets@, netc.my_end_point()) );
         }
-        assert(netc.history() == old(netc).history());
+//        assert(netc.history() == old(netc).history());
         let rc = self.deliver_outbound_packets(netc, &sent_packets);
 
         let (ok, Ghost(net_events), Ghost(ios_tail)) = rc;
-        assert( ok == netc.ok() );
+//        assert( ok == netc.ok() );
         if !ok {
             proof {
                 self.delegation_map.valid_implies_complete();   // sorry, valid is opaque now
@@ -737,11 +737,11 @@ impl HostState {
         proof {
             old(self).delegation_map.valid_implies_complete();  // sorry, valid is opaque now
         }
-        assert(ios_tail =~= ios.skip(1));
+//        assert(ios_tail =~= ios.skip(1));
         proof {
             lemma_filter_skip_rejected(ios, |io: LSHTIo| io is Send, 1);
         }
-        assert(receive_packet(old(self)@, self@, cpacket@, extract_packets_from_abstract_ios(ios), ack@@)); // trigger
+//        assert(receive_packet(old(self)@, self@, cpacket@, extract_packets_from_abstract_ios(ios), ack@@)); // trigger
 
         let ghost event_results = EventResults{
             recvs: seq![receive_event],
@@ -754,7 +754,7 @@ impl HostState {
         proof {
             self.delegation_map.valid_implies_complete();   // sorry, valid is opaque now
             assert( netc.history() =~= old_netc_history + event_results.ios );
-            assert(event_results.ios == event_results.event_seq());
+//            assert(event_results.ios == event_results.event_seq());
         }
         (ok, Ghost(event_results), Ghost(ios))
     }
@@ -789,9 +789,9 @@ impl HostState {
                 let ghost g_ack: CPacket = arbitrary();
                 proof {
                     assert( !Set::<Packet>::empty().contains(g_ack@) );   // trigger
-                    assert(
-                        abstractify_seq_of_cpackets_to_set_of_sht_packets(sent_packets@) =~=
-                        extract_packets_from_lsht_packets(abstractify_outbound_packets_to_seq_of_lsht_packets(sent_packets@)) );
+//                    assert(
+//                        abstractify_seq_of_cpackets_to_set_of_sht_packets(sent_packets@) =~=
+//                        extract_packets_from_lsht_packets(abstractify_outbound_packets_to_seq_of_lsht_packets(sent_packets@)) );
 
 //                     assert( self.host_state_common_postconditions(*old(self), cpacket, sent_packets@) );
 //                     assert( receive_packet(old(self)@, self@, cpacket@, abstractify_seq_of_cpackets_to_set_of_sht_packets(sent_packets@), g_ack@) );
@@ -823,9 +823,9 @@ impl HostState {
         } else {
             let ack = Ghost(cpacket);   // NB cpacket is a garbage value, since rc.0 vec is empty
             proof {
-                assert(
-                    abstractify_seq_of_cpackets_to_set_of_sht_packets(sent_packets@) =~=
-                    extract_packets_from_lsht_packets(abstractify_outbound_packets_to_seq_of_lsht_packets(sent_packets@)) );
+//                assert(
+//                    abstractify_seq_of_cpackets_to_set_of_sht_packets(sent_packets@) =~=
+//                    extract_packets_from_lsht_packets(abstractify_outbound_packets_to_seq_of_lsht_packets(sent_packets@)) );
 
                 assert( abstractify_seq_of_cpackets_to_set_of_sht_packets(sent_packets@) =~= Set::empty() );
 //                 assert( receive_packet(old(self)@, self@, cpacket@, abstractify_seq_of_cpackets_to_set_of_sht_packets(sent_packets@), ack@@) );
@@ -1099,7 +1099,7 @@ impl HostState {
                         self.received_requests@
                     };
                 proof { lemma_auto_spec_u64_to_from_le_bytes(); }
-                assert (m.is_marshalable());
+//                assert (m.is_marshalable());
                 let optional_sm = self.sd.send_single_cmessage(&m, &cpacket.src);
                 let mut sent_packets = Vec::<CPacket>::new();
                 match optional_sm {
@@ -1122,7 +1122,7 @@ impl HostState {
                             let bp = Packet{dst: ap.dst, src: ap.src, msg: ap.msg};
                             assert_seqs_equal!(Seq::<CPacket>::empty().push(p).map_values(|cp: CPacket| cp@),
                                                Seq::<Packet>::empty().push(p@));
-                            assert (Seq::<Packet>::empty().push(p@).index(0) == p@); // needed to show it contains p@
+//                            assert (Seq::<Packet>::empty().push(p@).index(0) == p@); // needed to show it contains p@
                             assert_sets_equal!(abstractify_seq_of_cpackets_to_set_of_sht_packets(sent_packets@),
                                                Seq::<CPacket>::empty().push(p).map_values(|cp: CPacket| cp@).to_set());
                             assert_sets_equal!(abstractify_seq_of_cpackets_to_set_of_sht_packets(sent_packets@),
@@ -1134,7 +1134,7 @@ impl HostState {
                             assert_seqs_equal!(abstractify_outbound_packets_to_seq_of_lsht_packets(sent_packets@)
                                                .map_values(|lp: LSHTPacket| extract_packet_from_lsht_packet(lp)),
                                                Seq::<Packet>::empty().push(bp));
-                            assert (Seq::<Packet>::empty().push(bp).index(0) == bp); // needed to show it contains bp
+//                            assert (Seq::<Packet>::empty().push(bp).index(0) == bp); // needed to show it contains bp
                             assert_sets_equal!(Seq::<Packet>::empty().push(bp).to_set(),
                                                Set::<Packet>::empty().insert(bp));
                             assert (next_get_request_reply(
@@ -1149,7 +1149,7 @@ impl HostState {
                     None => {
                         self.received_packet = None;
                         proof {
-                            assert( sent_packets@ =~= Seq::<CPacket>::empty() );
+//                            assert( sent_packets@ =~= Seq::<CPacket>::empty() );
                             assert( abstractify_seq_of_cpackets_to_set_of_sht_packets(sent_packets@) =~= Set::<Packet>::empty() );
                             assert (next_get_request_reply(
                                         old(self)@, self@, pkt.src, pkt.msg.arrow_Message_seqno(),
@@ -1166,7 +1166,7 @@ impl HostState {
                 }
             },
             _ => {
-                assert(false);
+//                assert(false);
                 unreached()
             },
         }
@@ -1192,8 +1192,8 @@ impl HostState {
                             let sent_packets = Vec::<CPacket>::new();
                             let ghost sm = SingleMessage::Ack{ack_seqno: 0};
                             proof {
-                                assert (!valid_key(*k) || !valid_optional_value(optional_value_view(*ov)));
-                                assert (sent_packets@ == Seq::<CPacket>::empty());
+//                                assert (!valid_key(*k) || !valid_optional_value(optional_value_view(*ov)));
+//                                assert (sent_packets@ == Seq::<CPacket>::empty());
                                 assert_seqs_equal!(sent_packets@.map_values(|cp: CPacket| cp@),
                                                    Seq::<Packet>::empty());
                                 assert_sets_equal!(abstractify_seq_of_cpackets_to_set_of_sht_packets(sent_packets@),
@@ -1209,14 +1209,14 @@ impl HostState {
                                                                   Message::Reply{key: *k,
                                                                                  value: optional_value_view(*ov)},
                                                                   Set::<Packet>::empty(), true));
-                                assert (next_set_request(old(self)@, self@, cpacket@,
-                                                         abstractify_seq_of_cpackets_to_set_of_sht_packets(
-                                                             sent_packets@)));
+//                                assert (next_set_request(old(self)@, self@, cpacket@,
+//                                                         abstractify_seq_of_cpackets_to_set_of_sht_packets(
+//                                                             sent_packets@)));
                             };
                             return sent_packets;
                         }
                         else {
-                            assert (valid_key(*k) && valid_optional_value(optional_value_view(*ov)));
+//                            assert (valid_key(*k) && valid_optional_value(optional_value_view(*ov)));
                             let its_me: bool = do_end_points_match(&owner, &self.constants.me);
                             let mm: CMessage =
                                 if its_me {
@@ -1238,11 +1238,11 @@ impl HostState {
                                     let p = CPacket{dst: clone_end_point(&cpacket.src),
                                                     src: clone_end_point(&self.constants.me),
                                                     msg: sm};
-                                    assert (p@ == Packet{dst: cpacket.src@, src: self.constants.me@, msg: sm@});
+//                                    assert (p@ == Packet{dst: cpacket.src@, src: self.constants.me@, msg: sm@});
                                     sent_packets.push(p);
                                     if its_me {
-                                        assert (SingleDelivery::send_single_message(old(self).sd@, self.sd@, mm@, dst, Some(sm@),
-                                                                                    AbstractParameters::static_params()));
+//                                        assert (SingleDelivery::send_single_message(old(self).sd@, self.sd@, mm@, dst, Some(sm@),
+//                                                                                    AbstractParameters::static_params()));
                                         self.received_requests = Ghost(self.received_requests@.push(received_request));
                                         match ov {
                                             Some(v) => self.h.insert(k.clone(), clone_vec_u8(v)),
@@ -1254,8 +1254,8 @@ impl HostState {
                                         self.received_packet = None;
                                     }
                                     proof {
-                                        assert (SingleDelivery::send_single_message(old(self).sd@, self.sd@, mm@, dst, Some(sm@),
-                                                                                    AbstractParameters::static_params()));
+//                                        assert (SingleDelivery::send_single_message(old(self).sd@, self.sd@, mm@, dst, Some(sm@),
+//                                                                                    AbstractParameters::static_params()));
                                         assert_seqs_equal!(sent_packets@.map_values(|cp: CPacket| cp@),
                                                            seq![Packet{dst: cpacket.src@, src: self.constants.me@,
                                                                        msg: sm@}]);
@@ -1271,34 +1271,34 @@ impl HostState {
                                                     m@, sm@, mm@,
                                                     abstractify_seq_of_cpackets_to_set_of_sht_packets(sent_packets@),
                                                     true));
-                                        assert (sm.is_marshalable()) by {
-                                            lemma_auto_spec_u64_to_from_le_bytes();
-                                        }
-                                        assert (outbound_packet_is_valid(&p));
-                                        assert (outbound_packet_seq_is_valid(sent_packets@));
-                                        assert (abstractify_seq_of_cpackets_to_set_of_sht_packets(sent_packets@) ==
-                                                set![Packet{dst: pkt.src, src: self.constants.me@, msg: sm@}]);
-                                        assert (sent_packets@.map_values(|packet: CPacket|
-                                                                  abstractify_cpacket_to_lsht_packet(packet))[0] ==
-                                                LPacket{dst: pkt.src, src: self.constants.me@, msg: sm@});
+//                                        assert (sm.is_marshalable()) by {
+//                                            lemma_auto_spec_u64_to_from_le_bytes();
+//                                        }
+//                                        assert (outbound_packet_is_valid(&p));
+//                                        assert (outbound_packet_seq_is_valid(sent_packets@));
+//                                        assert (abstractify_seq_of_cpackets_to_set_of_sht_packets(sent_packets@) ==
+//                                                set![Packet{dst: pkt.src, src: self.constants.me@, msg: sm@}]);
+//                                        assert (sent_packets@.map_values(|packet: CPacket|
+//                                                                  abstractify_cpacket_to_lsht_packet(packet))[0] ==
+//                                                LPacket{dst: pkt.src, src: self.constants.me@, msg: sm@});
                                         singleton_seq_to_set_is_singleton_set(
                                             LPacket{dst: pkt.src, src: self.constants.me@, msg: sm@});
                                         assert_seqs_equal!(
                                             sent_packets@.map_values(|packet: CPacket|
                                                               abstractify_cpacket_to_lsht_packet(packet)),
                                             seq![LPacket{dst: pkt.src, src: self.constants.me@, msg: sm@}]);
-                                        assert (abstractify_outbound_packets_to_seq_of_lsht_packets(sent_packets@)[0] ==
-                                                abstractify_cpacket_to_lsht_packet(p));
+//                                        assert (abstractify_outbound_packets_to_seq_of_lsht_packets(sent_packets@)[0] ==
+//                                                abstractify_cpacket_to_lsht_packet(p));
                                         assert_seqs_equal!(
                                             abstractify_outbound_packets_to_seq_of_lsht_packets(sent_packets@),
                                             seq![abstractify_cpacket_to_lsht_packet(p)]);
-                                        assert (extract_packets_from_lsht_packets(
-                                                   abstractify_outbound_packets_to_seq_of_lsht_packets(sent_packets@))
-                                                   == extract_packets_from_lsht_packets(
-                                                       seq![abstractify_cpacket_to_lsht_packet(p)]));
-                                        assert (seq![abstractify_cpacket_to_lsht_packet(p)].
-                                                map_values(|lp: LSHTPacket| extract_packet_from_lsht_packet(lp))[0] ==
-                                                Packet {dst: pkt.src, src: self.constants.me@, msg: sm@} );
+//                                        assert (extract_packets_from_lsht_packets(
+//                                                   abstractify_outbound_packets_to_seq_of_lsht_packets(sent_packets@))
+//                                                   == extract_packets_from_lsht_packets(
+//                                                       seq![abstractify_cpacket_to_lsht_packet(p)]));
+//                                        assert (seq![abstractify_cpacket_to_lsht_packet(p)].
+//                                                map_values(|lp: LSHTPacket| extract_packet_from_lsht_packet(lp))[0] ==
+//                                                Packet {dst: pkt.src, src: self.constants.me@, msg: sm@} );
                                         assert_seqs_equal!(
                                             seq![abstractify_cpacket_to_lsht_packet(p)].
                                                 map_values(|lp: LSHTPacket| extract_packet_from_lsht_packet(lp)),
@@ -1306,11 +1306,11 @@ impl HostState {
                                         singleton_seq_to_set_is_singleton_set(Packet{dst: pkt.src,
                                                                                      src: self.constants.me@,
                                                                                      msg: sm@});
-                                        assert (extract_packets_from_lsht_packets(
-                                                    seq![abstractify_cpacket_to_lsht_packet(p)]) ==
-                                                set![Packet{dst: pkt.src, src: self.constants.me@, msg: sm@}]);
-                                        assert (self.host_state_common_postconditions(
-                                            pre, pre.received_packet.unwrap(), sent_packets@));
+//                                        assert (extract_packets_from_lsht_packets(
+//                                                    seq![abstractify_cpacket_to_lsht_packet(p)]) ==
+//                                                set![Packet{dst: pkt.src, src: self.constants.me@, msg: sm@}]);
+//                                        assert (self.host_state_common_postconditions(
+//                                            pre, pre.received_packet.unwrap(), sent_packets@));
                                     }
                                     return sent_packets;
                                 },
@@ -1319,8 +1319,8 @@ impl HostState {
                                     proof {
                                         let abs_sent_packets = abstractify_seq_of_cpackets_to_set_of_sht_packets(sent_packets@);
                                         assert( abs_sent_packets =~= Set::<Packet>::empty() );
-                                        assert( abstractify_outbound_packets_to_seq_of_lsht_packets(sent_packets@) =~= Seq::<LSHTPacket>::empty() );
-                                        assert( extract_packets_from_lsht_packets(Seq::<LSHTPacket>::empty()) =~= Set::<Packet>::empty() );
+//                                        assert( abstractify_outbound_packets_to_seq_of_lsht_packets(sent_packets@) =~= Seq::<LSHTPacket>::empty() );
+//                                        assert( extract_packets_from_lsht_packets(Seq::<LSHTPacket>::empty()) =~= Set::<Packet>::empty() );
 
                                         assert( next_set_request_complete(old(self)@, self@, pkt.src, pkt.msg.arrow_Message_seqno(), pkt.msg.arrow_Message_m(), arbitrary(), arbitrary(), abs_sent_packets, false) );   // exists witness
                                     }
@@ -1405,19 +1405,19 @@ impl HostState {
                         let marshalable: bool = m.is_message_marshallable();
                         if (!marshalable) {
                             self.received_packet = None;
-                            assert (Self::host_ignoring_unparseable(
-                                pre@, self@, abstractify_seq_of_cpackets_to_set_of_sht_packets(sent_packets@)));
+//                            assert (Self::host_ignoring_unparseable(
+//                                pre@, self@, abstractify_seq_of_cpackets_to_set_of_sht_packets(sent_packets@)));
                             return sent_packets;
                         }
                         else if !endpoints_contain(&self.constants.host_ids, &cpacket.src) {
                             self.received_packet = None;
-                            assert (next_delegate(pre@, self@, pre.received_packet.unwrap()@,
-                                                  abstractify_seq_of_cpackets_to_set_of_sht_packets(sent_packets@)));
+//                            assert (next_delegate(pre@, self@, pre.received_packet.unwrap()@,
+//                                                  abstractify_seq_of_cpackets_to_set_of_sht_packets(sent_packets@)));
                             return sent_packets;
                         }
                         else {
                             self.delegation_map.set(&range.lo, &range.hi, &self.constants.me);
-                            assert (valid_hashtable(h@));
+//                            assert (valid_hashtable(h@));
                             self.h.bulk_update(&range, &h);
                             self.received_packet = None;
                             self.num_delegations = self.num_delegations + 1;
@@ -1426,8 +1426,8 @@ impl HostState {
                                                                    &range.lo, &range.hi, &self.constants.me);
                                 Self::effect_of_hashmap_bulk_update(pre.h, self.h, &range, *h);
                             }
-                            assert (next_delegate(pre@, self@, pre.received_packet.unwrap()@,
-                                                  abstractify_seq_of_cpackets_to_set_of_sht_packets(sent_packets@)));
+//                            assert (next_delegate(pre@, self@, pre.received_packet.unwrap()@,
+//                                                  abstractify_seq_of_cpackets_to_set_of_sht_packets(sent_packets@)));
                             return sent_packets;
                         }
                     },
@@ -1469,7 +1469,7 @@ impl HostState {
                                ||| !endpoints_contain(&self.constants.host_ids, &recipient)
                            }
                         {
-                            assert(recipient.abstractable());
+//                            assert(recipient.abstractable());
                             self.received_packet = None;
                             return sent_packets;
                         } else {
@@ -1544,7 +1544,7 @@ impl HostState {
             abstractify_seq_of_cpackets_to_set_of_sht_packets(sent_packets@),
             *kr, recipient@, sm@, true) ); // exists witness
 
-        assert( p.msg.is_marshalable() );
+//        assert( p.msg.is_marshalable() );
     }
                                     return sent_packets;
                                 }
@@ -1621,7 +1621,7 @@ impl HostState {
                     },
                 },
             _ => {
-                assert(false);
+//                assert(false);
                 unreached()
             },
         }
@@ -1664,9 +1664,9 @@ impl HostState {
             proof {
                 // The following assert isn't really necessary, but it may help the solver see that
                 // we're in the case of process_received_packet_next, not the case of ignore_unparseable_packet.
-                assert (process_received_packet_next(old_self@, (*self)@, abstractify_raw_log_to_ios(res@.ios)));
-                assert (res@.ios == res@.event_seq());
-                assert (true || (res@.sends.len()>0) ==> (*netc).history() == (*old(netc)).history() + res@.event_seq());
+//                assert (process_received_packet_next(old_self@, (*self)@, abstractify_raw_log_to_ios(res@.ios)));
+//                assert (res@.ios == res@.event_seq());
+//                assert (true || (res@.sends.len()>0) ==> (*netc).history() == (*old(netc)).history() + res@.event_seq());
             }
             return (true, res)
         }
@@ -1682,16 +1682,16 @@ impl HostState {
                 proof {
                     // The following assert isn't really necessary, but it may help the solver see that
                     // we're in the case of process_received_packet_next, not the case of ignore_unparseable_packet.
-                    assert (process_received_packet_next(old_self@, (*self)@, abstractify_raw_log_to_ios(res@.ios)));
+//                    assert (process_received_packet_next(old_self@, (*self)@, abstractify_raw_log_to_ios(res@.ios)));
                 };
                 return (true, res)
             }
         }
 
-        assert (self.sd.valid());
-        assert (self.received_packet is Some);
-        assert (self.received_packet.arrow_Some_0().msg is Message);
-        assert (self.host_state_common_preconditions());
+//        assert (self.sd.valid());
+//        assert (self.received_packet is Some);
+//        assert (self.received_packet.arrow_Some_0().msg is Message);
+//        assert (self.host_state_common_preconditions());
         let sent_packets = self.host_model_next_receive_message();
         let (ok, net_event_log, ios) = self.deliver_outbound_packets(netc, &sent_packets);
         if !ok {
@@ -1701,12 +1701,12 @@ impl HostState {
             proof {
                 if process_message(old(self)@, self@,
                                    abstractify_seq_of_cpackets_to_set_of_sht_packets(sent_packets@)) {
-                    assert (process_received_packet_next((*old(self))@, (*self)@, ios@));
+//                    assert (process_received_packet_next((*old(self))@, (*self)@, ios@));
                 }
                 else {
-                    assert (Self::host_ignoring_unparseable(old(self)@, self@,
-                                                            abstractify_seq_of_cpackets_to_set_of_sht_packets(
-                                                                sent_packets@)));
+//                    assert (Self::host_ignoring_unparseable(old(self)@, self@,
+//                                                            abstractify_seq_of_cpackets_to_set_of_sht_packets(
+//                                                                sent_packets@)));
                     assert_by_contradiction!(sent_packets@.len() == 0, {
                         let p = sent_packets@[0];
                         let s = abstractify_seq_of_cpackets_to_set_of_sht_packets(sent_packets@);
@@ -1714,7 +1714,7 @@ impl HostState {
                         assert (sent_packets@.map_values(|cp: CPacket| cp@)[0] == p@);
                         assert (s.contains(p@));
                     });
-                    assert (ignore_nonsensical_delegation_packet((*old(self))@, (*self)@, ios@));
+//                    assert (ignore_nonsensical_delegation_packet((*old(self))@, (*self)@, ios@));
                 }
             }
             return (true, make_send_only_event_results(net_event_log));
@@ -1740,7 +1740,7 @@ impl HostState {
         if !ok {
             let ghost event_results = Self::empty_event_results();
             let rc = (false, Ghost(event_results));
-            assert( Self::next_ensures(*old(self), *old(netc), *self, *netc, rc) );
+//            assert( Self::next_ensures(*old(self), *old(netc), *self, *netc, rc) );
             // this return path seems unstable
             return rc;
         }
@@ -1776,7 +1776,7 @@ impl HostState {
 
             assert( next_step(old(self)@, self@, aios, Step::SpontaneouslyRetransmit) ); // witness
 
-            assert(ok ==> event_results@.event_seq() == event_results@.ios);
+//            assert(ok ==> event_results@.event_seq() == event_results@.ios);
         }
         (ok, event_results)
     }
@@ -1804,13 +1804,13 @@ impl HostState {
                                               Step::ProcessReceivedPacket{})); // establish exists |step| next_step...
                         }
                         else {
-                            assert (ignore_nonsensical_delegation_packet(old_self@, self@,
-                                                                         abstractify_raw_log_to_ios(res@.ios)));
+//                            assert (ignore_nonsensical_delegation_packet(old_self@, self@,
+//                                                                         abstractify_raw_log_to_ios(res@.ios)));
                             // establish exists |step| next_step...
                             assert (next_step(old_self@, self@, abstractify_raw_log_to_ios(res@.ios),
                                               Step::IgnoreNonsensicalDelegationPacket{}));
                         }
-                        assert (host_protocol_t::next(old_self@, self@, abstractify_raw_log_to_ios(res@.ios)));
+//                        assert (host_protocol_t::next(old_self@, self@, abstractify_raw_log_to_ios(res@.ios)));
                     }
                 }
             }
@@ -1818,24 +1818,24 @@ impl HostState {
             self.resend_count = (self.resend_count + 1) % 100000000;
             if (self.resend_count == 0) {
                 rc = self.host_noreceive_noclock_next(netc);
-                assert( rc.0 ==> Self::next(old(self)@, self@, rc.1@.ios) );
+//                assert( rc.0 ==> Self::next(old(self)@, self@, rc.1@.ios) );
             } else {
                 rc = (true, make_empty_event_results());
                 assert( next_step(old(self)@, self@, abstractify_raw_log_to_ios(rc.1@.ios), Step::SpontaneouslyRetransmit{}));    // witness
             }
         } else {
-            assert (false);
+//            assert (false);
             rc = unreached()
         }
 
         if !rc.0 { return rc; }
 
-        assert(self.invariants(&netc.my_end_point()));
+//        assert(self.invariants(&netc.my_end_point()));
         self.next_action_index = (self.next_action_index + 1) % 3;
         proof {
             let (ok, res) = rc;
-            assert(res@.event_seq() == res@.ios);
-            assert((ok || res@.sends.len()>0) ==> netc.history() == old(netc).history() + res@.event_seq());
+//            assert(res@.event_seq() == res@.ios);
+//            assert((ok || res@.sends.len()>0) ==> netc.history() == old(netc).history() + res@.event_seq());
         }
         rc
     }

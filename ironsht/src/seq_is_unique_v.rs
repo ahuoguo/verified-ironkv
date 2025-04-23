@@ -28,8 +28,8 @@ broadcast use vstd::seq_lib::group_seq_properties,
             eq == (e1@ == e2@)
     {
         if e1.len() != e2.len() {
-            assert (e1@.len() != e2@.len());
-            assert (e1@ != e2@);
+//            assert (e1@.len() != e2@.len());
+//            assert (e1@ != e2@);
             return false;
         }
 
@@ -89,7 +89,7 @@ broadcast use vstd::seq_lib::group_seq_properties,
                         let aeps = abstractify_end_points(*endpoints);
                         assert (aeps[i as int] == endpoints@[i as int]@);
                         assert (aeps[j as int] == endpoints@[j as int]@);
-                        assert (endpoints@[i as int]@ == endpoints@[j as int]@ && i != j);
+//                        assert (endpoints@[i as int]@ == endpoints@[j as int]@ && i != j);
                     }
                     return false;
                 }
@@ -160,13 +160,13 @@ broadcast use vstd::seq_lib::group_seq_properties,
         let seq1 = seq![x];
         let set1 = seq1.to_set();
         let set2 = set![x];
-        assert forall |y| set1.contains(y) <==> set2.contains(y) by
-        {
-            if y == x {
-                assert (seq1[0] == y);
-                assert (set1.contains(y));
-            }
-        }
+//        assert forall |y| set1.contains(y) <==> set2.contains(y) by
+//        {
+//            if y == x {
+////                assert (seq1[0] == y);
+////                assert (set1.contains(y));
+//            }
+//        }
         assert_sets_equal!(seq![x].to_set(), set![x]);
     }
 

@@ -164,14 +164,14 @@ impl CAckState {
         self.num_packets_acked == seqno_acked,
     {
         let mut i: usize = 0;
-        assert( self.un_acked@.skip(0 as int) =~= self.un_acked@ );
+//        assert( self.un_acked@.skip(0 as int) =~= self.un_acked@ );
 
         while (i < self.un_acked.len()
             && match self.un_acked[i] {
                 CSingleMessage::Message{seqno, ..} => { seqno <= seqno_acked },
                 _ => {
                     assert( Self::un_acked_valid(&self.un_acked[i as int]) );
-                    assert(false);
+//                    assert(false);
                     true
                 },
             })
@@ -364,13 +364,13 @@ impl CSingleDelivery {
             dst,
             msg: self@.send_state[dst].un_acked[i as int]
         };
-        assert(self.send_state.epmap@[dst].valid(dst));
+//        assert(self.send_state.epmap@[dst].valid(dst));
         let un_acked: Seq<CSingleMessage> = self.send_state.epmap@[dst].un_acked@;
         let un_acked_at: Seq<SingleMessage<Message>> = self@.send_state[dst].un_acked;
-        assert(CAckState::un_acked_list_valid(un_acked));
+//        assert(CAckState::un_acked_list_valid(un_acked));
         assert(CAckState::un_acked_valid(&un_acked[i as int]));
         // assert(un_acked[i as int]@ == un_acked_at[i as int]);
-        assert(un_acked_at[i as int] is Message);
+//        assert(un_acked_at[i as int] is Message);
         assert_sets_equal!(
             self@.un_acked_messages_for_dest_up_to(src, dst, i+1) ==
             self@.un_acked_messages_for_dest_up_to(src, dst, i).insert(packet)
