@@ -25,6 +25,63 @@ pub trait KeyTrait : Sized {
 
     spec fn cmp_spec(self, other: Self) -> Ordering;
 
+    // TODO: you can't have `broadcast group` in a trait
+    broadcast proof fn eq_is_equality(a:Self, b:Self)
+        ensures #![auto] a == b <==> a.cmp_spec(b).eq()
+    {
+        // TODO: why it can be automatically verified in `cmp_properties` but not here???
+        Self::cmp_properties();
+        assert(forall |a:Self, b:Self| #![auto] a == b <==> a.cmp_spec(b).eq());
+    }
+
+    broadcast proof fn eq_refl(a:Self)
+        ensures #![auto] a.cmp_spec(a).eq()
+    {
+        Self::cmp_properties();
+    }
+
+    broadcast proof fn eq_comm(a:Self, b:Self)
+        ensures #![auto] a.cmp_spec(b).eq() == b.cmp_spec(a).eq()
+    {
+        Self::cmp_properties();
+    }
+
+    broadcast proof fn eq_trans(a:Self, b:Self, c:Self)
+        ensures #![auto] a.cmp_spec(b).eq() && b.cmp_spec(c).eq() ==> a.cmp_spec(c).eq()
+    {
+        Self::cmp_properties();
+    }
+
+    broadcast proof fn ne_asym(a:Self, b:Self)
+        ensures #![auto] a.cmp_spec(b).lt() <==> b.cmp_spec(a).gt()
+    {
+        Self::cmp_properties();
+    }
+
+    broadcast proof fn ne_connected(a:Self, b:Self)
+        ensures #![auto] a.cmp_spec(b).ne() ==> a.cmp_spec(b).lt() || b.cmp_spec(a).lt()
+    {
+        Self::cmp_properties();
+    }
+
+    broadcast proof fn trans_lt_lt(a:Self, b:Self, c:Self)
+        ensures #![auto] a.cmp_spec(b).lt() && b.cmp_spec(c).lt() ==> a.cmp_spec(c).lt()
+    {
+        Self::cmp_properties();
+    }
+
+    broadcast proof fn trans_lt_le(a:Self, b:Self, c:Self)
+        ensures #![auto] a.cmp_spec(b).lt() && b.cmp_spec(c).le() ==> a.cmp_spec(c).lt()
+    {
+        Self::cmp_properties();
+    }
+
+    broadcast proof fn trans_le_lt(a:Self, b:Self, c:Self)
+        ensures #![auto] a.cmp_spec(b).le() && b.cmp_spec(c).lt() ==> a.cmp_spec(c).lt()
+    {
+        Self::cmp_properties();
+    }
+
     proof fn cmp_properties()
         ensures
         // Equality is eq  --- TODO: Without this we need to redefine Seq, Set, etc. operators that use ==
@@ -250,4 +307,163 @@ impl VerusClone for SHTKey {
 pub type AbstractKey = SHTKey;
 pub type CKey = SHTKey;
 
+
+pub broadcast proof fn eq_is_equality<K: KeyTrait + VerusClone>(a: K, b: K)
+    ensures
+        #![auto]
+        a == b <==> a.cmp_spec(b).eq(),
+{
+    // TODO: why it can be automatically verified in `cmp_properties` but not here???
+    K::cmp_properties();
+    assert(forall|a: K, b: K| #![auto] a == b <==> a.cmp_spec(b).eq());
+}
+
+pub broadcast proof fn eq_refl<K: KeyTrait + VerusClone>(a: K)
+    ensures
+        #![auto]
+        a.cmp_spec(a).eq(),
+{
+    K::cmp_properties();
+}
+
+pub broadcast proof fn eq_comm<K: KeyTrait + VerusClone>(a: K, b: K)
+    ensures
+        #![auto]
+        a.cmp_spec(b).eq() == b.cmp_spec(a).eq(),
+{
+    K::cmp_properties();
+}
+
+pub broadcast proof fn eq_trans<K: KeyTrait + VerusClone>(a: K, b: K, c: K)
+    ensures
+        #![auto]
+        a.cmp_spec(b).eq() && b.cmp_spec(c).eq() ==> a.cmp_spec(c).eq(),
+{
+    K::cmp_properties();
+}
+
+pub broadcast proof fn ne_asym<K: KeyTrait + VerusClone>(a: K, b: K)
+    ensures
+        #![auto]
+        a.cmp_spec(b).lt() <==> b.cmp_spec(a).gt(),
+{
+    K::cmp_properties();
+}
+
+pub broadcast proof fn ne_connected<K: KeyTrait + VerusClone>(a: K, b: K)
+    ensures
+        #![auto]
+        a.cmp_spec(b).ne() ==> a.cmp_spec(b).lt() || b.cmp_spec(a).lt(),
+{
+    K::cmp_properties();
+}
+
+pub broadcast proof fn trans_lt_lt<K: KeyTrait + VerusClone>(a: K, b: K, c: K)
+    ensures
+        #![auto]
+        a.cmp_spec(b).lt() && b.cmp_spec(c).lt() ==> a.cmp_spec(c).lt(),
+{
+    K::cmp_properties();
+}
+
+pub broadcast proof fn trans_lt_le<K: KeyTrait + VerusClone>(a: K, b: K, c: K)
+    ensures
+        #![auto]
+        a.cmp_spec(b).lt() && b.cmp_spec(c).le() ==> a.cmp_spec(c).lt(),
+{
+    K::cmp_properties();
+}
+
+pub broadcast proof fn trans_le_lt<K: KeyTrait + VerusClone>(a: K, b: K, c: K)
+    ensures
+        #![auto]
+        a.cmp_spec(b).le() && b.cmp_spec(c).lt() ==> a.cmp_spec(c).lt(),
+{
+    K::cmp_properties();
+}
+
+pub broadcast group group_cmp_properties {
+    eq_is_equality,
+    eq_refl,
+    eq_comm,
+    eq_trans,
+    ne_asym,
+    ne_connected,
+    trans_lt_lt,
+    trans_lt_le,
+    trans_le_lt,
+}
+
+
+// Moved from delegation_map_v for dependency cycles introduced by `broadcast` 
+impl Ordering {
+    pub open spec fn eq(self) -> bool {
+        matches!(self, Ordering::Equal)
+    }
+
+    pub open spec fn ne(self) -> bool {
+        !matches!(self, Ordering::Equal)
+    }
+
+    pub open spec fn lt(self) -> bool {
+        matches!(self, Ordering::Less)
+    }
+
+    pub open spec fn gt(self) -> bool {
+        matches!(self, Ordering::Greater)
+    }
+
+    pub open spec fn le(self) -> bool {
+        !matches!(self, Ordering::Greater)
+    }
+
+    pub open spec fn ge(self) -> bool {
+        !matches!(self, Ordering::Less)
+    }
+
+    pub fn is_eq(self) -> (b: bool)
+        ensures
+            b == self.eq(),
+    {
+        matches!(self, Ordering::Equal)
+    }
+
+    pub fn is_ne(self) -> (b: bool)
+        ensures
+            b == self.ne(),
+    {
+        !matches!(self, Ordering::Equal)
+    }
+
+    pub const fn is_lt(self) -> (b: bool)
+        ensures
+            b == self.lt(),
+    {
+        matches!(self, Ordering::Less)
+    }
+
+    pub const fn is_gt(self) -> (b: bool)
+        ensures
+            b == self.gt(),
+    {
+        matches!(self, Ordering::Greater)
+    }
+
+    pub const fn is_le(self) -> (b: bool)
+        ensures
+            b == self.le(),
+    {
+        !matches!(self, Ordering::Greater)
+    }
+
+    pub const fn is_ge(self) -> (b: bool)
+        ensures
+            b == self.ge(),
+    {
+        !matches!(self, Ordering::Less)
+    }
+}
+
 } // verus!
+
+
