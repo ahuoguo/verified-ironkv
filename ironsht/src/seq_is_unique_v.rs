@@ -24,8 +24,8 @@ verus! {
             eq == (e1@ == e2@)
     {
         if e1.len() != e2.len() {
-            assert (e1@.len() != e2@.len());
-            assert (e1@ != e2@);
+//            assert (e1@.len() != e2@.len());
+//            assert (e1@ != e2@);
             return false;
         }
 
@@ -85,7 +85,7 @@ verus! {
                         let aeps = abstractify_end_points(*endpoints);
                         assert (aeps[i as int] == endpoints@[i as int]@);
                         assert (aeps[j as int] == endpoints@[j as int]@);
-                        assert (endpoints@[i as int]@ == endpoints@[j as int]@ && i != j);
+//                        assert (endpoints@[i as int]@ == endpoints@[j as int]@ && i != j);
                     }
                     return false;
                 }
@@ -160,7 +160,7 @@ verus! {
         {
             if y == x {
                 assert (seq1[0] == y);
-                assert (set1.contains(y));
+//                assert (set1.contains(y));
             }
         }
         assert_sets_equal!(seq![x].to_set(), set![x]);
