@@ -85,10 +85,10 @@ impl CMessage {
   }
 
   pub proof fn view_equal_spec()
-    ensures forall |x: &CMessage, y: &CMessage| #[trigger] x.view_equal(y) <==> x@ == y@
+    ensures forall |x: &CMessage, y: &CMessage| #![all_triggers]  x.view_equal(y) <==> x@ == y@
   {
-    assert forall |x: &CMessage, y: &CMessage|
-      #[trigger] x.view_equal(y) <==> x@ == y@ by
+    assert forall |x: &CMessage, y: &CMessage| #![all_triggers]
+       x.view_equal(y) <==> x@ == y@ by
     {
       match (x, y) {
         (CMessage::GetRequest { k: k1 }, CMessage::GetRequest { k: k2 }) => {},
@@ -225,9 +225,9 @@ impl CSingleMessage {
   }
 
   pub proof fn view_equal_spec()
-    ensures forall |x: &CSingleMessage, y: &CSingleMessage| #[trigger] x.view_equal(y) <==> x@ == y@
+    ensures forall |x: &CSingleMessage, y: &CSingleMessage| #![all_triggers]  x.view_equal(y) <==> x@ == y@
   {
-    assert forall |x: &CSingleMessage, y: &CSingleMessage| #[trigger] x.view_equal(y) <==> x@ == y@ by {
+    assert forall |x: &CSingleMessage, y: &CSingleMessage| #![all_triggers]  x.view_equal(y) <==> x@ == y@ by {
       match (x, y) {
         (CSingleMessage::Message { seqno: seqno1, dst: dst1, m: m1, },
         CSingleMessage::Message { seqno: seqno2, dst: dst2, m: m2, }) => {
@@ -306,7 +306,7 @@ impl CPacket {
 // Translates Impl/SHT/CMessage :: CPacketSeqIsAbstractable
 pub open spec fn cpacket_seq_is_abstractable(packets: Seq<CPacket>) -> bool
 {
-    forall |i: int| 0 <= i && i < packets.len() ==> #[trigger] packets[i].abstractable()
+    forall |i: int| #![all_triggers] 0 <= i && i < packets.len() ==>  packets[i].abstractable()
 }
 
 // Translates Impl/SHT/PacketParsing.i.dfy :: AbstractifyOutboundPacketsToSeqOfLSHTPackets

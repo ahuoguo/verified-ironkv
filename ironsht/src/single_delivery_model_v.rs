@@ -95,7 +95,7 @@ impl ReceiveImplResult {
 /// Impl/SHT/SingleDeliveryModel.RetransmitUnAckedPackets
 impl CSingleDelivery {
     pub open spec fn packets_are_valid_messages(packets: Seq<CPacket>) -> bool {
-        forall |i| 0 <= i < packets.len() ==> #[trigger] packets[i].msg is Message
+        forall |i| #![all_triggers] 0 <= i < packets.len() ==>  packets[i].msg is Message
     }
 
     // Does not exist in ironfleet; both this method and its caller are a single glorious
@@ -229,7 +229,7 @@ impl CSingleDelivery {
             local_state.truncate(ack_seqno, Ghost(pkt.src@));
             self.send_state.put(&pkt.src, local_state);
 
-            assert forall |ep: EndPoint| #[trigger] self.send_state@.contains_key(ep@)
+            assert forall |ep: EndPoint| #![all_triggers]  self.send_state@.contains_key(ep@)
                 implies {
                     &&& ep.abstractable()
                     &&& self.send_state.epmap[&ep].abstractable()
@@ -239,7 +239,7 @@ impl CSingleDelivery {
                 }
             }
 
-            assert forall |ep: AbstractEndPoint| #[trigger] self.send_state@.contains_key(ep)
+            assert forall |ep: AbstractEndPoint| #![all_triggers]  self.send_state@.contains_key(ep)
                 implies self.send_state.epmap@[ep].valid(ep) by {
                 if ep != pkt.src@ {
                     assert( old(self).send_state@.contains_key(ep) );
@@ -486,7 +486,7 @@ impl CSingleDelivery {
                 _ => {},
             }
         }
-        assert forall |sm_alt: CSingleMessage| sm_alt@ == sm_new@ implies sm_alt.is_marshalable() by {
+        assert forall |sm_alt: CSingleMessage| #![all_triggers] sm_alt@ == sm_new@ implies sm_alt.is_marshalable() by {
             sm_alt.lemma_same_views_serialize_the_same(&sm_new);
         }
 
@@ -501,14 +501,14 @@ impl CSingleDelivery {
         assert(local_state@.un_acked =~= old_ack_state.un_acked.push(sm_new@));
         self.send_state.put(&dst, local_state);
 
-        assert forall |ep: EndPoint| #[trigger] self.send_state@.contains_key(ep@) implies
+        assert forall |ep: EndPoint| #![all_triggers]  self.send_state@.contains_key(ep@) implies
                                 ep.abstractable() && self.send_state.epmap[&ep].abstractable() by {
             if ep@ != dst@ {
                 assert(old(self).send_state@.contains_key(ep@));
             }
         }
 
-        assert forall |ep: AbstractEndPoint| #[trigger] self.send_state@.contains_key(ep) implies self.send_state.epmap@[ep].valid(ep) by {
+        assert forall |ep: AbstractEndPoint| #![all_triggers]  self.send_state@.contains_key(ep) implies self.send_state.epmap@[ep].valid(ep) by {
             if ep != dst@ {
                 assert(old(self).send_state@.contains_key(ep));
                 assert(self.send_state.epmap@[ep].valid(ep));

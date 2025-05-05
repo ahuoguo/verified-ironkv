@@ -125,7 +125,7 @@ pub open spec fn abstractify_net_packet_to_sht_packet(net: NetPacket) -> Packet
 // Translates Impl/LiveSHT/NetSHT.i.dfy :: NetEventLogIsAbstractable
 pub open spec fn net_event_log_is_abstractable(rawlog: Seq<NetEvent>) -> bool
 {
-    forall |i: int| 0 <= i && i < rawlog.len() ==> #[trigger] net_event_is_abstractable(rawlog[i])
+    forall |i: int| #![all_triggers] 0 <= i && i < rawlog.len() ==>  net_event_is_abstractable(rawlog[i])
 }
 
 // Translates Distributed/Impl/SHT/PacketParsing.i.dfy SHTDemarshallDataMethod
@@ -319,12 +319,12 @@ ensures
 
 pub open spec fn outbound_packet_seq_is_valid(cpackets: Seq<CPacket>) -> bool
 {
-    forall |i| 0 <= i < cpackets.len() ==> #[trigger] outbound_packet_is_valid(&cpackets[i])
+    forall |i| #![all_triggers] 0 <= i < cpackets.len() ==>  outbound_packet_is_valid(&cpackets[i])
 }
 
 pub open spec fn outbound_packet_seq_has_correct_srcs(cpackets: Seq<CPacket>, end_point: AbstractEndPoint) -> bool
 {
-    forall |i| #![auto] 0 <= i < cpackets.len() ==> cpackets[i].src@ == end_point
+    forall |i| #![all_triggers] #![auto] 0 <= i < cpackets.len() ==> cpackets[i].src@ == end_point
 }
 
 pub open spec fn net_packet_bound(data: Seq<u8>) -> bool
@@ -341,15 +341,15 @@ pub open spec fn is_marshalable_data(event: NetEvent) -> bool
 
 pub open spec fn only_sent_marshalable_data(rawlog:Seq<NetEvent>) -> bool
 {
-    forall |i| 0 <= i < rawlog.len() && rawlog[i] is Send ==>
-        #[trigger] is_marshalable_data(rawlog[i])
+    forall |i| #![all_triggers] 0 <= i < rawlog.len() && rawlog[i] is Send ==>
+         is_marshalable_data(rawlog[i])
 }
 
 /// translates SendLogReflectsPacket
 pub open spec fn send_log_entries_reflect_packets(net_event_log: Seq<NetEvent>, cpackets: Seq<CPacket>) -> bool
 {
     &&& net_event_log.len() == cpackets.len()
-    &&& (forall |i| 0 <= i < cpackets.len() ==> #[trigger] send_log_entry_reflects_packet(net_event_log[i], &cpackets[i]))
+    &&& (forall |i| #![all_triggers] 0 <= i < cpackets.len() ==>  send_log_entry_reflects_packet(net_event_log[i], &cpackets[i]))
 }
 
 #[verifier(spinoff_prover)] // suddenly this is taking a long time due to an unrelated change elsewhere
@@ -367,7 +367,7 @@ ensures
             &&& ok ==> netc.history() == old(netc).history() + net_events
             &&& ok ==> send_log_entries_reflect_packets(net_events, cpackets@)
             &&& ok ==> only_sent_marshalable_data(net_events)
-            &&& forall |i| 0 <= i < net_events.len() ==> net_events[i] is Send
+            &&& forall |i| #![all_triggers] 0 <= i < net_events.len() ==> net_events[i] is Send
         }
     })
 {
@@ -385,7 +385,7 @@ ensures
             netc.history() == old(netc).history() + net_events,
             send_log_entries_reflect_packets(net_events, cpackets@.subrange(0, i as int)),
             only_sent_marshalable_data(net_events),
-            forall |i| 0 <= i < net_events.len() ==> net_events[i] is Send,
+            forall |i| #![all_triggers] 0 <= i < net_events.len() ==> net_events[i] is Send,
     {
         let cpacket: &CPacket = &cpackets[i];
         let (ok, Ghost(net_event)) = send_packet(cpacket, netc);
@@ -398,16 +398,16 @@ ensures
             let net_events0 = net_events;
             net_events = net_events + seq![net_event];
             let cpackets_prefix = cpackets@.subrange(0, i as int);
-            assert forall |j| 0 <= j < i as int
-                implies #[trigger] send_log_entry_reflects_packet(net_events[j], &cpackets_prefix[j]) by {
+            assert forall |j| #![all_triggers] 0 <= j < i as int
+                implies  send_log_entry_reflects_packet(net_events[j], &cpackets_prefix[j]) by {
                 if j == i-1 {
                     assert(net_events[j] == net_event);
                 } else {
                     assert(cpackets_prefix[j] == cpackets@.subrange(0, i-1 as int)[j]);
                 }
             }
-            assert forall |j| 0 <= j < net_events.len() && net_events[j] is Send
-                implies #[trigger] is_marshalable_data(net_events[j]) by {
+            assert forall |j| #![all_triggers] 0 <= j < net_events.len() && net_events[j] is Send
+                implies  is_marshalable_data(net_events[j]) by {
                 assert(send_log_entry_reflects_packet(net_events[j], &cpackets_prefix[j]));
                 if j == i-1 {
                     assert(net_events[j] == net_event);

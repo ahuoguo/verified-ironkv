@@ -66,7 +66,7 @@ impl CAckState {
             invariant
                 i <= self.un_acked.len(),
                 un_acked@.len() == i as nat,
-                forall |j: int| 0 <= j < i as nat ==> #[trigger] (un_acked@[j]@) == self.un_acked@[j]@
+                forall |j: int| #![all_triggers] 0 <= j < i as nat ==>  (un_acked@[j]@) == self.un_acked@[j]@
         {
             un_acked.push(self.un_acked[i].clone_up_to_view());
             i = i + 1;
@@ -81,17 +81,17 @@ impl CAckState {
     }
 
     pub open spec fn abstractable(&self) -> bool {
-        forall |i: int| 0 <= i < self.un_acked.len() ==> #[trigger] self.un_acked[i].abstractable()
+        forall |i: int| #![all_triggers] 0 <= i < self.un_acked.len() ==>  self.un_acked[i].abstractable()
     }
 
     pub open spec fn no_acks_in_unacked(list: Seq<CSingleMessage>) -> bool {
-        forall |i: int| 0 <= i < list.len() ==> #[trigger] list[i] is Message
+        forall |i: int| #![all_triggers] 0 <= i < list.len() ==>  list[i] is Message
     }
 
     pub open spec fn un_acked_list_sequential(list: Seq<CSingleMessage>) -> bool
         recommends Self::no_acks_in_unacked(list)
     {
-        forall |i: int, j: int| #![auto] 0 <= i && j == i + 1 && j < list.len() ==>
+        forall |i: int, j: int| #![all_triggers] #![auto] 0 <= i && j == i + 1 && j < list.len() ==>
             list[i].arrow_Message_seqno() as int + 1 == list[j].arrow_Message_seqno() as int
     }
 
@@ -102,13 +102,13 @@ impl CAckState {
     }
 
     pub open spec fn un_acked_list_valid(list: Seq<CSingleMessage>) -> bool {
-        &&& forall |i:int| 0 <= i < list.len() ==> #[trigger] Self::un_acked_valid(&list[i])
+        &&& forall |i:int| #![all_triggers] 0 <= i < list.len() ==>  Self::un_acked_valid(&list[i])
         &&& Self::un_acked_list_sequential(list)
     }
 
     pub open spec fn un_acked_list_valid_for_dst(list: Seq<CSingleMessage>, dst: AbstractEndPoint) -> bool {
         &&& Self::un_acked_list_valid(list)
-        &&& forall |i:int| 0 <= i < list.len() ==> (#[trigger] list[i].arrow_Message_dst())@ == dst
+        &&& forall |i:int| #![all_triggers] 0 <= i < list.len() ==> ( list[i].arrow_Message_dst())@ == dst
     }
 
     pub open spec fn valid_list(msgs: Seq<CSingleMessage>, num_packets_acked: int, dst: AbstractEndPoint) -> bool {
@@ -176,7 +176,7 @@ impl CAckState {
             self == old(self),
             i <= self.un_acked.len(),
             i < self.un_acked.len() ==> self.un_acked[i as int].arrow_Message_seqno() <= seqno_acked + 1,
-            forall |j: int| #![auto] 0 <= j < i ==> self.un_acked[j].arrow_Message_seqno() <= seqno_acked,
+            forall |j: int| #![all_triggers] #![auto] 0 <= j < i ==> self.un_acked[j].arrow_Message_seqno() <= seqno_acked,
             Self::valid_list(self.un_acked@.skip(i as int), self.num_packets_acked + i, dst),
             truncate_un_ack_list(abstractify_cmessage_seq(self.un_acked@.skip(i as int)), seqno_acked as nat)
                 == truncate_un_ack_list(abstractify_cmessage_seq(old(self).un_acked@), seqno_acked as nat),
@@ -199,7 +199,7 @@ pub struct CTombstoneTable {
 
 impl CTombstoneTable {
     pub open spec fn abstractable(&self) -> bool {
-        forall |k: AbstractEndPoint| #[trigger] self@.contains_key(k) ==> k.valid_physical_address()
+        forall |k: AbstractEndPoint| #![all_triggers]  self@.contains_key(k) ==> k.valid_physical_address()
     }
 
     /// Since I'm a map, I already have a simple view(), hence the special name.
@@ -228,7 +228,7 @@ impl CTombstoneTable {
         self.abstractable(),
     {
         self.epmap.insert(src, last_seqno);
-        assert( forall |k: AbstractEndPoint| #[trigger] self@.contains_key(k) ==> old(self)@.contains_key(k) || k == src@ );
+        assert( forall |k: AbstractEndPoint| #![all_triggers]  self@.contains_key(k) ==> old(self)@.contains_key(k) || k == src@ );
     }
 }
 
@@ -239,7 +239,7 @@ pub struct CSendState {
 impl CSendState {
     /// CSendStateIsAbstractable
     pub open spec fn abstractable(&self) -> bool {
-        forall |ep: EndPoint| #[trigger] self@.contains_key(ep@) ==> ep.abstractable() && self.epmap[&ep].abstractable()
+        forall |ep: EndPoint| #![all_triggers]  self@.contains_key(ep@) ==> ep.abstractable() && self.epmap[&ep].abstractable()
         // NB ignoring the "ReverseKey" stuff from GenericRefinement.MapIsAbstractable
     }
 
@@ -249,7 +249,7 @@ impl CSendState {
     /// CSendStateIsValid
     pub open spec fn valid(&self) -> bool {
         &&& self.abstractable()
-        &&& forall |ep: AbstractEndPoint| #[trigger] self@.contains_key(ep) ==> self.epmap@[ep].valid(ep)
+        &&& forall |ep: AbstractEndPoint| #![all_triggers]  self@.contains_key(ep) ==> self.epmap@[ep].valid(ep)
     }
 
     pub open spec fn view(&self) -> SendState<Message> {

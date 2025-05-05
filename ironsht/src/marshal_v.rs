@@ -589,7 +589,7 @@ impl<T: Marshalable> Marshalable for Vec<T> {
   open spec fn view_equal(&self, other: &Self) -> bool {
     let s = self@;
     let o = other@;
-    s.len() == o.len() && (forall |i: int| 0 <= i < s.len() ==> #[trigger] s[i].view_equal(&o[i]))
+    s.len() == o.len() && (forall |i: int| #![all_triggers] 0 <= i < s.len() ==>  s[i].view_equal(&o[i]))
   }
   proof fn lemma_view_equal_symmetric(&self, other: &Self)
     // req, ens from trait
@@ -597,21 +597,21 @@ impl<T: Marshalable> Marshalable for Vec<T> {
     let s = self@;
     let o = other@;
     if self.view_equal(other) {
-      assert forall |i: int| 0 <= i < o.len() implies #[trigger] o[i].view_equal(&s[i]) by {
+      assert forall |i: int| #![all_triggers] 0 <= i < o.len() implies  o[i].view_equal(&s[i]) by {
         s[i].lemma_view_equal_symmetric(&o[i]);
       }
     } else {
       if s.len() != o.len() {
         // trivial
       } else {
-        let i = choose |i: int| 0 <= i < s.len() && ! #[trigger] s[i].view_equal(&o[i]);
+        let i = choose |i: int| 0 <= i < s.len() && !  s[i].view_equal(&o[i]);
         s[i].lemma_view_equal_symmetric(&o[i]);
       }
     }
   }
   open spec fn is_marshalable(&self) -> bool {
     &&& self@.len() <= usize::MAX
-    &&& (forall |x: T| self@.contains(x) ==> #[trigger] x.is_marshalable())
+    &&& (forall |x: T| #![all_triggers] self@.contains(x) ==>  x.is_marshalable())
     &&& (self@.len() as usize).ghost_serialize().len() +
         self@.fold_left(0, |acc: int, x: T| acc + x.ghost_serialize().len()) <= usize::MAX
   }
@@ -630,7 +630,7 @@ impl<T: Marshalable> Marshalable for Vec<T> {
         0 <= i <= self.len(),
         res ==> total_len as int == (self@.len() as usize).ghost_serialize().len() +
                  self@.subrange(0, i as int).fold_left(0, |acc: int, x: T| acc + x.ghost_serialize().len()),
-        res ==> (forall |x: T| self@.subrange(0, i as int).contains(x) ==> #[trigger] x.is_marshalable()),
+        res ==> (forall |x: T| #![all_triggers] self@.subrange(0, i as int).contains(x) ==>  x.is_marshalable()),
         res ==> total_len as int <= usize::MAX,
         !res ==> !self.is_marshalable(),
     {
@@ -641,7 +641,7 @@ impl<T: Marshalable> Marshalable for Vec<T> {
         total_len = total_len + self[i].serialized_size();
         i = i + 1;
         proof {
-          assert forall |x: T| #[trigger] self@.subrange(0, i as int).contains(x) implies x.is_marshalable() by {
+          assert forall |x: T| #![all_triggers]  self@.subrange(0, i as int).contains(x) implies x.is_marshalable() by {
             if (exists |j:int| 0 <= j < self@.subrange(0, i as int).len() - 1 && self@.subrange(0, i as int)[j] == x) {
               let j = choose|j:int| 0 <= j < self@.subrange(0, i as int).len() - 1 && self@.subrange(0, i as int)[j] == x;
               assert(self@.subrange(0, i as int - 1)[j] == x); // OBSERVE
@@ -699,7 +699,7 @@ impl<T: Marshalable> Marshalable for Vec<T> {
     while i < self.len()
       invariant
         0 <= i <= self.len(),
-        (forall |x: T| self@.contains(x) ==> #[trigger] x.is_marshalable()),
+        (forall |x: T| #![all_triggers] self@.contains(x) ==>  x.is_marshalable()),
         (self@.len() as usize).ghost_serialize().len() +
                self@.subrange(0 as int, self@.len() as int).fold_left(0, |acc: int, x: T| acc + x.ghost_serialize().len()) <= usize::MAX,
         res == (self@.len() as usize).ghost_serialize().len() +
@@ -763,7 +763,7 @@ impl<T: Marshalable> Marshalable for Vec<T> {
         data@.subrange(old(data)@.len() as int, data@.len() as int) ==
           self.len().ghost_serialize() +
             self@.subrange(0, i as int).fold_left(Seq::<u8>::empty(), |acc: Seq<u8>, x: T| acc + x.ghost_serialize()),
-        forall |x: T| self@.contains(x) ==> #[trigger] x.is_marshalable(),
+        forall |x: T| #![all_triggers] self@.contains(x) ==>  x.is_marshalable(),
         data@.len() >= old(data)@.len(),
     {
       self[i].serialize(data);
@@ -894,7 +894,7 @@ impl<T: Marshalable> Marshalable for Vec<T> {
     } else {
       let not_view_equal_at_idx = |i:int| !self@[i].view_equal(&other@[i]);
       let idx = {
-        let temp = choose |i:int| 0 <= i < self@.len() && !#[trigger] self@[i].view_equal(&other@[i]);
+        let temp = choose |i:int| 0 <= i < self@.len() && ! self@[i].view_equal(&other@[i]);
         assert (not_view_equal_at_idx(temp)); // OBSERVE
         choose_smallest(0, self@.len() as int, not_view_equal_at_idx)
       };
@@ -946,7 +946,7 @@ impl<T: Marshalable> Marshalable for Vec<T> {
       }
       assert((self@.len() as usize).ghost_serialize() == (other@.len() as usize).ghost_serialize());
       assert(gs(self@, 0, idx) == gs(other@, 0, idx)) by {
-        assert forall |i:int| 0 <= i < idx implies g(self@.subrange(0, idx)[i]) == g(other@.subrange(0, idx)[i]) by {
+        assert forall |i:int| #![all_triggers] 0 <= i < idx implies g(self@.subrange(0, idx)[i]) == g(other@.subrange(0, idx)[i]) by {
           assert(self@.subrange(0, idx)[i] == self@[i] && other@.subrange(0, idx)[i] == other@[i]);
           assert(!not_view_equal_at_idx(i));
           self@[i].lemma_same_views_serialize_the_same(&other@[i]);
@@ -977,21 +977,21 @@ impl<T: Marshalable> Marshalable for Vec<T> {
   {
     lemma_auto_spec_u64_to_from_le_bytes();
     assert(self@.len() == other@.len());
-    assert forall |i: int| 0 <= i < self@.len() implies
-      #[trigger] self@[i].is_marshalable() == other@[i].is_marshalable() &&
-      #[trigger] self@[i].ghost_serialize() == other@[i].ghost_serialize() by {
+    assert forall |i: int| #![all_triggers] 0 <= i < self@.len() implies
+       self@[i].is_marshalable() == other@[i].is_marshalable() &&
+       self@[i].ghost_serialize() == other@[i].ghost_serialize() by {
         self@[i].lemma_same_views_serialize_the_same(&other@[i]);
     }
     let veq = |x: T, y: T| x.view_equal(&y);
     assert(self.is_marshalable() == other.is_marshalable()) by {
       assert((self@.len() <= usize::MAX) == (other@.len() <= usize::MAX));
-      if (forall |x: T| self@.contains(x) ==> #[trigger] x.is_marshalable()) {
-        assert forall |y: T| other@.contains(y) implies #[trigger] y.is_marshalable() by {
+      if (forall |x: T| #![all_triggers] self@.contains(x) ==>  x.is_marshalable()) {
+        assert forall |y: T| #![all_triggers] other@.contains(y) implies  y.is_marshalable() by {
           let i = choose |i:int| 0 <= i < other@.len() && other@[i] == y;
           self@[i].lemma_same_views_serialize_the_same(&other@[i]);
         }
       } else {
-        let i = choose |i:int| 0 <= i < self@.len() && !(#[trigger] self@[i].is_marshalable());
+        let i = choose |i:int| 0 <= i < self@.len() && !( self@[i].is_marshalable());
         self@[i].lemma_same_views_serialize_the_same(&other@[i]);
       }
       assert((self@.len() as usize).ghost_serialize().len() ==

@@ -117,7 +117,7 @@ impl Parameters {
 // Translates Impl/LiveSHT/SchedulerModel.i.dfy :: AllIosAreSends
 pub open spec fn all_ios_are_sends(ios: Seq<LSHTIo>) -> bool
 {
-    forall |i: int| 0 <= i && i < ios.len() ==> ios[i] is Send
+    forall |i: int| #![all_triggers] 0 <= i && i < ios.len() ==> ios[i] is Send
 }
 
 // Translates Impl/SHT/PacketParsing.i.dfy :: AbstractifyCPacketToLSHTPacket
@@ -172,7 +172,7 @@ pub fn make_empty_event_results() -> (res: Ghost<EventResults>)
 
 pub fn make_send_only_event_results(net_events: Ghost<Seq<NetEvent>>) -> (res: Ghost<EventResults>)
     requires
-        forall |i: int| 0 <= i && i < net_events@.len() ==> net_events@[i] is Send
+        forall |i: int| #![all_triggers] 0 <= i && i < net_events@.len() ==> net_events@[i] is Send
     ensures
         res@.recvs == Seq::<NetEvent>::empty(),
         res@.clocks == Seq::<NetEvent>::empty(),
@@ -187,9 +187,9 @@ pub fn make_send_only_event_results(net_events: Ghost<Seq<NetEvent>>) -> (res: G
         sends: net_events@,
         ios: net_events@,
     };
-    assert (forall |i| 0 <= i < res.recvs.len() ==> res.recvs[i] is Receive);
-    assert (forall |i| 0 <= i < res.clocks.len() ==> res.clocks[i] is ReadClock || res.clocks[i] is TimeoutReceive);
-    assert (forall |i| 0 <= i < res.sends.len() ==> res.sends[i] is Send);
+    assert (forall |i| #![all_triggers] 0 <= i < res.recvs.len() ==> res.recvs[i] is Receive);
+    assert (forall |i| #![all_triggers] 0 <= i < res.clocks.len() ==> res.clocks[i] is ReadClock || res.clocks[i] is TimeoutReceive);
+    assert (forall |i| #![all_triggers] 0 <= i < res.sends.len() ==> res.sends[i] is Send);
     assert (res.clocks.len() <= 1);
     assert (res.well_typed_events());
     proof { assert_seqs_equal!(res.event_seq(), net_events@); };
@@ -215,7 +215,7 @@ pub struct HostState {
 fn extract_range_impl(h: &CKeyHashMap, kr: &KeyRange<CKey>) -> (ext: CKeyHashMap)
 requires
     //h@.valid_key_range() // (See Distributed/Services/SHT/AppInterface.i.dfy: ValidKey() == true)
-    forall |k| h@.contains_key(k) ==> /*#[trigger] valid_key(k) &&*/ #[trigger] valid_value(h@[k]),
+    forall |k| #![all_triggers] h@.contains_key(k) ==> /* valid_key(k) &&*/  valid_value(h@[k]),
 ensures
     ext@ =~= extract_range(h@, *kr),
 {
@@ -254,7 +254,7 @@ impl HostState {
         &&& self.abstractable()
         &&& self.delegation_map.valid()
         // TODO why no valid_key?
-        &&& (forall |k| self.h@.dom().contains(k) ==> #[trigger] valid_value(self.h@[k]))
+        &&& (forall |k| #![all_triggers] self.h@.dom().contains(k) ==>  valid_value(self.h@[k]))
         &&& self.sd.valid()
         &&& match &self.received_packet {
               Some(v) => v.abstractable() && v.msg is Message && v.dst@ == self.constants.me@,
@@ -305,8 +305,8 @@ impl HostState {
         invariant
             i <= args.len(),
             end_points.len() == i,
-            forall |j| #![auto] 0 <= j < i ==> parse_arg_as_end_point(abstractify_args(*args)[j]) == end_points@[j]@,
-            forall |j| #![auto] 0 <= j < i ==> end_points@[j]@.valid_physical_address(),
+            forall |j| #![all_triggers] #![auto] 0 <= j < i ==> parse_arg_as_end_point(abstractify_args(*args)[j]) == end_points@[j]@,
+            forall |j| #![all_triggers] #![auto] 0 <= j < i ==> end_points@[j]@.valid_physical_address(),
         {
             let end_point = Self::parse_end_point(&(*args)[i]);
             if !end_point.valid_physical_address() {
@@ -445,7 +445,7 @@ impl HostState {
                     &&& netc.ok() <==> ok
                     &&& ok ==> {
                         &&& all_ios_are_sends(ios)
-                        &&& (forall |i: int| 0 <= i && i < net_events.len() ==> net_events[i] is Send)
+                        &&& (forall |i: int| #![all_triggers] 0 <= i && i < net_events.len() ==> net_events[i] is Send)
                         &&& ios == map_sent_packet_seq_to_ios(packets@)
                         &&& abstractify_outbound_packets_to_seq_of_lsht_packets(packets@) ==
                                 extract_sent_packets_from_ios(ios)
@@ -476,13 +476,13 @@ impl HostState {
                     let seq2 = extract_sent_packets_from_ios(ios).map_values(|lp: LSHTPacket| extract_packet_from_lsht_packet(lp));
                     assert (set1 == seq1.to_set());
                     assert (set2 == seq2.to_set());
-                    assert forall |x| set1.contains(x) implies set2.contains(x) by {
-                        let idx: int = choose |idx: int| 0 <= idx && idx < seq1.len() && #[trigger] seq1[idx] == x;
+                    assert forall |x| #![all_triggers] set1.contains(x) implies set2.contains(x) by {
+                        let idx: int = choose |idx: int| 0 <= idx && idx < seq1.len() &&  seq1[idx] == x;
                         assert (seq2[idx] == x);
                         assert (set2.contains(x));
                     };
-                    assert forall |x| set2.contains(x) implies set1.contains(x) by {
-                        let idx: int = choose |idx: int| 0 <= idx && idx < seq2.len() && #[trigger] seq2[idx] == x;
+                    assert forall |x| #![all_triggers] set2.contains(x) implies set1.contains(x) by {
+                        let idx: int = choose |idx: int| 0 <= idx && idx < seq2.len() &&  seq2[idx] == x;
                         assert (seq1[idx] == x);
                         assert (set1.contains(x));
                     };
@@ -498,17 +498,17 @@ impl HostState {
                 }
                 assert (abstractify_raw_log_to_ios(events@) == ios) by {
                     let aios = abstractify_raw_log_to_ios(events@);
-                    assert forall |i: int| 0 <= i && i < ios.len() implies aios[i] == ios[i] by {
+                    assert forall |i: int| #![all_triggers] 0 <= i && i < ios.len() implies aios[i] == ios[i] by {
                         assert (send_log_entry_reflects_packet(events@[i], &packets[i]));
                     }
                     assert_seqs_equal!(aios, ios);
                 };
-                assert forall |i| 0 <= i < ios.len() && #[trigger] ios[i] is Send implies !(ios[i]->s.msg is InvalidMessage) by {
+                assert forall |i| #![all_triggers] 0 <= i < ios.len() &&  ios[i] is Send implies !(ios[i]->s.msg is InvalidMessage) by {
                     let msg = ios[i]->s.msg;
                     assert (msg == abstractify_cpacket_to_lsht_packet(packets[i]).msg);
                     assert (outbound_packet_is_valid(&packets[i]));
                 };
-                assert forall |i: int| 0 <= i && i < events@.len() implies events@[i] is Send by {
+                assert forall |i: int| #![all_triggers] 0 <= i && i < events@.len() implies events@[i] is Send by {
                     assert (send_log_entry_reflects_packet(events@[i], &packets[i]));
                 };
             }
@@ -531,7 +531,7 @@ impl HostState {
                     &&& netc.ok() <==> ok
                     &&& ok ==> {
                         &&& all_ios_are_sends(ios)
-                        &&& (forall |i: int| 0 <= i && i < net_events.len() ==> net_events[i] is Send)
+                        &&& (forall |i: int| #![all_triggers] 0 <= i && i < net_events.len() ==> net_events[i] is Send)
                         &&& ios == map_sent_packet_seq_to_ios(packets@)
                         &&& abstractify_outbound_packets_to_seq_of_lsht_packets(packets@) ==
                                 extract_sent_packets_from_ios(ios)
@@ -701,7 +701,7 @@ impl HostState {
 
                 // TODO(verus): improve automation for .map and .to_set. Note here we need lots of
                 // triggering.
-                assert forall |i| #![auto] 0 <= i < sent_packets@.len()
+                assert forall |i| #![all_triggers] #![auto] 0 <= i < sent_packets@.len()
                     implies sent_packets@[i].src@ == netc.my_end_point() by {
                     let cpacket = sent_packets@[i];
                     assert( mapped[i] == cpacket@ );        // witness
@@ -1054,8 +1054,8 @@ impl HostState {
         &&& self.next_action_index == pre.next_action_index
         &&& outbound_packet_seq_is_valid(sent_packets)
         &&& outbound_packet_seq_has_correct_srcs(sent_packets, pre.constants.me@)
-        &&& (forall |i: int| 0 <= i && i < sent_packets.len() ==>
-              (#[trigger] sent_packets[i].msg) is Message || sent_packets[i].msg is Ack)
+        &&& (forall |i: int| #![all_triggers] 0 <= i && i < sent_packets.len() ==>
+              ( sent_packets[i].msg) is Message || sent_packets[i].msg is Ack)
         &&& abstractify_seq_of_cpackets_to_set_of_sht_packets(sent_packets) =~=
             extract_packets_from_lsht_packets(abstractify_outbound_packets_to_seq_of_lsht_packets(sent_packets))
         &&& self.resend_count < 100000000
@@ -1342,8 +1342,8 @@ impl HostState {
         requires
             pre.valid(),
             post.valid(),
-            forall |ki:KeyIterator<CKey>| #[trigger] KeyIterator::between(*lo, ki, *hi) ==> post@[*ki.get()] == dst@,
-            forall |ki:KeyIterator<CKey>| !ki.is_end_spec() && !(#[trigger] KeyIterator::between(*lo, ki, *hi)) ==> post@[*ki.get()] == pre@[*ki.get()],
+            forall |ki:KeyIterator<CKey>| #![all_triggers]  KeyIterator::between(*lo, ki, *hi) ==> post@[*ki.get()] == dst@,
+            forall |ki:KeyIterator<CKey>| #![all_triggers] !ki.is_end_spec() && !( KeyIterator::between(*lo, ki, *hi)) ==> post@[*ki.get()] == pre@[*ki.get()],
        ensures
            AbstractDelegationMap(post@) == AbstractDelegationMap(pre@).update(KeyRange::<AbstractKey>{ lo: *lo, hi: *hi }, dst@)
     {
@@ -1360,7 +1360,7 @@ impl HostState {
         other: CKeyHashMap
     )
         requires
-            forall |k| pre@.dom().contains(k) ==> #[trigger] valid_value(pre@[k]),
+            forall |k| #![all_triggers] pre@.dom().contains(k) ==>  valid_value(pre@[k]),
             valid_hashtable(other@),
             post@ == Map::<AbstractKey, Seq<u8>>::new(
                 |k: AbstractKey| (pre@.dom().contains(k) || other@.dom().contains(k))
@@ -1369,7 +1369,7 @@ impl HostState {
             ),
        ensures
            post@ == bulk_update_hashtable(pre@, *kr, other@),
-           forall |k| post@.dom().contains(k) ==> #[trigger] valid_value(post@[k])
+           forall |k| #![all_triggers] post@.dom().contains(k) ==>  valid_value(post@[k])
     {
         assert_maps_equal!(post@, bulk_update_hashtable(pre@, *kr, other@));
     }
@@ -1750,7 +1750,7 @@ impl HostState {
         proof {
             let aios = abstractify_raw_log_to_ios(event_results@.ios);
 
-            assert forall |i| #![auto] 0 <= i < aios.len() && aios[i] is Send
+            assert forall |i| #![all_triggers] #![auto] 0 <= i < aios.len() && aios[i] is Send
                 implies !(aios[i].arrow_Send_s().msg is InvalidMessage) by {
                 assert( send_log_entry_reflects_packet(send_events[i], &sent_packets[i]) ); // trigger
             }
@@ -1765,7 +1765,7 @@ impl HostState {
             lemma_if_everything_in_seq_satisfies_filter_then_filter_is_identity(aios, |io: LSHTIo| io is Send);
 
             // Reach into an inconvenient trigger
-            assert forall |i| 0<=i<extract_seq.len() implies extract_seq[i] == view_seq[i] by {
+            assert forall |i| #![all_triggers] 0<=i<extract_seq.len() implies extract_seq[i] == view_seq[i] by {
                 assert( send_log_entry_reflects_packet(event_results@.ios[i], &sent_packets@[i]) );
             }
             assert( view_seq =~= extract_seq ); // prompt ext equality

@@ -30,7 +30,7 @@ ensures
         invariant
             i <= v.len(),
             i == out.len(),
-            forall |j| #![auto] 0 <= j < i  ==> out@[j] == v@[j],
+            forall |j| #![all_triggers] #![auto] 0 <= j < i  ==> out@[j] == v@[j],
     {
         out.push(v[i]);
         i = i + 1;

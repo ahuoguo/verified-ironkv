@@ -16,7 +16,7 @@ verus! {
     #[verifier::opaque]
     pub open spec fn seq_is_unique<T>(s: Seq<T>) -> bool
     {
-        forall |i: int, j: int| #![trigger s[i], s[j]] 0 <= i && i < s.len() && 0 <= j && j < s.len() && s[i] == s[j] ==> i == j
+        forall |i: int, j: int| #![all_triggers] #![trigger s[i], s[j]] 0 <= i && i < s.len() && 0 <= j && j < s.len() && s[i] == s[j] ==> i == j
     }
 
     pub fn do_vec_u8s_match(e1: &Vec<u8>, e2: &Vec<u8>) -> (eq: bool)
@@ -35,7 +35,7 @@ verus! {
                 0 <= i,
                 i <= e1.len(),
                 e1.len() == e2.len(),
-                forall |j: int| 0 <= j && j < i ==> e1@[j] == e2@[j]
+                forall |j: int| #![all_triggers] 0 <= j && j < i ==> e1@[j] == e2@[j]
         {
             if e1[i] != e2[i] {
                 return false;
@@ -65,7 +65,7 @@ verus! {
             invariant
                 0 <= i,
                 i <= endpoints.len(),
-                forall |j: int, k: int| #![trigger endpoints@[j]@, endpoints@[k]@]
+                forall |j: int, k: int| #![all_triggers] #![trigger endpoints@[j]@, endpoints@[k]@]
                     0 <= j && j < endpoints.len() && 0 <= k && k < i && j != k ==> endpoints@[j]@ != endpoints@[k]@,
         {
             let mut j: usize = 0;
@@ -73,11 +73,11 @@ verus! {
                 invariant
                     0 <= i,
                     i < endpoints.len(),
-                    forall |j: int, k: int| #![trigger endpoints@[j]@, endpoints@[k]@]
+                    forall |j: int, k: int| #![all_triggers] #![trigger endpoints@[j]@, endpoints@[k]@]
                         0 <= j && j < endpoints.len() && 0 <= k && k < i && j != k ==> endpoints@[j]@ != endpoints@[k]@,
                     0 <= j,
                     j <= endpoints.len(),
-                    forall |k: int| #![trigger endpoints@[k]@] 0 <= k && k < j && k != i ==> endpoints@[i as int]@ != endpoints@[k]@,
+                    forall |k: int| #![all_triggers] #![trigger endpoints@[k]@] 0 <= k && k < j && k != i ==> endpoints@[i as int]@ != endpoints@[k]@,
             {
                 if i != j && do_end_points_match(&endpoints[i], &endpoints[j]) {
                     assert (!seq_is_unique(abstractify_end_points(*endpoints))) by {
@@ -106,7 +106,7 @@ verus! {
         while j < endpoints.len()
             invariant
                 0 <= j && j <= endpoints.len(),
-                forall |k: int| #![trigger endpoints@[k]@] 0 <= k && k < j ==> endpoint@ != endpoints@[k]@,
+                forall |k: int| #![all_triggers] #![trigger endpoints@[k]@] 0 <= k && k < j ==> endpoint@ != endpoints@[k]@,
         {
             if do_end_points_match(endpoint, &endpoints[j]) {
                 assert (abstractify_end_points(*endpoints)[j as int] == endpoint@);
@@ -156,7 +156,7 @@ verus! {
         let seq1 = seq![x];
         let set1 = seq1.to_set();
         let set2 = set![x];
-        assert forall |y| set1.contains(y) <==> set2.contains(y) by
+        assert forall |y| #![all_triggers] set1.contains(y) <==> set2.contains(y) by
         {
             if y == x {
                 assert (seq1[0] == y);

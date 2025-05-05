@@ -74,8 +74,8 @@ impl<V> HashMap<V>
         new_map_v == old_map_v.insert(key, value)
 //         &&& new_map_v.contains_key(key)
 //         &&& new_map_v[key] == value
-//         &&& forall |k| /*#![auto]*/ k != key ==> if old_map_v.contains_key(k) {
-//                 (#[trigger] new_map_v.contains_key(k)) && new_map_v[k] == old_map_v[k]
+//         &&& forall |k| #![all_triggers] /*#![auto]*/ k != key ==> if old_map_v.contains_key(k) {
+//                 ( new_map_v.contains_key(k)) && new_map_v[k] == old_map_v[k]
 //             } else {
 //                 !new_map_v.contains_key(k)
 //             }

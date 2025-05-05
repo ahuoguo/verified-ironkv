@@ -33,8 +33,8 @@ pub open spec fn flatten_sets<A>(sets: Set<Set<A>>) -> Set<A>
 
 pub proof fn flatten_sets_spec<A>(sets: Set<Set<A>>)
     ensures
-        (forall |e| #[trigger] flatten_sets(sets).contains(e) ==> exists |s| sets.contains(s) && s.contains(e)),
-        (forall |s: Set<A>| #[trigger] sets.contains(s) ==> s.subset_of(flatten_sets(sets)))
+        (forall |e| #![all_triggers]  flatten_sets(sets).contains(e) ==> exists |s| sets.contains(s) && s.contains(e)),
+        (forall |s: Set<A>| #![all_triggers]  sets.contains(s) ==> s.subset_of(flatten_sets(sets)))
 {
 }
 
@@ -52,11 +52,11 @@ pub proof fn lemma_flatten_sets_union<A>(sets1: Set<Set<A>>, sets2: Set<Set<A>>)
 }
 
 pub proof fn lemma_flatten_sets_union_auto<A>()
-    ensures forall |sets1: Set<Set<A>>, sets2: Set<Set<A>>|
-        #[trigger] flatten_sets(sets1.union(sets2)) == flatten_sets(sets1).union(flatten_sets(sets2))
+    ensures forall |sets1: Set<Set<A>>, sets2: Set<Set<A>>| #![all_triggers]
+         flatten_sets(sets1.union(sets2)) == flatten_sets(sets1).union(flatten_sets(sets2))
 {
-    assert forall |sets1: Set<Set<A>>, sets2: Set<Set<A>>|
-        #[trigger] flatten_sets(sets1.union(sets2)) == flatten_sets(sets1).union(flatten_sets(sets2)) by {
+    assert forall |sets1: Set<Set<A>>, sets2: Set<Set<A>>| #![all_triggers]
+         flatten_sets(sets1.union(sets2)) == flatten_sets(sets1).union(flatten_sets(sets2)) by {
         lemma_flatten_sets_union(sets1, sets2);
     }
 }
@@ -76,11 +76,11 @@ pub proof fn set_map_union<A, B>(s1: Set<A>, s2: Set<A>, f: spec_fn(A) -> B)
 }
 
 pub proof fn set_map_union_auto<A, B>()
-    ensures forall |s1: Set<A>, s2: Set<A>, f: spec_fn(A) -> B|
-        #[trigger] (s1 + s2).map(f) == s1.map(f) + s2.map(f)
+    ensures forall |s1: Set<A>, s2: Set<A>, f: spec_fn(A) -> B| #![all_triggers]
+         (s1 + s2).map(f) == s1.map(f) + s2.map(f)
 {
-    assert forall |s1: Set<A>, s2: Set<A>, f: spec_fn(A) -> B|
-        #[trigger] ((s1 + s2).map(f)) == s1.map(f) + s2.map(f) by {
+    assert forall |s1: Set<A>, s2: Set<A>, f: spec_fn(A) -> B| #![all_triggers]
+         ((s1 + s2).map(f)) == s1.map(f) + s2.map(f) by {
         set_map_union(s1, s2, f);
     }
 }
@@ -98,11 +98,11 @@ pub proof fn seq_map_values_concat<A, B>(s1: Seq<A>, s2: Seq<A>, f: spec_fn(A) -
 }
 
 pub proof fn seq_map_values_concat_auto<A, B>()
-ensures forall |s1: Seq<A>, s2: Seq<A>, f: spec_fn(A) -> B|
-    #[trigger] (s1 + s2).map_values(f) == s1.map_values(f) + s2.map_values(f)
+ensures forall |s1: Seq<A>, s2: Seq<A>, f: spec_fn(A) -> B| #![all_triggers]
+     (s1 + s2).map_values(f) == s1.map_values(f) + s2.map_values(f)
 {
-    assert forall |s1: Seq<A>, s2: Seq<A>, f: spec_fn(A) -> B|
-        #[trigger] ((s1 + s2).map_values(f)) == s1.map_values(f) + s2.map_values(f) by {
+    assert forall |s1: Seq<A>, s2: Seq<A>, f: spec_fn(A) -> B| #![all_triggers]
+         ((s1 + s2).map_values(f)) == s1.map_values(f) + s2.map_values(f) by {
         seq_map_values_concat(s1, s2, f);
     }
 }
@@ -114,23 +114,23 @@ pub open spec fn flatten_set_seq<A>(sets: Seq<Set<A>>) -> Set<A>
 
 pub proof fn lemma_flatten_set_seq_spec<A>(sets: Seq<Set<A>>)
     ensures
-        (forall |x:A| #[trigger] flatten_set_seq(sets).contains(x) ==>
-            exists |i: int| 0 <= i < sets.len() && #[trigger] sets[i].contains(x)),
-        (forall |x:A, i:int| 0 <= i < sets.len() && #[trigger] sets[i].contains(x) ==>
+        (forall |x:A| #![all_triggers]  flatten_set_seq(sets).contains(x) ==>
+            exists |i: int| 0 <= i < sets.len() &&  sets[i].contains(x)),
+        (forall |x:A, i:int| #![all_triggers] 0 <= i < sets.len() &&  sets[i].contains(x) ==>
             flatten_set_seq(sets).contains(x))
     decreases sets.len()
 {
     if sets.len() == 0 {
     } else {
         lemma_flatten_set_seq_spec(sets.drop_last());
-        assert forall |x:A| flatten_set_seq(sets).contains(x) implies
-            exists |i: int| 0 <= i < sets.len() && #[trigger] sets[i].contains(x) by {
+        assert forall |x:A| #![all_triggers] flatten_set_seq(sets).contains(x) implies
+            exists |i: int| 0 <= i < sets.len() &&  sets[i].contains(x) by {
             if sets.last().contains(x) {
             } else {
                 assert(flatten_set_seq(sets.drop_last()).contains(x));
             }
         }
-        assert forall |x:A, i:int| 0 <= i < sets.len() && #[trigger] sets[i].contains(x) implies
+        assert forall |x:A, i:int| #![all_triggers] 0 <= i < sets.len() &&  sets[i].contains(x) implies
             flatten_set_seq(sets).contains(x) by {
             if i == sets.len() - 1 {
                 assert(sets.last().contains(x));
@@ -187,9 +187,9 @@ pub proof fn lemma_seq_map_equiv<A, B>(f: spec_fn(A) -> B, g: spec_fn(int, A) ->
 requires
     forall |i: int, a: A| #[trigger] g(i, a) == f(a)
 ensures
-    forall |s: Seq<A>| s.map_values(f) == s.map(g)
+    forall |s: Seq<A>| #![all_triggers] s.map_values(f) == s.map(g)
 {
-    assert forall |s: Seq<A>| s.map_values(f) == s.map(g) by {
+    assert forall |s: Seq<A>| #![all_triggers] s.map_values(f) == s.map(g) by {
         assert_seqs_equal!(s.map_values(f), s.map(g));
     }
 }
@@ -199,7 +199,7 @@ ensures (s+t).to_set() == s.to_set() + t.to_set()
 {
     let left = (s+t).to_set();
     let right = s.to_set() + t.to_set();
-    assert forall |x| right.contains(x) implies left.contains(x) by {
+    assert forall |x| #![all_triggers] right.contains(x) implies left.contains(x) by {
         assert(s.to_set()+t.to_set() == s.to_set().union(t.to_set()));
         if s.to_set().contains(x) {
             let si = choose |si| 0<=si<s.len() && s[si] == x;
@@ -214,9 +214,9 @@ ensures (s+t).to_set() == s.to_set() + t.to_set()
 
 
 pub proof fn lemma_to_set_union_auto<A>()
-    ensures forall |s: Seq<A>, t: Seq<A>| #[trigger] (s+t).to_set() == s.to_set() + t.to_set()
+    ensures forall |s: Seq<A>, t: Seq<A>| #![all_triggers]  (s+t).to_set() == s.to_set() + t.to_set()
 {
-    assert forall |s: Seq<A>, t: Seq<A>| #[trigger] (s+t).to_set() == s.to_set() + t.to_set() by {
+    assert forall |s: Seq<A>, t: Seq<A>| #![all_triggers]  (s+t).to_set() == s.to_set() + t.to_set() by {
         lemma_to_set_distributes_over_addition(s, t);
     }
 }
@@ -267,47 +267,47 @@ ensures
 
 pub proof fn map_set_finite_auto<A, B>()
 ensures
-    forall |s: Set<A>, f: spec_fn(A) -> B| s.finite() ==> #[trigger] (s.map(f).finite()),
+    forall |s: Set<A>, f: spec_fn(A) -> B| #![all_triggers] s.finite() ==>  (s.map(f).finite()),
 {
-    assert forall |s: Set<A>, f: spec_fn(A) -> B| s.finite() implies #[trigger] s.map(f).finite() by {
+    assert forall |s: Set<A>, f: spec_fn(A) -> B| #![all_triggers] s.finite() implies  s.map(f).finite() by {
         map_finite(s, f);
     }
 }
 
 pub proof fn lemma_to_set_singleton_auto<A>()
 ensures
-    forall |x: A| #[trigger] seq![x].to_set() == set![x],
+    forall |x: A| #![all_triggers]  seq![x].to_set() == set![x],
 {
-    assert forall |x: A| #[trigger] seq![x].to_set() =~= set![x] by {
+    assert forall |x: A| #![all_triggers]  seq![x].to_set() =~= set![x] by {
         assert(seq![x][0] == x);
     }
 }
 
 pub proof fn lemma_map_values_singleton_auto<A, B>()
 ensures
-    forall |x: A, f: spec_fn(A) -> B| #[trigger] seq![x].map_values(f) =~= seq![f(x)],
+    forall |x: A, f: spec_fn(A) -> B| #![all_triggers]  seq![x].map_values(f) =~= seq![f(x)],
 {
 }
 
 pub proof fn lemma_map_set_singleton_auto<A, B>()
 ensures
-    forall |x: A, f: spec_fn(A) -> B| #[trigger] set![x].map(f) == set![f(x)],
+    forall |x: A, f: spec_fn(A) -> B| #![all_triggers]  set![x].map(f) == set![f(x)],
 {
-    assert forall |x: A, f: spec_fn(A) -> B| #[trigger] set![x].map(f) =~= set![f(x)] by {
+    assert forall |x: A, f: spec_fn(A) -> B| #![all_triggers]  set![x].map(f) =~= set![f(x)] by {
         assert(set![x].contains(x));
     }
 }
 
 pub proof fn lemma_map_seq_singleton_auto<A, B>()
 ensures
-    forall |x: A, f: spec_fn(A) -> B| #[trigger] seq![x].map_values(f) =~= seq![f(x)],
+    forall |x: A, f: spec_fn(A) -> B| #![all_triggers]  seq![x].map_values(f) =~= seq![f(x)],
 {
 }
 
 
 pub proof fn flatten_sets_singleton_auto<A>()
 ensures
-    forall |x: Set<A>| #[trigger] flatten_sets(set![x]) =~= x,
+    forall |x: Set<A>| #![all_triggers]  flatten_sets(set![x]) =~= x,
 {
 }
 

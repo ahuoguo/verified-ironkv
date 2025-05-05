@@ -40,7 +40,7 @@ verus! {
     impl SHTKey {
         /// Document that view_equal is definitionally to ==, with no explicit proof required.
         pub proof fn view_equal_spec()
-            ensures forall |x: &SHTKey, y: &SHTKey| #[trigger] x.view_equal(y) <==> x == y
+            ensures forall |x: &SHTKey, y: &SHTKey| #![all_triggers]  x.view_equal(y) <==> x == y
         {
         }
     }
@@ -54,7 +54,7 @@ verus! {
     impl EndPoint {
         /// Document that view_equal is definitially x@ == y@, with no explicit proof required.
         pub proof fn view_equal_spec()
-            ensures forall |x: &EndPoint, y: &EndPoint| #[trigger] x.view_equal(y) <==> x@ == y@
+            ensures forall |x: &EndPoint, y: &EndPoint| #![all_triggers]  x.view_equal(y) <==> x@ == y@
         {
         }
     }
@@ -108,7 +108,7 @@ verus! {
             while idx < v.len()
               invariant
                 (0 < idx <= v.len()),
-                (forall |i: int, j: int| 0 <= i && i + 1 < idx && j == i+1 ==> #[trigger] ckeykvlt(v@[i], v@[j])),
+                (forall |i: int, j: int| #![all_triggers] 0 <= i && i + 1 < idx && j == i+1 ==>  ckeykvlt(v@[i], v@[j])),
             {
                 if v[idx - 1].k.ukey >= v[idx].k.ukey {
                     assert(!ckeykvlt(v@[idx as int-1], v@[idx as int]));
@@ -251,8 +251,8 @@ verus! {
 
         let max_len : int = 10_000;
 
-        assert forall |i:int| 0 <= i < vec.len() implies (
-            #[trigger] vec[i].is_marshalable() && vec[i].ghost_serialize().len() < max_len
+        assert forall |i:int| #![all_triggers] 0 <= i < vec.len() implies (
+             vec[i].is_marshalable() && vec[i].ghost_serialize().len() < max_len
         ) by {
             let (k, v) = vec[i]@;
             assert(h@.contains_pair(k, v));
@@ -272,7 +272,7 @@ verus! {
             let f = |x: CKeyKV| x.ghost_serialize().len() as int;
             let ag = |acc: int, x: CKeyKV| acc + x.ghost_serialize().len();
             let af = |acc: int, x: CKeyKV| acc + f(x);
-            assert forall |i:int| 0 <= i < vec@.len() implies f(vec@[i]) <= max_len by {
+            assert forall |i:int| #![all_triggers] 0 <= i < vec@.len() implies f(vec@[i]) <= max_len by {
                 let (k, v) = vec[i]@;
                 assert(h@.contains_pair(k, v));
                 assert(h@.dom().contains(k));
@@ -306,7 +306,7 @@ verus! {
 
         assert(vec.is_marshalable()) by {
             assert(vec@.len() <= usize::MAX);
-            assert(forall |x: CKeyKV| vec@.contains(x) ==> #[trigger] x.is_marshalable());
+            assert(forall |x: CKeyKV| #![all_triggers] vec@.contains(x) ==>  x.is_marshalable());
         }
         assert(crate::hashmap_t::spec_sorted_keys(vec));
 

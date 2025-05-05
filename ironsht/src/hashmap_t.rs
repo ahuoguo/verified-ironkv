@@ -132,7 +132,7 @@ impl CKeyHashMap {
         Self::spec_from_vec(self.spec_to_vec()) == self,
         self.spec_to_vec().len() == self@.dom().len(),
         spec_sorted_keys(self.spec_to_vec()),
-        (forall |i: int|
+        (forall |i: int| 
          #![trigger(self.spec_to_vec()[i])]
          0 <= i < self.spec_to_vec().len() ==> {
              let (k, v) = self.spec_to_vec()[i]@;
@@ -144,7 +144,7 @@ impl CKeyHashMap {
         (self@ == other@ <==> self.spec_to_vec()@ == other.spec_to_vec()@)
         && (self@ == other@ <==> (
             self.spec_to_vec().len() == other.spec_to_vec().len() &&
-                forall |i: int| #![auto] 0 <= i < self.spec_to_vec().len() ==>
+                forall |i: int| #![all_triggers] #![auto] 0 <= i < self.spec_to_vec().len() ==>
                 self.spec_to_vec()[i]@ == other.spec_to_vec()[i]@
         ));
     #[verifier(external_body)]
@@ -180,8 +180,8 @@ impl CKeyHashMap {
     pub open spec fn predicate_models<T, EF: Fn(T)->bool>(
         exec_fn: EF, spec_fn: spec_fn(T)->bool) -> bool
     {
-        &&& forall |t| #![auto] exec_fn.requires((t,))
-        &&& forall |t, b| exec_fn.ensures((t,), b) ==> spec_fn(t)==b
+        &&& forall |t| #![all_triggers] #![auto] exec_fn.requires((t,))
+        &&& forall |t, b| #![all_triggers] exec_fn.ensures((t,), b) ==> spec_fn(t)==b
     }
 
     #[verifier(external_body)] // iter was not supported at the time this was written
@@ -229,7 +229,7 @@ pub open spec fn spec_sorted_keys(v: Vec<CKeyKV>) -> bool {
     // v@[i].k.ukey, v@[i+1].k.ukey, ...
     //
     // we weren't able to fix this by making the whole < the trigger
-    forall |i: int, j: int| 0 <= i && i + 1 < v.len() && j == i+1 ==> #[trigger] ckeykvlt(v@[i], v@[j])
+    forall |i: int, j: int| #![all_triggers] 0 <= i && i + 1 < v.len() && j == i+1 ==>  ckeykvlt(v@[i], v@[j])
 }
 
 }

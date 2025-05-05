@@ -153,7 +153,7 @@ pub proof fn lemma_seq_fold_left_append_len_int_le<A, B>(s: Seq<A>, i: int, low:
 
 pub proof fn lemma_seq_fold_left_sum_le<A>(s: Seq<A>, init: int, high: int, f: spec_fn(A) -> int)
   requires
-    forall |i:int| 0 <= i < s.len() ==> f(s[i]) <= high,
+    forall |i:int| #![all_triggers] 0 <= i < s.len() ==> f(s[i]) <= high,
   ensures
     s.fold_left(init, |acc: int, x: A| acc + f(x)) <= init + s.len() * high,
   decreases s.len(),
@@ -165,7 +165,7 @@ pub proof fn lemma_seq_fold_left_sum_le<A>(s: Seq<A>, init: int, high: int, f: s
 }
 
 pub proof fn lemma_if_everything_in_seq_satisfies_filter_then_filter_is_identity<A>(s: Seq<A>, pred: spec_fn(A) -> bool)
-    requires forall |i: int| 0 <= i && i < s.len() ==> pred(s[i])
+    requires forall |i: int| #![all_triggers] 0 <= i && i < s.len() ==> pred(s[i])
     ensures  s.filter(pred) == s
     decreases s.len()
 {
@@ -178,7 +178,7 @@ pub proof fn lemma_if_everything_in_seq_satisfies_filter_then_filter_is_identity
 }
 
 pub proof fn lemma_if_nothing_in_seq_satisfies_filter_then_filter_result_is_empty<A>(s: Seq<A>, pred: spec_fn(A) -> bool)
-    requires forall |i: int| 0 <= i && i < s.len() ==> !pred(s[i])
+    requires forall |i: int| #![all_triggers] 0 <= i && i < s.len() ==> !pred(s[i])
     ensures  s.filter(pred) =~= Seq::<A>::empty()
     decreases s.len()
 {
@@ -193,7 +193,7 @@ pub proof fn lemma_if_nothing_in_seq_satisfies_filter_then_filter_result_is_empt
 pub proof fn lemma_filter_skip_rejected<A>(s: Seq<A>, pred: spec_fn(A) -> bool, i: int)
     requires
         0 <= i <= s.len(),
-        forall |j| 0 <= j < i ==> !pred(s[j]),
+        forall |j| #![all_triggers] 0 <= j < i ==> !pred(s[j]),
     ensures
         s.filter(pred) == s.skip(i).filter(pred)
     decreases
@@ -259,7 +259,7 @@ pub proof fn some_differing_index_for_unequal_seqs<A>(s1: Seq<A>, s2: Seq<A>) ->
     0 <= i < s1.len(),
     s1[i] != s2[i],
 {
-  if forall |i| 0 <= i < s1.len() ==> s1[i] == s2[i] {
+  if forall |i| #![all_triggers] 0 <= i < s1.len() ==> s1[i] == s2[i] {
     assert(s1 =~= s2);
   }
   choose |i:int| 0 <= i < s1.len() && s1[i] != s2[i]

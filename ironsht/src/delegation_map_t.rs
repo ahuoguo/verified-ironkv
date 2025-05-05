@@ -55,7 +55,7 @@ impl AbstractDelegationMap {
         recommends
             self.is_complete(),
     {
-        forall |k: AbstractKey| #[trigger] kr.contains(k) ==> self[k] == id
+        forall |k: AbstractKey| #![all_triggers]  kr.contains(k) ==> self[k] == id
     }
 }
 
