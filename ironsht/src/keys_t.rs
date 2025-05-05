@@ -21,34 +21,34 @@ pub trait KeyTrait : Sized {
 
     proof fn zero_properties()
         ensures
-            forall |k:Self| k != Self::zero_spec() ==> (#[trigger] Self::zero_spec().cmp_spec(k)).lt();
+            forall |k:Self| #![all_triggers] k != Self::zero_spec() ==> ( Self::zero_spec().cmp_spec(k)).lt();
 
     spec fn cmp_spec(self, other: Self) -> Ordering;
 
     proof fn cmp_properties()
         ensures
         // Equality is eq  --- TODO: Without this we need to redefine Seq, Set, etc. operators that use ==
-        forall |a:Self, b:Self| #![auto] a == b <==> a.cmp_spec(b).eq(),
+        forall |a:Self, b:Self| #![all_triggers] #![auto] a == b <==> a.cmp_spec(b).eq(),
         // Reflexivity of equality
-        forall |a:Self| #![auto] a.cmp_spec(a).eq(),
+        forall |a:Self| #![all_triggers] #![auto] a.cmp_spec(a).eq(),
         // Commutativity of equality
-        forall |a:Self, b:Self| (#[trigger] a.cmp_spec(b)).eq() == b.cmp_spec(a).eq(),
+        forall |a:Self, b:Self| #![all_triggers] ( a.cmp_spec(b)).eq() == b.cmp_spec(a).eq(),
         // Transitivity of equality
-        forall |a:Self, b:Self, c:Self|
-            #[trigger] a.cmp_spec(b).eq() && #[trigger] b.cmp_spec(c).eq() ==> a.cmp_spec(c).eq(),
+        forall |a:Self, b:Self, c:Self| #![all_triggers]
+             a.cmp_spec(b).eq() &&  b.cmp_spec(c).eq() ==> a.cmp_spec(c).eq(),
         // Inequality is asymmetric
-        forall |a:Self, b:Self|
-            #[trigger] a.cmp_spec(b).lt() <==> b.cmp_spec(a).gt(),
+        forall |a:Self, b:Self| #![all_triggers]
+             a.cmp_spec(b).lt() <==> b.cmp_spec(a).gt(),
         // Connected
-        forall |a:Self, b:Self|
+        forall |a:Self, b:Self| #![all_triggers]
             #![auto] a.cmp_spec(b).ne() ==> a.cmp_spec(b).lt() || b.cmp_spec(a).lt(),
         // Transitivity of inequality
-        forall |a:Self, b:Self, c:Self|
-            #[trigger] a.cmp_spec(b).lt() && #[trigger] b.cmp_spec(c).lt() ==> a.cmp_spec(c).lt(),
-        forall |a:Self, b:Self, c:Self|
-            #[trigger] a.cmp_spec(b).lt() && #[trigger] b.cmp_spec(c).le() ==> a.cmp_spec(c).lt(),
-        forall |a:Self, b:Self, c:Self|
-            #[trigger] a.cmp_spec(b).le() && #[trigger] b.cmp_spec(c).lt() ==> a.cmp_spec(c).lt();
+        forall |a:Self, b:Self, c:Self| #![all_triggers]
+             a.cmp_spec(b).lt() &&  b.cmp_spec(c).lt() ==> a.cmp_spec(c).lt(),
+        forall |a:Self, b:Self, c:Self| #![all_triggers]
+             a.cmp_spec(b).lt() &&  b.cmp_spec(c).le() ==> a.cmp_spec(c).lt(),
+        forall |a:Self, b:Self, c:Self| #![all_triggers]
+             a.cmp_spec(b).le() &&  b.cmp_spec(c).lt() ==> a.cmp_spec(c).lt();
 
     // zero should be smaller than all other keys
     fn zero() -> (z: Self)
@@ -184,7 +184,7 @@ impl KeyTrait for SHTKey {
     proof fn zero_properties()
     {
         // Maybe this should not be necessary
-        assert(forall |k:Self| k != Self::zero_spec() ==> (#[trigger] Self::zero_spec().cmp_spec(k)).lt());
+        assert(forall |k:Self| #![all_triggers] k != Self::zero_spec() ==> ( Self::zero_spec().cmp_spec(k)).lt());
     }
 
     open spec fn cmp_spec(self, other: Self) -> Ordering
@@ -201,27 +201,27 @@ impl KeyTrait for SHTKey {
     proof fn cmp_properties()
 //        ensures
 //        // Equality is eq  --- TODO: Without this we need to redefine Seq, Set, etc. operators that use ==
-//        forall |a:Self, b:Self| #![auto] a == b <==> a.cmp_spec(b).eq(),
+//        forall |a:Self, b:Self| #![all_triggers] #![auto] a == b <==> a.cmp_spec(b).eq(),
 //        // Reflexivity of equality
-//        forall |a:Self| #![auto] a.cmp_spec(a).eq(),
+//        forall |a:Self| #![all_triggers] #![auto] a.cmp_spec(a).eq(),
 //        // Commutativity of equality
-//        forall |a:Self, b:Self| (#[trigger] a.cmp_spec(b)).eq() == b.cmp_spec(a).eq(),
+//        forall |a:Self, b:Self| #![all_triggers] ( a.cmp_spec(b)).eq() == b.cmp_spec(a).eq(),
 //        // Transitivity of equality
-//        forall |a:Self, b:Self, c:Self|
-//            #[trigger] a.cmp_spec(b).eq() && #[trigger] b.cmp_spec(c).eq() ==> a.cmp_spec(c).eq(),
+//        forall |a:Self, b:Self, c:Self| #![all_triggers]
+//             a.cmp_spec(b).eq() &&  b.cmp_spec(c).eq() ==> a.cmp_spec(c).eq(),
 //        // Inequality is asymmetric
-//        forall |a:Self, b:Self|
-//            #[trigger] a.cmp_spec(b).lt() <==> b.cmp_spec(a).gt(),
+//        forall |a:Self, b:Self| #![all_triggers]
+//             a.cmp_spec(b).lt() <==> b.cmp_spec(a).gt(),
 //        // Connected
-//        forall |a:Self, b:Self|
+//        forall |a:Self, b:Self| #![all_triggers]
 //            #![auto] a.cmp_spec(b).ne() ==> a.cmp_spec(b).lt() || b.cmp_spec(a).lt(),
 //        // Transitivity of inequality
-//        forall |a:Self, b:Self, c:Self|
-//            #[trigger] a.cmp_spec(b).lt() && #[trigger] b.cmp_spec(c).lt() ==> a.cmp_spec(c).lt(),
-//        forall |a:Self, b:Self, c:Self|
-//            #[trigger] a.cmp_spec(b).lt() && #[trigger] b.cmp_spec(c).le() ==> a.cmp_spec(c).lt(),
-//        forall |a:Self, b:Self, c:Self|
-//            #[trigger] a.cmp_spec(b).le() && #[trigger] b.cmp_spec(c).lt() ==> a.cmp_spec(c).lt()
+//        forall |a:Self, b:Self, c:Self| #![all_triggers]
+//             a.cmp_spec(b).lt() &&  b.cmp_spec(c).lt() ==> a.cmp_spec(c).lt(),
+//        forall |a:Self, b:Self, c:Self| #![all_triggers]
+//             a.cmp_spec(b).lt() &&  b.cmp_spec(c).le() ==> a.cmp_spec(c).lt(),
+//        forall |a:Self, b:Self, c:Self| #![all_triggers]
+//             a.cmp_spec(b).le() &&  b.cmp_spec(c).lt() ==> a.cmp_spec(c).lt()
     {
     }
 

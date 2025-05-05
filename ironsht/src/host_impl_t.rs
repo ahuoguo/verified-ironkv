@@ -63,9 +63,9 @@ impl EventResults {
     }
 
     pub open spec fn well_typed_events(self) -> bool {
-        &&& forall |i| 0 <= i < self.recvs.len() ==> self.recvs[i] is Receive
-        &&& forall |i| 0 <= i < self.clocks.len() ==> self.clocks[i] is ReadClock || self.clocks[i] is TimeoutReceive
-        &&& forall |i| 0 <= i < self.sends.len() ==> self.sends[i] is Send
+        &&& forall |i| #![all_triggers] 0 <= i < self.recvs.len() ==> self.recvs[i] is Receive
+        &&& forall |i| #![all_triggers] 0 <= i < self.clocks.len() ==> self.clocks[i] is ReadClock || self.clocks[i] is TimeoutReceive
+        &&& forall |i| #![all_triggers] 0 <= i < self.sends.len() ==> self.sends[i] is Send
         &&& self.clocks.len() <= 1
     }
 

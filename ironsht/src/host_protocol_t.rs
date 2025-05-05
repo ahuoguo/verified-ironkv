@@ -66,7 +66,7 @@ pub open spec fn max_hashtable_size() -> int
 pub open spec fn valid_hashtable(h: Hashtable) -> bool
 {
     &&& h.dom().len() < max_hashtable_size()
-    &&& (forall |k| h.dom().contains(k) ==> valid_key(k) && #[trigger] valid_value(h[k]))
+    &&& (forall |k| #![all_triggers] h.dom().contains(k) ==> valid_key(k) &&  valid_value(h[k]))
 }
 
 pub open spec(checked) fn hashtable_lookup(h: Hashtable, k: AbstractKey) -> Option<AbstractValue>
@@ -197,7 +197,7 @@ pub open spec(checked) fn receive_packet_next(pre: AbstractHostState, post: Abst
         } else  {
             &&& pre.delegation_map.is_complete()
             &&& ios[0] is Receive
-            &&& forall |i| 1 <= i < ios.len() ==> /*#[trigger]*/ ios[i] is Send
+            &&& forall |i| #![all_triggers] 1 <= i < ios.len() ==> /**/ ios[i] is Send
             &&& receive_packet_without_reading_clock(pre, post, ios)
         }
 }
@@ -451,7 +451,7 @@ pub open spec(checked) fn process_received_packet(pre: AbstractHostState, post: 
 pub open spec(checked) fn process_received_packet_next(pre: AbstractHostState, post: AbstractHostState, ios: AbstractIos) -> bool
 {
     &&& pre.delegation_map.is_complete()
-    &&& forall |i| 0 <= i < ios.len() ==> ios[i] is Send
+    &&& forall |i| #![all_triggers] 0 <= i < ios.len() ==> ios[i] is Send
     &&& process_received_packet(pre, post, extract_packets_from_abstract_ios(ios))
 }
 
@@ -465,7 +465,7 @@ pub open spec(checked) fn spontaneously_retransmit_next(pre: AbstractHostState, 
     &&& pre.delegation_map.is_complete()
     &&& {
         ||| {
-            &&& forall |i| 0 <= i < ios.len() ==> ios[i] is Send
+            &&& forall |i| #![all_triggers] 0 <= i < ios.len() ==> ios[i] is Send
             &&& spontaneously_retransmit(pre, post, extract_packets_from_abstract_ios(ios))
         }
         ||| {
@@ -527,7 +527,7 @@ pub open spec fn unchecked_parse_args(args: AbstractArgs) -> Seq<AbstractEndPoin
 pub open spec(checked) fn parse_args(args: AbstractArgs) -> Option<Seq<AbstractEndPoint>>
 {
     let end_points = unchecked_parse_args(args);
-    if forall |i| #![auto] 0 <= i < end_points.len() ==> end_points[i].valid_physical_address() {
+    if forall |i| #![all_triggers] #![auto] 0 <= i < end_points.len() ==> end_points[i].valid_physical_address() {
         Some(end_points)
     } else {
         None
@@ -572,7 +572,7 @@ pub open spec(checked) fn next_step(pre: AbstractHostState, post: AbstractHostSt
 //pub open no_invalid_messages fn next(pre: AbstractHostState, post: AbstractHostState, recv: Set<Packet>, out: Set<Packet>) -> bool {
 
 pub open spec(checked) fn no_invalid_sends(ios: AbstractIos) -> bool {
-    forall |i| #![auto] 0 <= i < ios.len() && ios[i] is Send ==> !(ios[i].arrow_Send_s().msg is InvalidMessage)
+    forall |i| #![all_triggers] #![auto] 0 <= i < ios.len() && ios[i] is Send ==> !(ios[i].arrow_Send_s().msg is InvalidMessage)
 }
 
 pub open spec(checked) fn next(pre: AbstractHostState, post: AbstractHostState, ios: AbstractIos) -> bool {
