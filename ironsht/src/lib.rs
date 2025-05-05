@@ -1,5 +1,8 @@
 #![allow(unused_imports)]
 #![allow(unused_attributes)]
+
+#![verifier::exec_allows_no_decreases_clause]
+
 use builtin::*;
 use builtin_macros::*;
 use vstd::prelude::*;
