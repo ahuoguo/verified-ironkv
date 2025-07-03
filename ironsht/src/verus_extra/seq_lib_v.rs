@@ -45,7 +45,7 @@ pub proof fn lemma_seq_fold_left_merge_right_assoc<A, B>(s: Seq<A>, init: B, f: 
   let all = s.fold_left(init, accf);
 
   if s1.len() == 0 {
-    assert(s.len() == 1);
+//    assert(s.len() == 1);
     reveal_with_fuel(Seq::fold_left, 2);
     reveal_with_fuel(Seq::fold_left, 2);
   } else {
@@ -76,7 +76,7 @@ pub proof fn lemma_seq_fold_left_sum_right<A>(s: Seq<A>, low: int, f: spec_fn(A)
     s.fold_left(low, |b: int, a: A| b + f(a))
 {
   let g = |x: int, y: int| x + y;
-  assert((|b: int, a: A| b + f(a)) =~= (|b: int, a: A| g(b, f(a))));
+//  assert((|b: int, a: A| b + f(a)) =~= (|b: int, a: A| g(b, f(a))));
   lemma_seq_fold_left_merge_right_assoc::<A, int>(s, low, f, g);
 }
 
@@ -91,7 +91,7 @@ pub proof fn lemma_seq_fold_left_append_right<A, B>(s: Seq<A>, prefix: Seq<B>, f
   assert forall |x, y, z| #[trigger] g(g(x, y), z) == g(x, g(y, z)) by {
     assert_seqs_equal!(g(g(x, y), z) == g(x, g(y, z)));
   };
-  assert((|b: Seq<B>, a: A| b + f(a)) =~= (|b: Seq<B>, a: A| g(b, f(a))));
+//  assert((|b: Seq<B>, a: A| b + f(a)) =~= (|b: Seq<B>, a: A| g(b, f(a))));
   lemma_seq_fold_left_merge_right_assoc::<A, Seq<B>>(s, prefix, f, g);
 }
 
@@ -142,7 +142,7 @@ pub proof fn lemma_seq_fold_left_append_len_int_le<A, B>(s: Seq<A>, i: int, low:
     lemma_seq_fold_left_append_len_int_le::<A, B>(s.subrange(1, s.len() as int), i - 1, low + f(s[0]).len() as int, f);
   } else if i == s.len() - 1 {
     let fl = |x| f(x).len() as int;
-    assert(accfl =~= (|acc: int, x: A| acc + fl(x)));
+//    assert(accfl =~= (|acc: int, x: A| acc + fl(x)));
     lemma_seq_fold_left_sum_right::<A>(s, low, fl);
   } else {
     lemma_seq_fold_left_append_len_int_le::<A, B>(s.subrange(0, s.len() - 1), i, low, f);
@@ -242,8 +242,8 @@ pub proof fn lemma_fold_left_append_merge<A, B>(s1: Seq<A>, s2: Seq<A>, f: spec_
   let af = |acc: Seq<B>, a: A| acc + f(a);
   let fl = |s: Seq<A>| s.fold_left(e, af);
   if s2.len() == 0 {
-    assert(s1 + s2 =~= s1);
-    assert(fl(s1) =~= fl(s1) + e);
+//    assert(s1 + s2 =~= s1);
+//    assert(fl(s1) =~= fl(s1) + e);
   } else {
     lemma_fold_left_append_merge(s1, s2.drop_last(), f);
     assert((s1 + s2).drop_last() =~= s1 + s2.drop_last());
