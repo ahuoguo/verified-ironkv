@@ -1,0 +1,1329 @@
+    Finished `release` profile [optimized] target(s) in 1.12s
+     Running `/local/abai/verus/source/target/release/minimize -d ./tmp /local/abai/verified-ironkv/ironsht/src/lib.d`
+warning: else branch in let currently not supported
+original verification time: 9075ms
+minimization of ./tmp/0/lib.rs is completed
+minimization of ./tmp/1/abstract_end_point_t.rs is completed
+minimization of ./tmp/2/abstract_parameters_t.rs is completed
+minimization of ./tmp/3/abstract_service_t.rs is completed
+minimization of ./tmp/4/app_interface_t.rs is completed
+minimization of ./tmp/5/args_t.rs is completed
+minimization of ./tmp/7/delegation_map_t.rs is completed
+minimization of ./tmp/9/endpoint_hashmap_t.rs is completed
+minimization of ./tmp/10/environment_t.rs is completed
+minimization of ./tmp/11/hashmap_t.rs is completed
+minimization of ./tmp/12/host_impl_t.rs is completed
+minimization of ./tmp/14/host_protocol_t.rs is completed
+minimization of ./tmp/15/io_t.rs is completed
+commenting out line Lines { lines: 164..=166 } in "./tmp/8/delegation_map_v.rs"
+verus failed with time: 15048ms, reverting
+commenting out line Lines { lines: 178..=178 } in "./tmp/16/keys_t.rs"
+verus failed with time: 15055ms, reverting
+commenting out line Lines { lines: 119..=119 } in "./tmp/18/marshal_ironsht_specific_v.rs"
+verus failed with time: 15432ms, reverting
+commenting out line Lines { lines: 104..=104 } in "./tmp/6/cmessage_v.rs"
+verus succeeded with time: 15879ms, keeping it commented out
+commenting out line Lines { lines: 57..=57 } in "./tmp/17/main_t.rs"
+verus succeeded with time: 16000ms, keeping it commented out
+commenting out line Lines { lines: 149..=149 } in "./tmp/19/marshal_v.rs"
+verus succeeded with time: 16084ms, keeping it commented out
+commenting out line Lines { lines: 193..=193 } in "./tmp/13/host_impl_v.rs"
+verus succeeded with time: 16223ms, keeping it commented out
+commenting out line Lines { lines: 126..=126 } in "./tmp/18/marshal_ironsht_specific_v.rs"
+verus failed with time: 14701ms, reverting
+commenting out line Lines { lines: 168..=170 } in "./tmp/8/delegation_map_v.rs"
+verus failed with time: 15264ms, reverting
+commenting out line Lines { lines: 190..=190 } in "./tmp/16/keys_t.rs"
+verus failed with time: 15215ms, reverting
+minimization of ./tmp/16/keys_t.rs is completed
+minimization of ./tmp/20/message_t.rs is completed
+commenting out line Lines { lines: 93..=107 } in "./tmp/6/cmessage_v.rs"
+verus succeeded with time: 16136ms, keeping it commented out
+commenting out line Lines { lines: 150..=150 } in "./tmp/19/marshal_v.rs"
+verus succeeded with time: 16044ms, keeping it commented out
+commenting out line Lines { lines: 75..=75 } in "./tmp/17/main_t.rs"
+verus succeeded with time: 16101ms, keeping it commented out
+commenting out line Lines { lines: 194..=194 } in "./tmp/13/host_impl_v.rs"
+verus succeeded with time: 16342ms, keeping it commented out
+commenting out line Lines { lines: 125..=127 } in "./tmp/18/marshal_ironsht_specific_v.rs"
+verus succeeded with time: 15676ms, keeping it commented out
+commenting out line Lines { lines: 90..=90 } in "./tmp/21/net_sht_v.rs"
+verus succeeded with time: 15808ms, keeping it commented out
+commenting out line Lines { lines: 189..=189 } in "./tmp/8/delegation_map_v.rs"
+verus succeeded with time: 16693ms, keeping it commented out
+commenting out line Lines { lines: 165..=165 } in "./tmp/19/marshal_v.rs"
+verus succeeded with time: 15246ms, keeping it commented out
+commenting out line Lines { lines: 238..=238 } in "./tmp/6/cmessage_v.rs"
+verus succeeded with time: 15979ms, keeping it commented out
+commenting out line Lines { lines: 82..=82 } in "./tmp/17/main_t.rs"
+verus succeeded with time: 15887ms, keeping it commented out
+commenting out line Lines { lines: 195..=195 } in "./tmp/13/host_impl_v.rs"
+verus succeeded with time: 15606ms, keeping it commented out
+commenting out line Lines { lines: 166..=166 } in "./tmp/21/net_sht_v.rs"
+verus failed with time: 14735ms, reverting
+commenting out line Lines { lines: 208..=208 } in "./tmp/18/marshal_ironsht_specific_v.rs"
+verus succeeded with time: 15516ms, keeping it commented out
+commenting out line Lines { lines: 172..=172 } in "./tmp/19/marshal_v.rs"
+verus succeeded with time: 15499ms, keeping it commented out
+commenting out line Lines { lines: 192..=192 } in "./tmp/8/delegation_map_v.rs"
+verus succeeded with time: 16082ms, keeping it commented out
+commenting out line Lines { lines: 85..=85 } in "./tmp/17/main_t.rs"
+verus succeeded with time: 15584ms, keeping it commented out
+commenting out line Lines { lines: 239..=239 } in "./tmp/6/cmessage_v.rs"
+verus succeeded with time: 15904ms, keeping it commented out
+commenting out line Lines { lines: 196..=196 } in "./tmp/13/host_impl_v.rs"
+verus succeeded with time: 16201ms, keeping it commented out
+commenting out line Lines { lines: 214..=214 } in "./tmp/21/net_sht_v.rs"
+verus succeeded with time: 15714ms, keeping it commented out
+commenting out line Lines { lines: 212..=215 } in "./tmp/18/marshal_ironsht_specific_v.rs"
+verus succeeded with time: 16070ms, keeping it commented out
+commenting out line Lines { lines: 174..=174 } in "./tmp/19/marshal_v.rs"
+verus succeeded with time: 15401ms, keeping it commented out
+commenting out line Lines { lines: 194..=194 } in "./tmp/8/delegation_map_v.rs"
+verus succeeded with time: 15477ms, keeping it commented out
+commenting out line Lines { lines: 240..=240 } in "./tmp/6/cmessage_v.rs"
+verus succeeded with time: 14769ms, keeping it commented out
+commenting out line Lines { lines: 90..=90 } in "./tmp/17/main_t.rs"
+verus succeeded with time: 15546ms, keeping it commented out
+commenting out line Lines { lines: 197..=197 } in "./tmp/13/host_impl_v.rs"
+verus succeeded with time: 14975ms, keeping it commented out
+commenting out line Lines { lines: 219..=219 } in "./tmp/21/net_sht_v.rs"
+verus succeeded with time: 15552ms, keeping it commented out
+commenting out line Lines { lines: 175..=175 } in "./tmp/19/marshal_v.rs"
+verus failed with time: 14754ms, reverting
+commenting out line Lines { lines: 318..=318 } in "./tmp/13/host_impl_v.rs"
+verus failed with time: 14179ms, reverting
+commenting out line Lines { lines: 218..=218 } in "./tmp/18/marshal_ironsht_specific_v.rs"
+verus succeeded with time: 16520ms, keeping it commented out
+commenting out line Lines { lines: 188..=196 } in "./tmp/8/delegation_map_v.rs"
+verus succeeded with time: 15748ms, keeping it commented out
+commenting out line Lines { lines: 245..=245 } in "./tmp/6/cmessage_v.rs"
+verus succeeded with time: 15703ms, keeping it commented out
+commenting out line Lines { lines: 91..=91 } in "./tmp/17/main_t.rs"
+verus succeeded with time: 15874ms, keeping it commented out
+minimization of ./tmp/17/main_t.rs is completed
+minimization of ./tmp/22/network_t.rs is completed
+commenting out line Lines { lines: 173..=176 } in "./tmp/19/marshal_v.rs"
+verus failed with time: 14256ms, reverting
+commenting out line Lines { lines: 219..=219 } in "./tmp/18/marshal_ironsht_specific_v.rs"
+verus failed with time: 14651ms, reverting
+commenting out line Lines { lines: 220..=220 } in "./tmp/21/net_sht_v.rs"
+verus succeeded with time: 16081ms, keeping it commented out
+commenting out line Lines { lines: 362..=362 } in "./tmp/13/host_impl_v.rs"
+verus succeeded with time: 15876ms, keeping it commented out
+commenting out line Lines { lines: 233..=248 } in "./tmp/6/cmessage_v.rs"
+verus succeeded with time: 15858ms, keeping it commented out
+minimization of ./tmp/6/cmessage_v.rs is completed
+commenting out line Lines { lines: 266..=266 } in "./tmp/8/delegation_map_v.rs"
+verus succeeded with time: 16124ms, keeping it commented out
+commenting out line Lines { lines: 30..=30 } in "./tmp/23/seq_is_unique_v.rs"
+verus succeeded with time: 15955ms, keeping it commented out
+commenting out line Lines { lines: 181..=181 } in "./tmp/19/marshal_v.rs"
+verus succeeded with time: 15426ms, keeping it commented out
+commenting out line Lines { lines: 221..=221 } in "./tmp/21/net_sht_v.rs"
+verus succeeded with time: 15677ms, keeping it commented out
+commenting out line Lines { lines: 220..=220 } in "./tmp/18/marshal_ironsht_specific_v.rs"
+verus succeeded with time: 16288ms, keeping it commented out
+commenting out line Lines { lines: 367..=367 } in "./tmp/13/host_impl_v.rs"
+verus succeeded with time: 15876ms, keeping it commented out
+commenting out line Lines { lines: 268..=268 } in "./tmp/8/delegation_map_v.rs"
+verus succeeded with time: 15237ms, keeping it commented out
+commenting out line Lines { lines: 41..=41 } in "./tmp/24/single_delivery_model_v.rs"
+verus succeeded with time: 16058ms, keeping it commented out
+commenting out line Lines { lines: 31..=31 } in "./tmp/23/seq_is_unique_v.rs"
+verus succeeded with time: 15385ms, keeping it commented out
+commenting out line Lines { lines: 210..=210 } in "./tmp/19/marshal_v.rs"
+verus failed with time: 13139ms, reverting
+commenting out line Lines { lines: 235..=236 } in "./tmp/18/marshal_ironsht_specific_v.rs"
+verus failed with time: 14014ms, reverting
+commenting out line Lines { lines: 231..=231 } in "./tmp/21/net_sht_v.rs"
+verus succeeded with time: 16111ms, keeping it commented out
+commenting out line Lines { lines: 95..=95 } in "./tmp/23/seq_is_unique_v.rs"
+verus failed with time: 14254ms, reverting
+commenting out line Lines { lines: 149..=149 } in "./tmp/24/single_delivery_model_v.rs"
+verus failed with time: 14509ms, reverting
+commenting out line Lines { lines: 382..=382 } in "./tmp/13/host_impl_v.rs"
+verus succeeded with time: 15602ms, keeping it commented out
+commenting out line Lines { lines: 269..=269 } in "./tmp/8/delegation_map_v.rs"
+verus succeeded with time: 15790ms, keeping it commented out
+commenting out line Lines { lines: 154..=154 } in "./tmp/24/single_delivery_model_v.rs"
+verus failed with time: 2324ms, reverting
+commenting out line Lines { lines: 247..=247 } in "./tmp/19/marshal_v.rs"
+verus succeeded with time: 14632ms, keeping it commented out
+commenting out line Lines { lines: 250..=250 } in "./tmp/18/marshal_ironsht_specific_v.rs"
+verus succeeded with time: 14938ms, keeping it commented out
+commenting out line Lines { lines: 96..=96 } in "./tmp/23/seq_is_unique_v.rs"
+verus failed with time: 13681ms, reverting
+commenting out line Lines { lines: 233..=233 } in "./tmp/21/net_sht_v.rs"
+verus succeeded with time: 15733ms, keeping it commented out
+commenting out line Lines { lines: 383..=383 } in "./tmp/13/host_impl_v.rs"
+verus succeeded with time: 15508ms, keeping it commented out
+commenting out line Lines { lines: 271..=271 } in "./tmp/8/delegation_map_v.rs"
+verus succeeded with time: 15182ms, keeping it commented out
+commenting out line Lines { lines: 181..=181 } in "./tmp/24/single_delivery_model_v.rs"
+verus succeeded with time: 14941ms, keeping it commented out
+commenting out line Lines { lines: 309..=309 } in "./tmp/19/marshal_v.rs"
+verus succeeded with time: 14132ms, keeping it commented out
+commenting out line Lines { lines: 255..=255 } in "./tmp/18/marshal_ironsht_specific_v.rs"
+verus succeeded with time: 14930ms, keeping it commented out
+commenting out line Lines { lines: 97..=97 } in "./tmp/23/seq_is_unique_v.rs"
+verus succeeded with time: 15665ms, keeping it commented out
+commenting out line Lines { lines: 243..=243 } in "./tmp/24/single_delivery_model_v.rs"
+verus failed with time: 13465ms, reverting
+commenting out line Lines { lines: 235..=235 } in "./tmp/21/net_sht_v.rs"
+verus succeeded with time: 15414ms, keeping it commented out
+commenting out line Lines { lines: 384..=384 } in "./tmp/13/host_impl_v.rs"
+verus succeeded with time: 15470ms, keeping it commented out
+commenting out line Lines { lines: 263..=273 } in "./tmp/8/delegation_map_v.rs"
+verus succeeded with time: 15378ms, keeping it commented out
+commenting out line Lines { lines: 324..=324 } in "./tmp/19/marshal_v.rs"
+verus succeeded with time: 14301ms, keeping it commented out
+commenting out line Lines { lines: 92..=98 } in "./tmp/23/seq_is_unique_v.rs"
+verus failed with time: 12793ms, reverting
+commenting out line Lines { lines: 263..=263 } in "./tmp/18/marshal_ironsht_specific_v.rs"
+verus succeeded with time: 15141ms, keeping it commented out
+commenting out line Lines { lines: 237..=245 } in "./tmp/24/single_delivery_model_v.rs"
+verus failed with time: 13249ms, reverting
+commenting out line Lines { lines: 236..=236 } in "./tmp/21/net_sht_v.rs"
+verus succeeded with time: 15130ms, keeping it commented out
+commenting out line Lines { lines: 385..=385 } in "./tmp/13/host_impl_v.rs"
+verus succeeded with time: 15011ms, keeping it commented out
+commenting out line Lines { lines: 279..=279 } in "./tmp/8/delegation_map_v.rs"
+verus succeeded with time: 15280ms, keeping it commented out
+commenting out line Lines { lines: 338..=338 } in "./tmp/19/marshal_v.rs"
+verus succeeded with time: 14117ms, keeping it commented out
+commenting out line Lines { lines: 105..=107 } in "./tmp/23/seq_is_unique_v.rs"
+verus failed with time: 12918ms, reverting
+commenting out line Lines { lines: 250..=250 } in "./tmp/24/single_delivery_model_v.rs"
+verus failed with time: 13711ms, reverting
+commenting out line Lines { lines: 264..=264 } in "./tmp/18/marshal_ironsht_specific_v.rs"
+verus succeeded with time: 15055ms, keeping it commented out
+commenting out line Lines { lines: 237..=237 } in "./tmp/21/net_sht_v.rs"
+verus succeeded with time: 14713ms, keeping it commented out
+commenting out line Lines { lines: 386..=386 } in "./tmp/13/host_impl_v.rs"
+verus succeeded with time: 15400ms, keeping it commented out
+commenting out line Lines { lines: 274..=281 } in "./tmp/8/delegation_map_v.rs"
+verus succeeded with time: 15159ms, keeping it commented out
+commenting out line Lines { lines: 339..=339 } in "./tmp/19/marshal_v.rs"
+verus succeeded with time: 13751ms, keeping it commented out
+commenting out line Lines { lines: 123..=123 } in "./tmp/23/seq_is_unique_v.rs"
+verus failed with time: 12180ms, reverting
+commenting out line Lines { lines: 247..=252 } in "./tmp/24/single_delivery_model_v.rs"
+verus failed with time: 12115ms, reverting
+commenting out line Lines { lines: 277..=277 } in "./tmp/24/single_delivery_model_v.rs"
+verus failed with time: 2346ms, reverting
+commenting out line Lines { lines: 265..=265 } in "./tmp/18/marshal_ironsht_specific_v.rs"
+verus succeeded with time: 14204ms, keeping it commented out
+commenting out line Lines { lines: 313..=315 } in "./tmp/8/delegation_map_v.rs"
+verus failed with time: 12957ms, reverting
+commenting out line Lines { lines: 238..=238 } in "./tmp/21/net_sht_v.rs"
+verus succeeded with time: 15747ms, keeping it commented out
+commenting out line Lines { lines: 387..=387 } in "./tmp/13/host_impl_v.rs"
+verus succeeded with time: 15325ms, keeping it commented out
+commenting out line Lines { lines: 354..=354 } in "./tmp/19/marshal_v.rs"
+verus succeeded with time: 13790ms, keeping it commented out
+commenting out line Lines { lines: 173..=173 } in "./tmp/23/seq_is_unique_v.rs"
+verus succeeded with time: 14363ms, keeping it commented out
+commenting out line Lines { lines: 322..=324 } in "./tmp/24/single_delivery_model_v.rs"
+verus failed with time: 12277ms, reverting
+commenting out line Lines { lines: 266..=266 } in "./tmp/18/marshal_ironsht_specific_v.rs"
+verus failed with time: 12806ms, reverting
+commenting out line Lines { lines: 335..=335 } in "./tmp/24/single_delivery_model_v.rs"
+verus failed with time: 2548ms, reverting
+commenting out line Lines { lines: 319..=319 } in "./tmp/8/delegation_map_v.rs"
+verus succeeded with time: 14516ms, keeping it commented out
+commenting out line Lines { lines: 239..=239 } in "./tmp/21/net_sht_v.rs"
+verus succeeded with time: 14731ms, keeping it commented out
+commenting out line Lines { lines: 388..=388 } in "./tmp/13/host_impl_v.rs"
+verus succeeded with time: 14744ms, keeping it commented out
+commenting out line Lines { lines: 361..=361 } in "./tmp/19/marshal_v.rs"
+verus succeeded with time: 13501ms, keeping it commented out
+commenting out line Lines { lines: 174..=174 } in "./tmp/23/seq_is_unique_v.rs"
+verus succeeded with time: 14264ms, keeping it commented out
+commenting out line Lines { lines: 267..=267 } in "./tmp/18/marshal_ironsht_specific_v.rs"
+verus succeeded with time: 14711ms, keeping it commented out
+commenting out line Lines { lines: 378..=378 } in "./tmp/24/single_delivery_model_v.rs"
+verus succeeded with time: 13993ms, keeping it commented out
+commenting out line Lines { lines: 325..=325 } in "./tmp/8/delegation_map_v.rs"
+verus succeeded with time: 14838ms, keeping it commented out
+commenting out line Lines { lines: 390..=394 } in "./tmp/13/host_impl_v.rs"
+verus succeeded with time: 14143ms, keeping it commented out
+commenting out line Lines { lines: 240..=240 } in "./tmp/21/net_sht_v.rs"
+verus succeeded with time: 15678ms, keeping it commented out
+commenting out line Lines { lines: 363..=363 } in "./tmp/19/marshal_v.rs"
+verus succeeded with time: 13959ms, keeping it commented out
+commenting out line Lines { lines: 170..=176 } in "./tmp/23/seq_is_unique_v.rs"
+verus succeeded with time: 14171ms, keeping it commented out
+minimization of ./tmp/23/seq_is_unique_v.rs is completed
+commenting out line Lines { lines: 382..=382 } in "./tmp/24/single_delivery_model_v.rs"
+verus failed with time: 11618ms, reverting
+commenting out line Lines { lines: 268..=268 } in "./tmp/18/marshal_ironsht_specific_v.rs"
+verus succeeded with time: 13651ms, keeping it commented out
+commenting out line Lines { lines: 327..=327 } in "./tmp/8/delegation_map_v.rs"
+verus succeeded with time: 14935ms, keeping it commented out
+commenting out line Lines { lines: 414..=414 } in "./tmp/13/host_impl_v.rs"
+verus succeeded with time: 15037ms, keeping it commented out
+commenting out line Lines { lines: 364..=364 } in "./tmp/19/marshal_v.rs"
+verus failed with time: 13662ms, reverting
+commenting out line Lines { lines: 241..=241 } in "./tmp/21/net_sht_v.rs"
+verus succeeded with time: 14669ms, keeping it commented out
+commenting out line Lines { lines: 168..=168 } in "./tmp/25/single_delivery_state_v.rs"
+verus succeeded with time: 14254ms, keeping it commented out
+commenting out line Lines { lines: 259..=269 } in "./tmp/18/marshal_ironsht_specific_v.rs"
+verus failed with time: 12971ms, reverting
+commenting out line Lines { lines: 444..=444 } in "./tmp/24/single_delivery_model_v.rs"
+verus succeeded with time: 14426ms, keeping it commented out
+commenting out line Lines { lines: 320..=330 } in "./tmp/8/delegation_map_v.rs"
+verus succeeded with time: 14815ms, keeping it commented out
+commenting out line Lines { lines: 362..=365 } in "./tmp/19/marshal_v.rs"
+verus failed with time: 12920ms, reverting
+commenting out line Lines { lines: 427..=427 } in "./tmp/13/host_impl_v.rs"
+verus succeeded with time: 14677ms, keeping it commented out
+commenting out line Lines { lines: 242..=242 } in "./tmp/21/net_sht_v.rs"
+verus succeeded with time: 15338ms, keeping it commented out
+commenting out line Lines { lines: 174..=174 } in "./tmp/25/single_delivery_state_v.rs"
+verus failed with time: 13012ms, reverting
+commenting out line Lines { lines: 282..=282 } in "./tmp/18/marshal_ironsht_specific_v.rs"
+verus succeeded with time: 14642ms, keeping it commented out
+commenting out line Lines { lines: 451..=451 } in "./tmp/24/single_delivery_model_v.rs"
+verus succeeded with time: 14554ms, keeping it commented out
+commenting out line Lines { lines: 316..=332 } in "./tmp/8/delegation_map_v.rs"
+verus succeeded with time: 14152ms, keeping it commented out
+commenting out line Lines { lines: 370..=370 } in "./tmp/19/marshal_v.rs"
+verus succeeded with time: 13815ms, keeping it commented out
+commenting out line Lines { lines: 428..=428 } in "./tmp/13/host_impl_v.rs"
+verus succeeded with time: 15565ms, keeping it commented out
+commenting out line Lines { lines: 311..=311 } in "./tmp/21/net_sht_v.rs"
+verus succeeded with time: 14710ms, keeping it commented out
+commenting out line Lines { lines: 175..=175 } in "./tmp/25/single_delivery_state_v.rs"
+verus succeeded with time: 14579ms, keeping it commented out
+commenting out line Lines { lines: 458..=489 } in "./tmp/24/single_delivery_model_v.rs"
+verus failed with time: 13360ms, reverting
+commenting out line Lines { lines: 283..=283 } in "./tmp/18/marshal_ironsht_specific_v.rs"
+verus succeeded with time: 13851ms, keeping it commented out
+commenting out line Lines { lines: 429..=429 } in "./tmp/19/marshal_v.rs"
+verus failed with time: 12075ms, reverting
+commenting out line Lines { lines: 622..=622 } in "./tmp/8/delegation_map_v.rs"
+verus succeeded with time: 15089ms, keeping it commented out
+commenting out line Lines { lines: 192..=192 } in "./tmp/25/single_delivery_state_v.rs"
+verus failed with time: 12867ms, reverting
+commenting out line Lines { lines: 378..=378 } in "./tmp/21/net_sht_v.rs"
+verus succeeded with time: 15441ms, keeping it commented out
+commenting out line Lines { lines: 432..=432 } in "./tmp/13/host_impl_v.rs"
+verus succeeded with time: 15939ms, keeping it commented out
+commenting out line Lines { lines: 452..=493 } in "./tmp/24/single_delivery_model_v.rs"
+verus failed with time: 13338ms, reverting
+commenting out line Lines { lines: 284..=284 } in "./tmp/18/marshal_ironsht_specific_v.rs"
+verus succeeded with time: 13678ms, keeping it commented out
+commenting out line Lines { lines: 430..=430 } in "./tmp/19/marshal_v.rs"
+verus failed with time: 12050ms, reverting
+commenting out line Lines { lines: 624..=624 } in "./tmp/8/delegation_map_v.rs"
+verus succeeded with time: 14205ms, keeping it commented out
+commenting out line Lines { lines: 238..=238 } in "./tmp/25/single_delivery_state_v.rs"
+verus failed with time: 14389ms, reverting
+commenting out line Lines { lines: 494..=496 } in "./tmp/24/single_delivery_model_v.rs"
+verus failed with time: 13489ms, reverting
+commenting out line Lines { lines: 429..=433 } in "./tmp/13/host_impl_v.rs"
+verus succeeded with time: 14731ms, keeping it commented out
+commenting out line Lines { lines: 409..=409 } in "./tmp/21/net_sht_v.rs"
+verus succeeded with time: 15399ms, keeping it commented out
+commenting out line Lines { lines: 285..=285 } in "./tmp/18/marshal_ironsht_specific_v.rs"
+verus succeeded with time: 15559ms, keeping it commented out
+commenting out line Lines { lines: 432..=432 } in "./tmp/19/marshal_v.rs"
+verus failed with time: 12827ms, reverting
+commenting out line Lines { lines: 625..=625 } in "./tmp/8/delegation_map_v.rs"
+verus failed with time: 14122ms, reverting
+commenting out line Lines { lines: 370..=370 } in "./tmp/25/single_delivery_state_v.rs"
+verus succeeded with time: 14664ms, keeping it commented out
+commenting out line Lines { lines: 411..=411 } in "./tmp/21/net_sht_v.rs"
+verus failed with time: 13125ms, reverting
+commenting out line Lines { lines: 506..=506 } in "./tmp/24/single_delivery_model_v.rs"
+verus failed with time: 14281ms, reverting
+commenting out line Lines { lines: 434..=434 } in "./tmp/13/host_impl_v.rs"
+verus succeeded with time: 14961ms, keeping it commented out
+commenting out line Lines { lines: 286..=286 } in "./tmp/18/marshal_ironsht_specific_v.rs"
+verus failed with time: 13591ms, reverting
+commenting out line Lines { lines: 433..=433 } in "./tmp/19/marshal_v.rs"
+verus failed with time: 14247ms, reverting
+commenting out line Lines { lines: 628..=628 } in "./tmp/8/delegation_map_v.rs"
+verus succeeded with time: 14820ms, keeping it commented out
+commenting out line Lines { lines: 373..=373 } in "./tmp/25/single_delivery_state_v.rs"
+verus succeeded with time: 15226ms, keeping it commented out
+commenting out line Lines { lines: 406..=413 } in "./tmp/21/net_sht_v.rs"
+verus failed with time: 13988ms, reverting
+commenting out line Lines { lines: 512..=512 } in "./tmp/24/single_delivery_model_v.rs"
+verus failed with time: 14655ms, reverting
+commenting out line Lines { lines: 477..=477 } in "./tmp/13/host_impl_v.rs"
+verus succeeded with time: 14874ms, keeping it commented out
+commenting out line Lines { lines: 434..=434 } in "./tmp/19/marshal_v.rs"
+verus failed with time: 13736ms, reverting
+commenting out line Lines { lines: 287..=287 } in "./tmp/18/marshal_ironsht_specific_v.rs"
+verus succeeded with time: 14999ms, keeping it commented out
+commenting out line Lines { lines: 632..=632 } in "./tmp/8/delegation_map_v.rs"
+verus failed with time: 12272ms, reverting
+commenting out line Lines { lines: 374..=374 } in "./tmp/25/single_delivery_state_v.rs"
+verus failed with time: 13932ms, reverting
+commenting out line Lines { lines: 509..=514 } in "./tmp/24/single_delivery_model_v.rs"
+verus succeeded with time: 14363ms, keeping it commented out
+commenting out line Lines { lines: 416..=416 } in "./tmp/21/net_sht_v.rs"
+verus succeeded with time: 15532ms, keeping it commented out
+commenting out line Lines { lines: 436..=436 } in "./tmp/19/marshal_v.rs"
+verus failed with time: 13245ms, reverting
+commenting out line Lines { lines: 482..=482 } in "./tmp/13/host_impl_v.rs"
+verus succeeded with time: 14905ms, keeping it commented out
+commenting out line Lines { lines: 280..=288 } in "./tmp/18/marshal_ironsht_specific_v.rs"
+verus failed with time: 13453ms, reverting
+commenting out line Lines { lines: 728..=735 } in "./tmp/8/delegation_map_v.rs"
+verus failed with time: 13505ms, reverting
+commenting out line Lines { lines: 376..=376 } in "./tmp/25/single_delivery_state_v.rs"
+verus succeeded with time: 16195ms, keeping it commented out
+minimization of ./tmp/25/single_delivery_state_v.rs is completed
+minimization of ./tmp/26/single_delivery_t.rs is completed
+minimization of ./tmp/27/single_message_t.rs is completed
+minimization of ./tmp/28/verus_extra/mod.rs is completed
+commenting out line Lines { lines: 518..=518 } in "./tmp/24/single_delivery_model_v.rs"
+verus failed with time: 15051ms, reverting
+minimization of ./tmp/29/verus_extra/choose_v.rs is completed
+minimization of ./tmp/30/verus_extra/clone_v.rs is completed
+commenting out line Lines { lines: 437..=437 } in "./tmp/19/marshal_v.rs"
+verus failed with time: 14134ms, reverting
+commenting out line Lines { lines: 418..=418 } in "./tmp/21/net_sht_v.rs"
+verus succeeded with time: 15292ms, keeping it commented out
+commenting out line Lines { lines: 290..=290 } in "./tmp/18/marshal_ironsht_specific_v.rs"
+verus failed with time: 13761ms, reverting
+commenting out line Lines { lines: 483..=483 } in "./tmp/13/host_impl_v.rs"
+verus succeeded with time: 14927ms, keeping it commented out
+commenting out line Lines { lines: 736..=736 } in "./tmp/8/delegation_map_v.rs"
+verus succeeded with time: 14702ms, keeping it commented out
+commenting out line Lines { lines: 449..=449 } in "./tmp/19/marshal_v.rs"
+verus failed with time: 13853ms, reverting
+commenting out line Lines { lines: 519..=519 } in "./tmp/24/single_delivery_model_v.rs"
+verus succeeded with time: 14567ms, keeping it commented out
+commenting out line Lines { lines: 273..=291 } in "./tmp/18/marshal_ironsht_specific_v.rs"
+verus failed with time: 13909ms, reverting
+commenting out line Lines { lines: 18..=18 } in "./tmp/31/verus_extra/seq_lib_v.rs"
+verus succeeded with time: 15420ms, keeping it commented out
+commenting out line Lines { lines: 420..=420 } in "./tmp/21/net_sht_v.rs"
+verus succeeded with time: 15188ms, keeping it commented out
+commenting out line Lines { lines: 486..=486 } in "./tmp/13/host_impl_v.rs"
+verus failed with time: 13798ms, reverting
+commenting out line Lines { lines: 740..=745 } in "./tmp/8/delegation_map_v.rs"
+verus failed with time: 13518ms, reverting
+commenting out line Lines { lines: 450..=450 } in "./tmp/19/marshal_v.rs"
+verus failed with time: 14217ms, reverting
+commenting out line Lines { lines: 522..=522 } in "./tmp/24/single_delivery_model_v.rs"
+verus succeeded with time: 15685ms, keeping it commented out
+commenting out line Lines { lines: 305..=305 } in "./tmp/18/marshal_ironsht_specific_v.rs"
+verus succeeded with time: 15601ms, keeping it commented out
+commenting out line Lines { lines: 51..=51 } in "./tmp/31/verus_extra/seq_lib_v.rs"
+verus succeeded with time: 15251ms, keeping it commented out
+commenting out line Lines { lines: 414..=422 } in "./tmp/21/net_sht_v.rs"
+verus succeeded with time: 15156ms, keeping it commented out
+commenting out line Lines { lines: 487..=487 } in "./tmp/13/host_impl_v.rs"
+verus succeeded with time: 15140ms, keeping it commented out
+commenting out line Lines { lines: 746..=746 } in "./tmp/8/delegation_map_v.rs"
+verus succeeded with time: 15597ms, keeping it commented out
+commenting out line Lines { lines: 306..=306 } in "./tmp/18/marshal_ironsht_specific_v.rs"
+verus failed with time: 14205ms, reverting
+commenting out line Lines { lines: 509..=509 } in "./tmp/19/marshal_v.rs"
+verus succeeded with time: 16322ms, keeping it commented out
+commenting out line Lines { lines: 523..=523 } in "./tmp/24/single_delivery_model_v.rs"
+verus succeeded with time: 14421ms, keeping it commented out
+commenting out line Lines { lines: 484..=488 } in "./tmp/13/host_impl_v.rs"
+verus failed with time: 13979ms, reverting
+commenting out line Lines { lines: 423..=423 } in "./tmp/21/net_sht_v.rs"
+verus succeeded with time: 15741ms, keeping it commented out
+minimization of ./tmp/21/net_sht_v.rs is completed
+commenting out line Lines { lines: 82..=82 } in "./tmp/31/verus_extra/seq_lib_v.rs"
+verus succeeded with time: 15822ms, keeping it commented out
+commenting out line Lines { lines: 721..=752 } in "./tmp/8/delegation_map_v.rs"
+verus failed with time: 13032ms, reverting
+commenting out line Lines { lines: 491..=491 } in "./tmp/13/host_impl_v.rs"
+verus failed with time: 14134ms, reverting
+commenting out line Lines { lines: 510..=510 } in "./tmp/19/marshal_v.rs"
+verus succeeded with time: 15272ms, keeping it commented out
+commenting out line Lines { lines: 516..=525 } in "./tmp/24/single_delivery_model_v.rs"
+verus succeeded with time: 15282ms, keeping it commented out
+commenting out line Lines { lines: 307..=307 } in "./tmp/18/marshal_ironsht_specific_v.rs"
+verus succeeded with time: 15950ms, keeping it commented out
+commenting out line Lines { lines: 94..=96 } in "./tmp/31/verus_extra/seq_lib_v.rs"
+verus failed with time: 14473ms, reverting
+commenting out line Lines { lines: 61..=64 } in "./tmp/32/verus_extra/set_lib_ext_v.rs"
+verus succeeded with time: 15342ms, keeping it commented out
+commenting out line Lines { lines: 780..=780 } in "./tmp/8/delegation_map_v.rs"
+verus succeeded with time: 15104ms, keeping it commented out
+commenting out line Lines { lines: 492..=492 } in "./tmp/13/host_impl_v.rs"
+verus succeeded with time: 14831ms, keeping it commented out
+commenting out line Lines { lines: 517..=517 } in "./tmp/19/marshal_v.rs"
+verus failed with time: 14088ms, reverting
+commenting out line Lines { lines: 308..=308 } in "./tmp/18/marshal_ironsht_specific_v.rs"
+verus failed with time: 14271ms, reverting
+commenting out line Lines { lines: 527..=528 } in "./tmp/24/single_delivery_model_v.rs"
+verus failed with time: 15161ms, reverting
+commenting out line Lines { lines: 85..=88 } in "./tmp/32/verus_extra/set_lib_ext_v.rs"
+verus failed with time: 13807ms, reverting
+commenting out line Lines { lines: 97..=97 } in "./tmp/31/verus_extra/seq_lib_v.rs"
+verus succeeded with time: 15330ms, keeping it commented out
+commenting out line Lines { lines: 787..=787 } in "./tmp/8/delegation_map_v.rs"
+verus succeeded with time: 15367ms, keeping it commented out
+commenting out line Lines { lines: 518..=518 } in "./tmp/19/marshal_v.rs"
+verus failed with time: 13319ms, reverting
+commenting out line Lines { lines: 489..=493 } in "./tmp/13/host_impl_v.rs"
+verus failed with time: 14270ms, reverting
+commenting out line Lines { lines: 576..=576 } in "./tmp/24/single_delivery_model_v.rs"
+verus failed with time: 13724ms, reverting
+minimization of ./tmp/24/single_delivery_model_v.rs is completed
+commenting out line Lines { lines: 309..=309 } in "./tmp/18/marshal_ironsht_specific_v.rs"
+verus succeeded with time: 15641ms, keeping it commented out
+commenting out line Lines { lines: 107..=110 } in "./tmp/32/verus_extra/set_lib_ext_v.rs"
+verus succeeded with time: 15763ms, keeping it commented out
+commenting out line Lines { lines: 148..=148 } in "./tmp/31/verus_extra/seq_lib_v.rs"
+verus succeeded with time: 15503ms, keeping it commented out
+commenting out line Lines { lines: 778..=789 } in "./tmp/8/delegation_map_v.rs"
+verus failed with time: 14249ms, reverting
+commenting out line Lines { lines: 474..=496 } in "./tmp/13/host_impl_v.rs"
+verus failed with time: 12119ms, reverting
+commenting out line Lines { lines: 522..=522 } in "./tmp/19/marshal_v.rs"
+verus succeeded with time: 13005ms, keeping it commented out
+commenting out line Lines { lines: 293..=310 } in "./tmp/18/marshal_ironsht_specific_v.rs"
+verus failed with time: 12296ms, reverting
+commenting out line Lines { lines: 133..=133 } in "./tmp/32/verus_extra/set_lib_ext_v.rs"
+verus failed with time: 12312ms, reverting
+commenting out line Lines { lines: 166..=166 } in "./tmp/31/verus_extra/seq_lib_v.rs"
+verus failed with time: 12690ms, reverting
+commenting out line Lines { lines: 817..=823 } in "./tmp/8/delegation_map_v.rs"
+verus failed with time: 12374ms, reverting
+commenting out line Lines { lines: 523..=523 } in "./tmp/19/marshal_v.rs"
+verus succeeded with time: 13166ms, keeping it commented out
+commenting out line Lines { lines: 500..=500 } in "./tmp/13/host_impl_v.rs"
+verus succeeded with time: 13421ms, keeping it commented out
+commenting out line Lines { lines: 313..=313 } in "./tmp/18/marshal_ironsht_specific_v.rs"
+verus succeeded with time: 14152ms, keeping it commented out
+commenting out line Lines { lines: 129..=135 } in "./tmp/32/verus_extra/set_lib_ext_v.rs"
+verus failed with time: 12700ms, reverting
+commenting out line Lines { lines: 830..=833 } in "./tmp/8/delegation_map_v.rs"
+verus failed with time: 12194ms, reverting
+commenting out line Lines { lines: 207..=207 } in "./tmp/31/verus_extra/seq_lib_v.rs"
+verus succeeded with time: 14719ms, keeping it commented out
+commenting out line Lines { lines: 497..=503 } in "./tmp/13/host_impl_v.rs"
+verus failed with time: 11897ms, reverting
+commenting out line Lines { lines: 548..=548 } in "./tmp/19/marshal_v.rs"
+verus succeeded with time: 13177ms, keeping it commented out
+commenting out line Lines { lines: 834..=834 } in "./tmp/8/delegation_map_v.rs"
+verus failed with time: 12342ms, reverting
+commenting out line Lines { lines: 139..=139 } in "./tmp/32/verus_extra/set_lib_ext_v.rs"
+verus succeeded with time: 14177ms, keeping it commented out
+commenting out line Lines { lines: 314..=314 } in "./tmp/18/marshal_ironsht_specific_v.rs"
+verus succeeded with time: 14360ms, keeping it commented out
+commenting out line Lines { lines: 210..=210 } in "./tmp/31/verus_extra/seq_lib_v.rs"
+verus failed with time: 12584ms, reverting
+commenting out line Lines { lines: 507..=507 } in "./tmp/13/host_impl_v.rs"
+verus failed with time: 11424ms, reverting
+commenting out line Lines { lines: 558..=558 } in "./tmp/19/marshal_v.rs"
+verus failed with time: 12356ms, reverting
+commenting out line Lines { lines: 835..=837 } in "./tmp/8/delegation_map_v.rs"
+verus failed with time: 13449ms, reverting
+commenting out line Lines { lines: 140..=140 } in "./tmp/32/verus_extra/set_lib_ext_v.rs"
+verus succeeded with time: 13860ms, keeping it commented out
+commenting out line Lines { lines: 214..=214 } in "./tmp/31/verus_extra/seq_lib_v.rs"
+verus succeeded with time: 13600ms, keeping it commented out
+commenting out line Lines { lines: 312..=315 } in "./tmp/18/marshal_ironsht_specific_v.rs"
+verus succeeded with time: 14511ms, keeping it commented out
+commenting out line Lines { lines: 506..=508 } in "./tmp/13/host_impl_v.rs"
+verus failed with time: 12049ms, reverting
+commenting out line Lines { lines: 562..=562 } in "./tmp/19/marshal_v.rs"
+verus failed with time: 11453ms, reverting
+commenting out line Lines { lines: 841..=844 } in "./tmp/8/delegation_map_v.rs"
+verus failed with time: 12689ms, reverting
+commenting out line Lines { lines: 142..=142 } in "./tmp/32/verus_extra/set_lib_ext_v.rs"
+verus failed with time: 12426ms, reverting
+commenting out line Lines { lines: 248..=248 } in "./tmp/31/verus_extra/seq_lib_v.rs"
+verus succeeded with time: 13558ms, keeping it commented out
+commenting out line Lines { lines: 316..=316 } in "./tmp/18/marshal_ironsht_specific_v.rs"
+verus succeeded with time: 14241ms, keeping it commented out
+commenting out line Lines { lines: 504..=510 } in "./tmp/13/host_impl_v.rs"
+verus failed with time: 12839ms, reverting
+commenting out line Lines { lines: 563..=563 } in "./tmp/19/marshal_v.rs"
+verus failed with time: 12558ms, reverting
+commenting out line Lines { lines: 845..=845 } in "./tmp/8/delegation_map_v.rs"
+verus failed with time: 11637ms, reverting
+commenting out line Lines { lines: 136..=144 } in "./tmp/32/verus_extra/set_lib_ext_v.rs"
+verus failed with time: 13619ms, reverting
+commenting out line Lines { lines: 249..=249 } in "./tmp/31/verus_extra/seq_lib_v.rs"
+verus succeeded with time: 14005ms, keeping it commented out
+commenting out line Lines { lines: 318..=318 } in "./tmp/18/marshal_ironsht_specific_v.rs"
+verus succeeded with time: 14211ms, keeping it commented out
+minimization of ./tmp/18/marshal_ironsht_specific_v.rs is completed
+commenting out line Lines { lines: 513..=513 } in "./tmp/13/host_impl_v.rs"
+verus succeeded with time: 13988ms, keeping it commented out
+commenting out line Lines { lines: 580..=580 } in "./tmp/19/marshal_v.rs"
+verus failed with time: 12567ms, reverting
+commenting out line Lines { lines: 847..=847 } in "./tmp/8/delegation_map_v.rs"
+verus succeeded with time: 12767ms, keeping it commented out
+commenting out line Lines { lines: 195..=197 } in "./tmp/32/verus_extra/set_lib_ext_v.rs"
+verus succeeded with time: 13050ms, keeping it commented out
+commenting out line Lines { lines: 252..=252 } in "./tmp/31/verus_extra/seq_lib_v.rs"
+verus failed with time: 12191ms, reverting
+commenting out line Lines { lines: 581..=581 } in "./tmp/19/marshal_v.rs"
+verus failed with time: 11569ms, reverting
+commenting out line Lines { lines: 514..=514 } in "./tmp/13/host_impl_v.rs"
+verus failed with time: 11947ms, reverting
+commenting out line Lines { lines: 846..=849 } in "./tmp/8/delegation_map_v.rs"
+verus failed with time: 11694ms, reverting
+commenting out line Lines { lines: 206..=206 } in "./tmp/32/verus_extra/set_lib_ext_v.rs"
+verus succeeded with time: 13860ms, keeping it commented out
+commenting out line Lines { lines: 253..=253 } in "./tmp/31/verus_extra/seq_lib_v.rs"
+verus succeeded with time: 13326ms, keeping it commented out
+commenting out line Lines { lines: 511..=515 } in "./tmp/13/host_impl_v.rs"
+verus failed with time: 11929ms, reverting
+commenting out line Lines { lines: 586..=586 } in "./tmp/19/marshal_v.rs"
+verus succeeded with time: 12971ms, keeping it commented out
+commenting out line Lines { lines: 854..=856 } in "./tmp/8/delegation_map_v.rs"
+verus failed with time: 11563ms, reverting
+commenting out line Lines { lines: 266..=266 } in "./tmp/31/verus_extra/seq_lib_v.rs"
+verus failed with time: 12404ms, reverting
+commenting out line Lines { lines: 209..=209 } in "./tmp/32/verus_extra/set_lib_ext_v.rs"
+verus succeeded with time: 13082ms, keeping it commented out
+minimization of ./tmp/31/verus_extra/seq_lib_v.rs is completed
+commenting out line Lines { lines: 589..=589 } in "./tmp/19/marshal_v.rs"
+verus failed with time: 11843ms, reverting
+commenting out line Lines { lines: 517..=517 } in "./tmp/13/host_impl_v.rs"
+verus succeeded with time: 13162ms, keeping it commented out
+commenting out line Lines { lines: 922..=924 } in "./tmp/8/delegation_map_v.rs"
+verus failed with time: 11105ms, reverting
+commenting out line Lines { lines: 607..=609 } in "./tmp/19/marshal_v.rs"
+verus failed with time: 10724ms, reverting
+commenting out line Lines { lines: 212..=212 } in "./tmp/32/verus_extra/set_lib_ext_v.rs"
+verus succeeded with time: 12740ms, keeping it commented out
+commenting out line Lines { lines: 516..=518 } in "./tmp/13/host_impl_v.rs"
+verus succeeded with time: 12626ms, keeping it commented out
+commenting out line Lines { lines: 933..=933 } in "./tmp/8/delegation_map_v.rs"
+verus succeeded with time: 11966ms, keeping it commented out
+commenting out line Lines { lines: 632..=632 } in "./tmp/19/marshal_v.rs"
+verus failed with time: 10473ms, reverting
+commenting out line Lines { lines: 574..=575 } in "./tmp/13/host_impl_v.rs"
+verus failed with time: 11015ms, reverting
+commenting out line Lines { lines: 205..=214 } in "./tmp/32/verus_extra/set_lib_ext_v.rs"
+verus succeeded with time: 12785ms, keeping it commented out
+commenting out line Lines { lines: 937..=952 } in "./tmp/8/delegation_map_v.rs"
+verus failed with time: 13576ms, reverting
+commenting out line Lines { lines: 646..=646 } in "./tmp/19/marshal_v.rs"
+verus succeeded with time: 11586ms, keeping it commented out
+commenting out line Lines { lines: 576..=576 } in "./tmp/13/host_impl_v.rs"
+verus succeeded with time: 12255ms, keeping it commented out
+commenting out line Lines { lines: 222..=224 } in "./tmp/32/verus_extra/set_lib_ext_v.rs"
+verus succeeded with time: 12058ms, keeping it commented out
+commenting out line Lines { lines: 953..=990 } in "./tmp/8/delegation_map_v.rs"
+verus failed with time: 10716ms, reverting
+commenting out line Lines { lines: 656..=656 } in "./tmp/19/marshal_v.rs"
+verus failed with time: 10441ms, reverting
+commenting out line Lines { lines: 275..=277 } in "./tmp/32/verus_extra/set_lib_ext_v.rs"
+verus failed with time: 11179ms, reverting
+commenting out line Lines { lines: 593..=593 } in "./tmp/13/host_impl_v.rs"
+verus succeeded with time: 12556ms, keeping it commented out
+commenting out line Lines { lines: 1006..=1006 } in "./tmp/8/delegation_map_v.rs"
+verus succeeded with time: 12582ms, keeping it commented out
+commenting out line Lines { lines: 653..=658 } in "./tmp/19/marshal_v.rs"
+verus failed with time: 10368ms, reverting
+commenting out line Lines { lines: 594..=594 } in "./tmp/13/host_impl_v.rs"
+verus failed with time: 11104ms, reverting
+commenting out line Lines { lines: 285..=285 } in "./tmp/32/verus_extra/set_lib_ext_v.rs"
+verus succeeded with time: 12733ms, keeping it commented out
+commenting out line Lines { lines: 1018..=1018 } in "./tmp/8/delegation_map_v.rs"
+verus succeeded with time: 12455ms, keeping it commented out
+commenting out line Lines { lines: 660..=660 } in "./tmp/19/marshal_v.rs"
+verus succeeded with time: 12371ms, keeping it commented out
+commenting out line Lines { lines: 596..=596 } in "./tmp/13/host_impl_v.rs"
+verus failed with time: 10702ms, reverting
+commenting out line Lines { lines: 284..=286 } in "./tmp/32/verus_extra/set_lib_ext_v.rs"
+verus succeeded with time: 12921ms, keeping it commented out
+commenting out line Lines { lines: 663..=663 } in "./tmp/19/marshal_v.rs"
+verus failed with time: 11034ms, reverting
+commenting out line Lines { lines: 1020..=1020 } in "./tmp/8/delegation_map_v.rs"
+verus succeeded with time: 12265ms, keeping it commented out
+commenting out line Lines { lines: 597..=597 } in "./tmp/13/host_impl_v.rs"
+verus succeeded with time: 12427ms, keeping it commented out
+commenting out line Lines { lines: 300..=300 } in "./tmp/32/verus_extra/set_lib_ext_v.rs"
+verus failed with time: 10630ms, reverting
+commenting out line Lines { lines: 677..=677 } in "./tmp/19/marshal_v.rs"
+verus succeeded with time: 12068ms, keeping it commented out
+commenting out line Lines { lines: 1022..=1022 } in "./tmp/8/delegation_map_v.rs"
+verus succeeded with time: 12451ms, keeping it commented out
+commenting out line Lines { lines: 299..=301 } in "./tmp/32/verus_extra/set_lib_ext_v.rs"
+verus failed with time: 10905ms, reverting
+minimization of ./tmp/32/verus_extra/set_lib_ext_v.rs is completed
+commenting out line Lines { lines: 598..=599 } in "./tmp/13/host_impl_v.rs"
+verus succeeded with time: 12065ms, keeping it commented out
+commenting out line Lines { lines: 679..=679 } in "./tmp/19/marshal_v.rs"
+verus failed with time: 10805ms, reverting
+commenting out line Lines { lines: 1005..=1025 } in "./tmp/8/delegation_map_v.rs"
+verus failed with time: 11226ms, reverting
+commenting out line Lines { lines: 600..=601 } in "./tmp/13/host_impl_v.rs"
+verus failed with time: 10217ms, reverting
+commenting out line Lines { lines: 681..=681 } in "./tmp/19/marshal_v.rs"
+verus failed with time: 10758ms, reverting
+commenting out line Lines { lines: 991..=1027 } in "./tmp/8/delegation_map_v.rs"
+verus failed with time: 10929ms, reverting
+commenting out line Lines { lines: 602..=602 } in "./tmp/13/host_impl_v.rs"
+verus succeeded with time: 11569ms, keeping it commented out
+commenting out line Lines { lines: 668..=682 } in "./tmp/19/marshal_v.rs"
+verus failed with time: 10460ms, reverting
+commenting out line Lines { lines: 1096..=1096 } in "./tmp/8/delegation_map_v.rs"
+verus succeeded with time: 11950ms, keeping it commented out
+commenting out line Lines { lines: 607..=607 } in "./tmp/13/host_impl_v.rs"
+verus succeeded with time: 11773ms, keeping it commented out
+commenting out line Lines { lines: 684..=684 } in "./tmp/19/marshal_v.rs"
+verus succeeded with time: 11200ms, keeping it commented out
+commenting out line Lines { lines: 1098..=1098 } in "./tmp/8/delegation_map_v.rs"
+verus succeeded with time: 11959ms, keeping it commented out
+commenting out line Lines { lines: 609..=609 } in "./tmp/13/host_impl_v.rs"
+verus failed with time: 10607ms, reverting
+commenting out line Lines { lines: 705..=705 } in "./tmp/19/marshal_v.rs"
+verus succeeded with time: 11293ms, keeping it commented out
+commenting out line Lines { lines: 1100..=1102 } in "./tmp/8/delegation_map_v.rs"
+verus succeeded with time: 11495ms, keeping it commented out
+commenting out line Lines { lines: 617..=617 } in "./tmp/13/host_impl_v.rs"
+verus succeeded with time: 11803ms, keeping it commented out
+commenting out line Lines { lines: 721..=721 } in "./tmp/19/marshal_v.rs"
+verus failed with time: 10385ms, reverting
+commenting out line Lines { lines: 1147..=1149 } in "./tmp/8/delegation_map_v.rs"
+verus failed with time: 10133ms, reverting
+commenting out line Lines { lines: 621..=621 } in "./tmp/13/host_impl_v.rs"
+verus failed with time: 10352ms, reverting
+commenting out line Lines { lines: 725..=725 } in "./tmp/19/marshal_v.rs"
+verus succeeded with time: 11337ms, keeping it commented out
+commenting out line Lines { lines: 1158..=1160 } in "./tmp/8/delegation_map_v.rs"
+verus failed with time: 10714ms, reverting
+commenting out line Lines { lines: 622..=622 } in "./tmp/13/host_impl_v.rs"
+verus succeeded with time: 11992ms, keeping it commented out
+commenting out line Lines { lines: 728..=728 } in "./tmp/19/marshal_v.rs"
+verus failed with time: 10314ms, reverting
+commenting out line Lines { lines: 1150..=1162 } in "./tmp/8/delegation_map_v.rs"
+verus failed with time: 10833ms, reverting
+commenting out line Lines { lines: 712..=712 } in "./tmp/13/host_impl_v.rs"
+verus failed with time: 10677ms, reverting
+commenting out line Lines { lines: 729..=729 } in "./tmp/19/marshal_v.rs"
+verus succeeded with time: 11902ms, keeping it commented out
+commenting out line Lines { lines: 1171..=1171 } in "./tmp/8/delegation_map_v.rs"
+verus succeeded with time: 11698ms, keeping it commented out
+commenting out line Lines { lines: 713..=713 } in "./tmp/13/host_impl_v.rs"
+verus succeeded with time: 11400ms, keeping it commented out
+commenting out line Lines { lines: 736..=736 } in "./tmp/19/marshal_v.rs"
+verus succeeded with time: 11315ms, keeping it commented out
+commenting out line Lines { lines: 1185..=1185 } in "./tmp/8/delegation_map_v.rs"
+verus succeeded with time: 12282ms, keeping it commented out
+commenting out line Lines { lines: 709..=714 } in "./tmp/13/host_impl_v.rs"
+verus succeeded with time: 11747ms, keeping it commented out
+commenting out line Lines { lines: 739..=739 } in "./tmp/19/marshal_v.rs"
+verus succeeded with time: 11046ms, keeping it commented out
+commenting out line Lines { lines: 1187..=1187 } in "./tmp/8/delegation_map_v.rs"
+verus succeeded with time: 11763ms, keeping it commented out
+commenting out line Lines { lines: 718..=718 } in "./tmp/13/host_impl_v.rs"
+verus failed with time: 10366ms, reverting
+commenting out line Lines { lines: 746..=746 } in "./tmp/19/marshal_v.rs"
+verus failed with time: 10189ms, reverting
+commenting out line Lines { lines: 1188..=1188 } in "./tmp/8/delegation_map_v.rs"
+verus succeeded with time: 11609ms, keeping it commented out
+commenting out line Lines { lines: 716..=720 } in "./tmp/13/host_impl_v.rs"
+verus succeeded with time: 11746ms, keeping it commented out
+commenting out line Lines { lines: 747..=747 } in "./tmp/19/marshal_v.rs"
+verus failed with time: 10212ms, reverting
+commenting out line Lines { lines: 1189..=1189 } in "./tmp/8/delegation_map_v.rs"
+verus succeeded with time: 11370ms, keeping it commented out
+commenting out line Lines { lines: 722..=722 } in "./tmp/13/host_impl_v.rs"
+verus succeeded with time: 11696ms, keeping it commented out
+commenting out line Lines { lines: 748..=748 } in "./tmp/19/marshal_v.rs"
+verus succeeded with time: 11530ms, keeping it commented out
+commenting out line Lines { lines: 1190..=1190 } in "./tmp/8/delegation_map_v.rs"
+verus failed with time: 10239ms, reverting
+commenting out line Lines { lines: 724..=724 } in "./tmp/13/host_impl_v.rs"
+verus succeeded with time: 11843ms, keeping it commented out
+commenting out line Lines { lines: 764..=767 } in "./tmp/19/marshal_v.rs"
+verus succeeded with time: 11686ms, keeping it commented out
+commenting out line Lines { lines: 1191..=1191 } in "./tmp/8/delegation_map_v.rs"
+verus succeeded with time: 11332ms, keeping it commented out
+commenting out line Lines { lines: 728..=728 } in "./tmp/13/host_impl_v.rs"
+verus succeeded with time: 11771ms, keeping it commented out
+commenting out line Lines { lines: 786..=786 } in "./tmp/19/marshal_v.rs"
+verus succeeded with time: 11732ms, keeping it commented out
+commenting out line Lines { lines: 1192..=1192 } in "./tmp/8/delegation_map_v.rs"
+verus succeeded with time: 11355ms, keeping it commented out
+commenting out line Lines { lines: 741..=741 } in "./tmp/13/host_impl_v.rs"
+verus succeeded with time: 11978ms, keeping it commented out
+commenting out line Lines { lines: 796..=796 } in "./tmp/19/marshal_v.rs"
+verus succeeded with time: 11954ms, keeping it commented out
+commenting out line Lines { lines: 1199..=1203 } in "./tmp/8/delegation_map_v.rs"
+verus succeeded with time: 11337ms, keeping it commented out
+commenting out line Lines { lines: 797..=797 } in "./tmp/19/marshal_v.rs"
+verus failed with time: 10634ms, reverting
+commenting out line Lines { lines: 745..=745 } in "./tmp/13/host_impl_v.rs"
+verus succeeded with time: 12008ms, keeping it commented out
+commenting out line Lines { lines: 1205..=1208 } in "./tmp/8/delegation_map_v.rs"
+verus failed with time: 9955ms, reverting
+commenting out line Lines { lines: 799..=803 } in "./tmp/19/marshal_v.rs"
+verus failed with time: 10529ms, reverting
+commenting out line Lines { lines: 753..=753 } in "./tmp/13/host_impl_v.rs"
+verus failed with time: 10941ms, reverting
+commenting out line Lines { lines: 1193..=1209 } in "./tmp/8/delegation_map_v.rs"
+verus failed with time: 10068ms, reverting
+commenting out line Lines { lines: 804..=807 } in "./tmp/19/marshal_v.rs"
+verus succeeded with time: 11434ms, keeping it commented out
+commenting out line Lines { lines: 757..=757 } in "./tmp/13/host_impl_v.rs"
+verus succeeded with time: 11919ms, keeping it commented out
+commenting out line Lines { lines: 1210..=1210 } in "./tmp/8/delegation_map_v.rs"
+verus succeeded with time: 11494ms, keeping it commented out
+commenting out line Lines { lines: 787..=808 } in "./tmp/19/marshal_v.rs"
+verus failed with time: 10044ms, reverting
+commenting out line Lines { lines: 758..=758 } in "./tmp/13/host_impl_v.rs"
+verus succeeded with time: 11627ms, keeping it commented out
+commenting out line Lines { lines: 1217..=1217 } in "./tmp/8/delegation_map_v.rs"
+verus succeeded with time: 11978ms, keeping it commented out
+commenting out line Lines { lines: 813..=813 } in "./tmp/19/marshal_v.rs"
+verus succeeded with time: 10853ms, keeping it commented out
+commenting out line Lines { lines: 792..=792 } in "./tmp/13/host_impl_v.rs"
+verus failed with time: 10513ms, reverting
+commenting out line Lines { lines: 1218..=1218 } in "./tmp/8/delegation_map_v.rs"
+verus succeeded with time: 11781ms, keeping it commented out
+commenting out line Lines { lines: 833..=833 } in "./tmp/19/marshal_v.rs"
+verus succeeded with time: 11110ms, keeping it commented out
+commenting out line Lines { lines: 793..=795 } in "./tmp/13/host_impl_v.rs"
+verus succeeded with time: 12135ms, keeping it commented out
+commenting out line Lines { lines: 1219..=1219 } in "./tmp/8/delegation_map_v.rs"
+verus succeeded with time: 12023ms, keeping it commented out
+commenting out line Lines { lines: 876..=876 } in "./tmp/19/marshal_v.rs"
+verus failed with time: 9899ms, reverting
+commenting out line Lines { lines: 819..=819 } in "./tmp/13/host_impl_v.rs"
+verus failed with time: 10432ms, reverting
+commenting out line Lines { lines: 1242..=1242 } in "./tmp/8/delegation_map_v.rs"
+verus succeeded with time: 12366ms, keeping it commented out
+commenting out line Lines { lines: 875..=877 } in "./tmp/19/marshal_v.rs"
+verus succeeded with time: 11126ms, keeping it commented out
+commenting out line Lines { lines: 827..=829 } in "./tmp/13/host_impl_v.rs"
+verus succeeded with time: 11257ms, keeping it commented out
+commenting out line Lines { lines: 878..=878 } in "./tmp/19/marshal_v.rs"
+verus failed with time: 10382ms, reverting
+commenting out line Lines { lines: 1256..=1256 } in "./tmp/8/delegation_map_v.rs"
+verus succeeded with time: 11657ms, keeping it commented out
+commenting out line Lines { lines: 831..=831 } in "./tmp/13/host_impl_v.rs"
+verus failed with time: 10421ms, reverting
+commenting out line Lines { lines: 863..=880 } in "./tmp/19/marshal_v.rs"
+verus failed with time: 10275ms, reverting
+commenting out line Lines { lines: 1257..=1257 } in "./tmp/8/delegation_map_v.rs"
+verus succeeded with time: 11743ms, keeping it commented out
+commenting out line Lines { lines: 1089..=1089 } in "./tmp/13/host_impl_v.rs"
+verus failed with time: 10367ms, reverting
+commenting out line Lines { lines: 887..=887 } in "./tmp/19/marshal_v.rs"
+verus succeeded with time: 11814ms, keeping it commented out
+commenting out line Lines { lines: 1258..=1258 } in "./tmp/8/delegation_map_v.rs"
+verus succeeded with time: 11890ms, keeping it commented out
+commenting out line Lines { lines: 1103..=1103 } in "./tmp/13/host_impl_v.rs"
+verus succeeded with time: 11300ms, keeping it commented out
+commenting out line Lines { lines: 888..=888 } in "./tmp/19/marshal_v.rs"
+verus failed with time: 10194ms, reverting
+commenting out line Lines { lines: 1270..=1270 } in "./tmp/8/delegation_map_v.rs"
+verus succeeded with time: 11964ms, keeping it commented out
+commenting out line Lines { lines: 1126..=1126 } in "./tmp/13/host_impl_v.rs"
+verus succeeded with time: 11333ms, keeping it commented out
+commenting out line Lines { lines: 882..=889 } in "./tmp/19/marshal_v.rs"
+verus failed with time: 10085ms, reverting
+commenting out line Lines { lines: 1222..=1272 } in "./tmp/8/delegation_map_v.rs"
+verus failed with time: 10622ms, reverting
+commenting out line Lines { lines: 1138..=1138 } in "./tmp/13/host_impl_v.rs"
+verus succeeded with time: 12056ms, keeping it commented out
+commenting out line Lines { lines: 891..=893 } in "./tmp/19/marshal_v.rs"
+verus failed with time: 10080ms, reverting
+commenting out line Lines { lines: 1278..=1278 } in "./tmp/8/delegation_map_v.rs"
+verus succeeded with time: 11553ms, keeping it commented out
+commenting out line Lines { lines: 1141..=1146 } in "./tmp/13/host_impl_v.rs"
+verus failed with time: 10772ms, reverting
+commenting out line Lines { lines: 895..=897 } in "./tmp/19/marshal_v.rs"
+verus succeeded with time: 11621ms, keeping it commented out
+commenting out line Lines { lines: 1279..=1279 } in "./tmp/8/delegation_map_v.rs"
+verus succeeded with time: 12020ms, keeping it commented out
+commenting out line Lines { lines: 1153..=1153 } in "./tmp/13/host_impl_v.rs"
+verus succeeded with time: 11380ms, keeping it commented out
+commenting out line Lines { lines: 906..=906 } in "./tmp/19/marshal_v.rs"
+verus failed with time: 10353ms, reverting
+commenting out line Lines { lines: 1280..=1280 } in "./tmp/8/delegation_map_v.rs"
+verus succeeded with time: 11749ms, keeping it commented out
+commenting out line Lines { lines: 1154..=1154 } in "./tmp/13/host_impl_v.rs"
+verus failed with time: 10782ms, reverting
+commenting out line Lines { lines: 907..=907 } in "./tmp/19/marshal_v.rs"
+verus failed with time: 10614ms, reverting
+commenting out line Lines { lines: 1155..=1160 } in "./tmp/13/host_impl_v.rs"
+verus failed with time: 10644ms, reverting
+commenting out line Lines { lines: 1282..=1282 } in "./tmp/8/delegation_map_v.rs"
+verus succeeded with time: 11820ms, keeping it commented out
+commenting out line Lines { lines: 908..=908 } in "./tmp/19/marshal_v.rs"
+verus failed with time: 10378ms, reverting
+commenting out line Lines { lines: 1170..=1170 } in "./tmp/13/host_impl_v.rs"
+verus succeeded with time: 12373ms, keeping it commented out
+commenting out line Lines { lines: 1283..=1283 } in "./tmp/8/delegation_map_v.rs"
+verus succeeded with time: 12313ms, keeping it commented out
+commenting out line Lines { lines: 913..=913 } in "./tmp/19/marshal_v.rs"
+verus failed with time: 10923ms, reverting
+commenting out line Lines { lines: 921..=921 } in "./tmp/19/marshal_v.rs"
+verus failed with time: 10277ms, reverting
+commenting out line Lines { lines: 1196..=1196 } in "./tmp/13/host_impl_v.rs"
+verus succeeded with time: 11634ms, keeping it commented out
+commenting out line Lines { lines: 1284..=1284 } in "./tmp/8/delegation_map_v.rs"
+verus succeeded with time: 11811ms, keeping it commented out
+commenting out line Lines { lines: 927..=927 } in "./tmp/19/marshal_v.rs"
+verus failed with time: 11092ms, reverting
+commenting out line Lines { lines: 1286..=1286 } in "./tmp/8/delegation_map_v.rs"
+verus succeeded with time: 11307ms, keeping it commented out
+commenting out line Lines { lines: 1197..=1197 } in "./tmp/13/host_impl_v.rs"
+verus succeeded with time: 11900ms, keeping it commented out
+commenting out line Lines { lines: 1206..=1212 } in "./tmp/13/host_impl_v.rs"
+verus failed with time: 1946ms, reverting
+commenting out line Lines { lines: 923..=928 } in "./tmp/19/marshal_v.rs"
+verus failed with time: 10069ms, reverting
+commenting out line Lines { lines: 1290..=1290 } in "./tmp/8/delegation_map_v.rs"
+verus succeeded with time: 11457ms, keeping it commented out
+commenting out line Lines { lines: 1213..=1215 } in "./tmp/13/host_impl_v.rs"
+verus succeeded with time: 11507ms, keeping it commented out
+commenting out line Lines { lines: 933..=933 } in "./tmp/19/marshal_v.rs"
+verus failed with time: 10525ms, reverting
+commenting out line Lines { lines: 1291..=1291 } in "./tmp/8/delegation_map_v.rs"
+verus succeeded with time: 11943ms, keeping it commented out
+commenting out line Lines { lines: 1220..=1220 } in "./tmp/13/host_impl_v.rs"
+verus succeeded with time: 12079ms, keeping it commented out
+commenting out line Lines { lines: 934..=934 } in "./tmp/19/marshal_v.rs"
+verus succeeded with time: 11156ms, keeping it commented out
+commenting out line Lines { lines: 1295..=1295 } in "./tmp/8/delegation_map_v.rs"
+verus succeeded with time: 12178ms, keeping it commented out
+commenting out line Lines { lines: 1229..=1231 } in "./tmp/13/host_impl_v.rs"
+verus failed with time: 10916ms, reverting
+commenting out line Lines { lines: 936..=936 } in "./tmp/19/marshal_v.rs"
+verus succeeded with time: 11564ms, keeping it commented out
+commenting out line Lines { lines: 1299..=1299 } in "./tmp/8/delegation_map_v.rs"
+verus failed with time: 10702ms, reverting
+commenting out line Lines { lines: 1242..=1242 } in "./tmp/13/host_impl_v.rs"
+verus succeeded with time: 11935ms, keeping it commented out
+commenting out line Lines { lines: 929..=937 } in "./tmp/19/marshal_v.rs"
+verus failed with time: 10323ms, reverting
+commenting out line Lines { lines: 1300..=1300 } in "./tmp/8/delegation_map_v.rs"
+verus failed with time: 10217ms, reverting
+commenting out line Lines { lines: 1245..=1246 } in "./tmp/13/host_impl_v.rs"
+verus succeeded with time: 12031ms, keeping it commented out
+commenting out line Lines { lines: 939..=939 } in "./tmp/19/marshal_v.rs"
+verus succeeded with time: 11268ms, keeping it commented out
+commenting out line Lines { lines: 1301..=1301 } in "./tmp/8/delegation_map_v.rs"
+verus succeeded with time: 11282ms, keeping it commented out
+commenting out line Lines { lines: 1258..=1259 } in "./tmp/13/host_impl_v.rs"
+verus succeeded with time: 11673ms, keeping it commented out
+commenting out line Lines { lines: 938..=940 } in "./tmp/19/marshal_v.rs"
+verus succeeded with time: 11813ms, keeping it commented out
+commenting out line Lines { lines: 1304..=1304 } in "./tmp/8/delegation_map_v.rs"
+verus succeeded with time: 11887ms, keeping it commented out
+commenting out line Lines { lines: 1269..=1274 } in "./tmp/13/host_impl_v.rs"
+verus failed with time: 10295ms, reverting
+commenting out line Lines { lines: 922..=941 } in "./tmp/19/marshal_v.rs"
+verus failed with time: 9879ms, reverting
+commenting out line Lines { lines: 1305..=1305 } in "./tmp/8/delegation_map_v.rs"
+verus succeeded with time: 12136ms, keeping it commented out
+commenting out line Lines { lines: 1275..=1277 } in "./tmp/13/host_impl_v.rs"
+verus succeeded with time: 12164ms, keeping it commented out
+commenting out line Lines { lines: 947..=947 } in "./tmp/19/marshal_v.rs"
+verus failed with time: 10133ms, reverting
+commenting out line Lines { lines: 1306..=1306 } in "./tmp/8/delegation_map_v.rs"
+verus succeeded with time: 11561ms, keeping it commented out
+commenting out line Lines { lines: 943..=948 } in "./tmp/19/marshal_v.rs"
+verus failed with time: 11133ms, reverting
+commenting out line Lines { lines: 1278..=1278 } in "./tmp/13/host_impl_v.rs"
+verus succeeded with time: 11579ms, keeping it commented out
+commenting out line Lines { lines: 1307..=1307 } in "./tmp/8/delegation_map_v.rs"
+verus succeeded with time: 11739ms, keeping it commented out
+commenting out line Lines { lines: 953..=953 } in "./tmp/19/marshal_v.rs"
+verus failed with time: 10764ms, reverting
+commenting out line Lines { lines: 1279..=1279 } in "./tmp/13/host_impl_v.rs"
+verus succeeded with time: 11414ms, keeping it commented out
+commenting out line Lines { lines: 1308..=1308 } in "./tmp/8/delegation_map_v.rs"
+verus failed with time: 10580ms, reverting
+commenting out line Lines { lines: 954..=954 } in "./tmp/19/marshal_v.rs"
+verus succeeded with time: 11735ms, keeping it commented out
+commenting out line Lines { lines: 1280..=1281 } in "./tmp/13/host_impl_v.rs"
+verus succeeded with time: 11352ms, keeping it commented out
+commenting out line Lines { lines: 1309..=1309 } in "./tmp/8/delegation_map_v.rs"
+verus succeeded with time: 11317ms, keeping it commented out
+commenting out line Lines { lines: 956..=956 } in "./tmp/19/marshal_v.rs"
+verus succeeded with time: 11840ms, keeping it commented out
+commenting out line Lines { lines: 1282..=1284 } in "./tmp/13/host_impl_v.rs"
+verus succeeded with time: 11943ms, keeping it commented out
+commenting out line Lines { lines: 1310..=1310 } in "./tmp/8/delegation_map_v.rs"
+verus succeeded with time: 11328ms, keeping it commented out
+commenting out line Lines { lines: 949..=957 } in "./tmp/19/marshal_v.rs"
+verus failed with time: 10532ms, reverting
+commenting out line Lines { lines: 1291..=1292 } in "./tmp/13/host_impl_v.rs"
+verus succeeded with time: 11656ms, keeping it commented out
+commenting out line Lines { lines: 1311..=1311 } in "./tmp/8/delegation_map_v.rs"
+verus succeeded with time: 11489ms, keeping it commented out
+commenting out line Lines { lines: 959..=959 } in "./tmp/19/marshal_v.rs"
+verus succeeded with time: 11500ms, keeping it commented out
+commenting out line Lines { lines: 1296..=1299 } in "./tmp/13/host_impl_v.rs"
+verus succeeded with time: 11876ms, keeping it commented out
+commenting out line Lines { lines: 1314..=1314 } in "./tmp/8/delegation_map_v.rs"
+verus succeeded with time: 11440ms, keeping it commented out
+commenting out line Lines { lines: 958..=960 } in "./tmp/19/marshal_v.rs"
+verus succeeded with time: 11423ms, keeping it commented out
+commenting out line Lines { lines: 1300..=1302 } in "./tmp/13/host_impl_v.rs"
+verus succeeded with time: 11784ms, keeping it commented out
+commenting out line Lines { lines: 1315..=1315 } in "./tmp/8/delegation_map_v.rs"
+verus succeeded with time: 11505ms, keeping it commented out
+commenting out line Lines { lines: 942..=961 } in "./tmp/19/marshal_v.rs"
+verus failed with time: 10156ms, reverting
+commenting out line Lines { lines: 1310..=1312 } in "./tmp/13/host_impl_v.rs"
+verus succeeded with time: 11893ms, keeping it commented out
+commenting out line Lines { lines: 1324..=1324 } in "./tmp/8/delegation_map_v.rs"
+verus succeeded with time: 11764ms, keeping it commented out
+commenting out line Lines { lines: 962..=962 } in "./tmp/19/marshal_v.rs"
+verus succeeded with time: 11286ms, keeping it commented out
+commenting out line Lines { lines: 1313..=1314 } in "./tmp/13/host_impl_v.rs"
+verus succeeded with time: 11450ms, keeping it commented out
+commenting out line Lines { lines: 1325..=1325 } in "./tmp/8/delegation_map_v.rs"
+verus succeeded with time: 11882ms, keeping it commented out
+commenting out line Lines { lines: 965..=965 } in "./tmp/19/marshal_v.rs"
+verus succeeded with time: 11503ms, keeping it commented out
+commenting out line Lines { lines: 1322..=1322 } in "./tmp/13/host_impl_v.rs"
+verus failed with time: 10315ms, reverting
+commenting out line Lines { lines: 1221..=1327 } in "./tmp/8/delegation_map_v.rs"
+verus failed with time: 10491ms, reverting
+commenting out line Lines { lines: 966..=966 } in "./tmp/19/marshal_v.rs"
+verus failed with time: 10959ms, reverting
+commenting out line Lines { lines: 1323..=1323 } in "./tmp/13/host_impl_v.rs"
+verus succeeded with time: 11184ms, keeping it commented out
+commenting out line Lines { lines: 1330..=1330 } in "./tmp/8/delegation_map_v.rs"
+verus failed with time: 10395ms, reverting
+commenting out line Lines { lines: 964..=968 } in "./tmp/19/marshal_v.rs"
+verus failed with time: 10718ms, reverting
+commenting out line Lines { lines: 1324..=1324 } in "./tmp/13/host_impl_v.rs"
+verus succeeded with time: 11659ms, keeping it commented out
+commenting out line Lines { lines: 1331..=1331 } in "./tmp/8/delegation_map_v.rs"
+verus failed with time: 10687ms, reverting
+commenting out line Lines { lines: 963..=970 } in "./tmp/19/marshal_v.rs"
+verus failed with time: 10612ms, reverting
+commenting out line Lines { lines: 1326..=1326 } in "./tmp/13/host_impl_v.rs"
+verus failed with time: 10367ms, reverting
+commenting out line Lines { lines: 1333..=1333 } in "./tmp/13/host_impl_v.rs"
+verus failed with time: 2061ms, reverting
+commenting out line Lines { lines: 1336..=1336 } in "./tmp/13/host_impl_v.rs"
+verus failed with time: 2118ms, reverting
+commenting out line Lines { lines: 1332..=1332 } in "./tmp/8/delegation_map_v.rs"
+verus succeeded with time: 11878ms, keeping it commented out
+commenting out line Lines { lines: 971..=975 } in "./tmp/19/marshal_v.rs"
+verus succeeded with time: 11339ms, keeping it commented out
+commenting out line Lines { lines: 1409..=1410 } in "./tmp/13/host_impl_v.rs"
+verus succeeded with time: 12146ms, keeping it commented out
+commenting out line Lines { lines: 985..=985 } in "./tmp/19/marshal_v.rs"
+verus succeeded with time: 10974ms, keeping it commented out
+commenting out line Lines { lines: 1333..=1333 } in "./tmp/8/delegation_map_v.rs"
+verus succeeded with time: 11853ms, keeping it commented out
+commenting out line Lines { lines: 1415..=1416 } in "./tmp/13/host_impl_v.rs"
+verus succeeded with time: 11315ms, keeping it commented out
+commenting out line Lines { lines: 986..=986 } in "./tmp/19/marshal_v.rs"
+verus failed with time: 10391ms, reverting
+commenting out line Lines { lines: 1334..=1334 } in "./tmp/8/delegation_map_v.rs"
+verus succeeded with time: 12040ms, keeping it commented out
+commenting out line Lines { lines: 1421..=1421 } in "./tmp/13/host_impl_v.rs"
+verus succeeded with time: 11567ms, keeping it commented out
+commenting out line Lines { lines: 987..=987 } in "./tmp/19/marshal_v.rs"
+verus succeeded with time: 11387ms, keeping it commented out
+commenting out line Lines { lines: 1335..=1335 } in "./tmp/8/delegation_map_v.rs"
+verus succeeded with time: 11562ms, keeping it commented out
+commenting out line Lines { lines: 1430..=1431 } in "./tmp/13/host_impl_v.rs"
+verus succeeded with time: 11367ms, keeping it commented out
+commenting out line Lines { lines: 994..=994 } in "./tmp/19/marshal_v.rs"
+verus succeeded with time: 11344ms, keeping it commented out
+commenting out line Lines { lines: 1435..=1435 } in "./tmp/13/host_impl_v.rs"
+verus failed with time: 1970ms, reverting
+commenting out line Lines { lines: 1336..=1336 } in "./tmp/8/delegation_map_v.rs"
+verus succeeded with time: 11573ms, keeping it commented out
+commenting out line Lines { lines: 1438..=1438 } in "./tmp/13/host_impl_v.rs"
+verus failed with time: 1938ms, reverting
+commenting out line Lines { lines: 1440..=1440 } in "./tmp/13/host_impl_v.rs"
+verus failed with time: 2025ms, reverting
+commenting out line Lines { lines: 995..=999 } in "./tmp/19/marshal_v.rs"
+verus succeeded with time: 11462ms, keeping it commented out
+commenting out line Lines { lines: 1337..=1337 } in "./tmp/8/delegation_map_v.rs"
+verus succeeded with time: 11970ms, keeping it commented out
+commenting out line Lines { lines: 1459..=1459 } in "./tmp/13/host_impl_v.rs"
+verus failed with time: 10351ms, reverting
+commenting out line Lines { lines: 1002..=1002 } in "./tmp/19/marshal_v.rs"
+verus succeeded with time: 11020ms, keeping it commented out
+commenting out line Lines { lines: 1163..=1340 } in "./tmp/8/delegation_map_v.rs"
+verus failed with time: 10634ms, reverting
+commenting out line Lines { lines: 1473..=1473 } in "./tmp/13/host_impl_v.rs"
+verus succeeded with time: 12044ms, keeping it commented out
+commenting out line Lines { lines: 1004..=1007 } in "./tmp/19/marshal_v.rs"
+verus failed with time: 9932ms, reverting
+commenting out line Lines { lines: 1342..=1344 } in "./tmp/8/delegation_map_v.rs"
+verus failed with time: 10511ms, reverting
+commenting out line Lines { lines: 1496..=1500 } in "./tmp/13/host_impl_v.rs"
+verus failed with time: 10767ms, reverting
+commenting out line Lines { lines: 1012..=1013 } in "./tmp/19/marshal_v.rs"
+verus succeeded with time: 11624ms, keeping it commented out
+commenting out line Lines { lines: 1346..=1349 } in "./tmp/8/delegation_map_v.rs"
+verus succeeded with time: 12056ms, keeping it commented out
+commenting out line Lines { lines: 1506..=1508 } in "./tmp/13/host_impl_v.rs"
+verus failed with time: 10150ms, reverting
+commenting out line Lines { lines: 1015..=1017 } in "./tmp/19/marshal_v.rs"
+verus failed with time: 10062ms, reverting
+commenting out line Lines { lines: 1423..=1425 } in "./tmp/8/delegation_map_v.rs"
+verus failed with time: 10515ms, reverting
+commenting out line Lines { lines: 1540..=1542 } in "./tmp/13/host_impl_v.rs"
+verus failed with time: 10927ms, reverting
+commenting out line Lines { lines: 1019..=1019 } in "./tmp/19/marshal_v.rs"
+verus succeeded with time: 11077ms, keeping it commented out
+commenting out line Lines { lines: 1429..=1431 } in "./tmp/8/delegation_map_v.rs"
+verus failed with time: 10589ms, reverting
+commenting out line Lines { lines: 1544..=1546 } in "./tmp/13/host_impl_v.rs"
+verus failed with time: 10931ms, reverting
+commenting out line Lines { lines: 1001..=1020 } in "./tmp/19/marshal_v.rs"
+verus failed with time: 9885ms, reverting
+commenting out line Lines { lines: 1432..=1432 } in "./tmp/8/delegation_map_v.rs"
+verus succeeded with time: 11871ms, keeping it commented out
+commenting out line Lines { lines: 1548..=1548 } in "./tmp/13/host_impl_v.rs"
+verus succeeded with time: 12429ms, keeping it commented out
+commenting out line Lines { lines: 1555..=1555 } in "./tmp/13/host_impl_v.rs"
+verus failed with time: 2189ms, reverting
+commenting out line Lines { lines: 1023..=1025 } in "./tmp/19/marshal_v.rs"
+verus failed with time: 10428ms, reverting
+commenting out line Lines { lines: 1558..=1558 } in "./tmp/13/host_impl_v.rs"
+verus failed with time: 2051ms, reverting
+commenting out line Lines { lines: 1449..=1451 } in "./tmp/8/delegation_map_v.rs"
+verus failed with time: 9773ms, reverting
+commenting out line Lines { lines: 1021..=1027 } in "./tmp/19/marshal_v.rs"
+verus failed with time: 10260ms, reverting
+commenting out line Lines { lines: 1625..=1625 } in "./tmp/13/host_impl_v.rs"
+verus succeeded with time: 12027ms, keeping it commented out
+commenting out line Lines { lines: 1476..=1478 } in "./tmp/8/delegation_map_v.rs"
+verus failed with time: 10671ms, reverting
+commenting out line Lines { lines: 1034..=1035 } in "./tmp/19/marshal_v.rs"
+verus failed with time: 10078ms, reverting
+commenting out line Lines { lines: 1668..=1668 } in "./tmp/13/host_impl_v.rs"
+verus succeeded with time: 11841ms, keeping it commented out
+commenting out line Lines { lines: 1479..=1479 } in "./tmp/8/delegation_map_v.rs"
+verus succeeded with time: 11929ms, keeping it commented out
+commenting out line Lines { lines: 1086..=1086 } in "./tmp/19/marshal_v.rs"
+verus succeeded with time: 10992ms, keeping it commented out
+commenting out line Lines { lines: 1669..=1669 } in "./tmp/13/host_impl_v.rs"
+verus succeeded with time: 12322ms, keeping it commented out
+commenting out line Lines { lines: 1486..=1488 } in "./tmp/8/delegation_map_v.rs"
+verus succeeded with time: 12081ms, keeping it commented out
+commenting out line Lines { lines: 1088..=1088 } in "./tmp/19/marshal_v.rs"
+verus succeeded with time: 11303ms, keeping it commented out
+commenting out line Lines { lines: 1670..=1670 } in "./tmp/13/host_impl_v.rs"
+verus succeeded with time: 12294ms, keeping it commented out
+commenting out line Lines { lines: 1494..=1496 } in "./tmp/8/delegation_map_v.rs"
+verus succeeded with time: 12183ms, keeping it commented out
+commenting out line Lines { lines: 1091..=1091 } in "./tmp/19/marshal_v.rs"
+verus succeeded with time: 10912ms, keeping it commented out
+commenting out line Lines { lines: 1686..=1686 } in "./tmp/13/host_impl_v.rs"
+verus succeeded with time: 11735ms, keeping it commented out
+commenting out line Lines { lines: 1498..=1498 } in "./tmp/8/delegation_map_v.rs"
+verus succeeded with time: 11736ms, keeping it commented out
+commenting out line Lines { lines: 1106..=1106 } in "./tmp/19/marshal_v.rs"
+verus succeeded with time: 11369ms, keeping it commented out
+commenting out line Lines { lines: 1500..=1502 } in "./tmp/8/delegation_map_v.rs"
+verus failed with time: 10424ms, reverting
+commenting out line Lines { lines: 1692..=1692 } in "./tmp/13/host_impl_v.rs"
+verus succeeded with time: 11721ms, keeping it commented out
+commenting out line Lines { lines: 1127..=1127 } in "./tmp/19/marshal_v.rs"
+verus failed with time: 10453ms, reverting
+commenting out line Lines { lines: 1693..=1693 } in "./tmp/13/host_impl_v.rs"
+verus succeeded with time: 11607ms, keeping it commented out
+commenting out line Lines { lines: 1506..=1506 } in "./tmp/8/delegation_map_v.rs"
+verus succeeded with time: 11996ms, keeping it commented out
+commenting out line Lines { lines: 1130..=1130 } in "./tmp/19/marshal_v.rs"
+verus failed with time: 10530ms, reverting
+commenting out line Lines { lines: 1147..=1147 } in "./tmp/19/marshal_v.rs"
+verus failed with time: 10082ms, reverting
+commenting out line Lines { lines: 1694..=1694 } in "./tmp/13/host_impl_v.rs"
+verus succeeded with time: 11603ms, keeping it commented out
+commenting out line Lines { lines: 1510..=1510 } in "./tmp/8/delegation_map_v.rs"
+verus succeeded with time: 11411ms, keeping it commented out
+commenting out line Lines { lines: 1150..=1150 } in "./tmp/19/marshal_v.rs"
+verus failed with time: 10437ms, reverting
+commenting out line Lines { lines: 1695..=1695 } in "./tmp/13/host_impl_v.rs"
+verus succeeded with time: 11624ms, keeping it commented out
+commenting out line Lines { lines: 1514..=1514 } in "./tmp/8/delegation_map_v.rs"
+verus succeeded with time: 11585ms, keeping it commented out
+commenting out line Lines { lines: 1168..=1169 } in "./tmp/19/marshal_v.rs"
+verus failed with time: 10389ms, reverting
+minimization of ./tmp/19/marshal_v.rs is completed
+commenting out line Lines { lines: 1522..=1522 } in "./tmp/8/delegation_map_v.rs"
+verus succeeded with time: 11493ms, keeping it commented out
+commenting out line Lines { lines: 1705..=1705 } in "./tmp/13/host_impl_v.rs"
+verus succeeded with time: 11568ms, keeping it commented out
+commenting out line Lines { lines: 1708..=1710 } in "./tmp/13/host_impl_v.rs"
+verus succeeded with time: 10928ms, keeping it commented out
+commenting out line Lines { lines: 1523..=1523 } in "./tmp/8/delegation_map_v.rs"
+verus succeeded with time: 11045ms, keeping it commented out
+commenting out line Lines { lines: 1718..=1718 } in "./tmp/13/host_impl_v.rs"
+verus succeeded with time: 10969ms, keeping it commented out
+commenting out line Lines { lines: 1524..=1524 } in "./tmp/8/delegation_map_v.rs"
+verus succeeded with time: 11242ms, keeping it commented out
+commenting out line Lines { lines: 1744..=1744 } in "./tmp/13/host_impl_v.rs"
+verus succeeded with time: 11186ms, keeping it commented out
+commenting out line Lines { lines: 1525..=1525 } in "./tmp/8/delegation_map_v.rs"
+verus succeeded with time: 11174ms, keeping it commented out
+commenting out line Lines { lines: 1760..=1760 } in "./tmp/13/host_impl_v.rs"
+verus failed with time: 9809ms, reverting
+commenting out line Lines { lines: 1526..=1526 } in "./tmp/8/delegation_map_v.rs"
+verus succeeded with time: 11046ms, keeping it commented out
+commenting out line Lines { lines: 1758..=1761 } in "./tmp/13/host_impl_v.rs"
+verus failed with time: 9850ms, reverting
+commenting out line Lines { lines: 1527..=1527 } in "./tmp/8/delegation_map_v.rs"
+verus succeeded with time: 11281ms, keeping it commented out
+commenting out line Lines { lines: 1774..=1774 } in "./tmp/13/host_impl_v.rs"
+verus failed with time: 9607ms, reverting
+commenting out line Lines { lines: 1528..=1528 } in "./tmp/8/delegation_map_v.rs"
+verus failed with time: 10151ms, reverting
+commenting out line Lines { lines: 1773..=1775 } in "./tmp/13/host_impl_v.rs"
+verus failed with time: 9689ms, reverting
+commenting out line Lines { lines: 1532..=1532 } in "./tmp/8/delegation_map_v.rs"
+verus succeeded with time: 11273ms, keeping it commented out
+commenting out line Lines { lines: 1776..=1776 } in "./tmp/13/host_impl_v.rs"
+verus failed with time: 9984ms, reverting
+commenting out line Lines { lines: 1533..=1533 } in "./tmp/8/delegation_map_v.rs"
+verus failed with time: 10129ms, reverting
+commenting out line Lines { lines: 1778..=1778 } in "./tmp/13/host_impl_v.rs"
+verus failed with time: 9691ms, reverting
+commenting out line Lines { lines: 1537..=1537 } in "./tmp/8/delegation_map_v.rs"
+verus failed with time: 10036ms, reverting
+commenting out line Lines { lines: 1780..=1780 } in "./tmp/13/host_impl_v.rs"
+verus succeeded with time: 10860ms, keeping it commented out
+commenting out line Lines { lines: 1535..=1538 } in "./tmp/8/delegation_map_v.rs"
+verus failed with time: 10188ms, reverting
+commenting out line Lines { lines: 1804..=1805 } in "./tmp/13/host_impl_v.rs"
+verus failed with time: 9739ms, reverting
+commenting out line Lines { lines: 1543..=1543 } in "./tmp/8/delegation_map_v.rs"
+verus succeeded with time: 11280ms, keeping it commented out
+commenting out line Lines { lines: 1808..=1809 } in "./tmp/13/host_impl_v.rs"
+verus succeeded with time: 10742ms, keeping it commented out
+commenting out line Lines { lines: 1546..=1546 } in "./tmp/8/delegation_map_v.rs"
+verus succeeded with time: 11182ms, keeping it commented out
+commenting out line Lines { lines: 1811..=1812 } in "./tmp/13/host_impl_v.rs"
+verus failed with time: 9591ms, reverting
+commenting out line Lines { lines: 1547..=1547 } in "./tmp/8/delegation_map_v.rs"
+verus succeeded with time: 11300ms, keeping it commented out
+commenting out line Lines { lines: 1814..=1814 } in "./tmp/13/host_impl_v.rs"
+verus succeeded with time: 11319ms, keeping it commented out
+commenting out line Lines { lines: 1549..=1549 } in "./tmp/8/delegation_map_v.rs"
+verus succeeded with time: 11374ms, keeping it commented out
+commenting out line Lines { lines: 1822..=1822 } in "./tmp/13/host_impl_v.rs"
+verus succeeded with time: 11201ms, keeping it commented out
+commenting out line Lines { lines: 1553..=1553 } in "./tmp/8/delegation_map_v.rs"
+verus succeeded with time: 11491ms, keeping it commented out
+commenting out line Lines { lines: 1825..=1825 } in "./tmp/13/host_impl_v.rs"
+verus failed with time: 10111ms, reverting
+commenting out line Lines { lines: 1555..=1555 } in "./tmp/8/delegation_map_v.rs"
+verus succeeded with time: 10875ms, keeping it commented out
+commenting out line Lines { lines: 1828..=1828 } in "./tmp/13/host_impl_v.rs"
+verus succeeded with time: 11201ms, keeping it commented out
+commenting out line Lines { lines: 1556..=1556 } in "./tmp/8/delegation_map_v.rs"
+verus failed with time: 9821ms, reverting
+commenting out line Lines { lines: 1834..=1834 } in "./tmp/13/host_impl_v.rs"
+verus succeeded with time: 11259ms, keeping it commented out
+commenting out line Lines { lines: 1557..=1557 } in "./tmp/8/delegation_map_v.rs"
+verus succeeded with time: 10778ms, keeping it commented out
+commenting out line Lines { lines: 1838..=1838 } in "./tmp/13/host_impl_v.rs"
+verus succeeded with time: 11085ms, keeping it commented out
+commenting out line Lines { lines: 1563..=1563 } in "./tmp/8/delegation_map_v.rs"
+verus succeeded with time: 10929ms, keeping it commented out
+commenting out line Lines { lines: 1839..=1839 } in "./tmp/13/host_impl_v.rs"
+verus succeeded with time: 10822ms, keeping it commented out
+minimization of ./tmp/13/host_impl_v.rs is completed
+commenting out line Lines { lines: 1565..=1565 } in "./tmp/8/delegation_map_v.rs"
+verus succeeded with time: 10662ms, keeping it commented out
+commenting out line Lines { lines: 1569..=1569 } in "./tmp/8/delegation_map_v.rs"
+verus succeeded with time: 10608ms, keeping it commented out
+commenting out line Lines { lines: 1571..=1571 } in "./tmp/8/delegation_map_v.rs"
+verus failed with time: 9366ms, reverting
+commenting out line Lines { lines: 1572..=1572 } in "./tmp/8/delegation_map_v.rs"
+verus failed with time: 9326ms, reverting
+commenting out line Lines { lines: 1573..=1573 } in "./tmp/8/delegation_map_v.rs"
+verus succeeded with time: 10561ms, keeping it commented out
+commenting out line Lines { lines: 1579..=1580 } in "./tmp/8/delegation_map_v.rs"
+verus succeeded with time: 10409ms, keeping it commented out
+commenting out line Lines { lines: 1585..=1585 } in "./tmp/8/delegation_map_v.rs"
+verus succeeded with time: 10478ms, keeping it commented out
+commenting out line Lines { lines: 1589..=1589 } in "./tmp/8/delegation_map_v.rs"
+verus succeeded with time: 10464ms, keeping it commented out
+commenting out line Lines { lines: 1592..=1592 } in "./tmp/8/delegation_map_v.rs"
+verus failed with time: 9354ms, reverting
+commenting out line Lines { lines: 1593..=1593 } in "./tmp/8/delegation_map_v.rs"
+verus failed with time: 9300ms, reverting
+commenting out line Lines { lines: 1590..=1594 } in "./tmp/8/delegation_map_v.rs"
+verus failed with time: 9978ms, reverting
+commenting out line Lines { lines: 1600..=1600 } in "./tmp/8/delegation_map_v.rs"
+verus succeeded with time: 10635ms, keeping it commented out
+commenting out line Lines { lines: 1603..=1603 } in "./tmp/8/delegation_map_v.rs"
+verus failed with time: 9274ms, reverting
+commenting out line Lines { lines: 1606..=1606 } in "./tmp/8/delegation_map_v.rs"
+verus failed with time: 9869ms, reverting
+commenting out line Lines { lines: 1607..=1607 } in "./tmp/8/delegation_map_v.rs"
+verus failed with time: 9797ms, reverting
+commenting out line Lines { lines: 1604..=1608 } in "./tmp/8/delegation_map_v.rs"
+verus failed with time: 9357ms, reverting
+commenting out line Lines { lines: 1614..=1614 } in "./tmp/8/delegation_map_v.rs"
+verus succeeded with time: 10563ms, keeping it commented out
+commenting out line Lines { lines: 1615..=1615 } in "./tmp/8/delegation_map_v.rs"
+verus succeeded with time: 10393ms, keeping it commented out
+commenting out line Lines { lines: 1616..=1616 } in "./tmp/8/delegation_map_v.rs"
+verus succeeded with time: 10441ms, keeping it commented out
+commenting out line Lines { lines: 1613..=1617 } in "./tmp/8/delegation_map_v.rs"
+verus succeeded with time: 10351ms, keeping it commented out
+commenting out line Lines { lines: 1624..=1624 } in "./tmp/8/delegation_map_v.rs"
+verus succeeded with time: 10318ms, keeping it commented out
+commenting out line Lines { lines: 1629..=1629 } in "./tmp/8/delegation_map_v.rs"
+verus succeeded with time: 10359ms, keeping it commented out
+commenting out line Lines { lines: 1632..=1632 } in "./tmp/8/delegation_map_v.rs"
+verus succeeded with time: 10387ms, keeping it commented out
+commenting out line Lines { lines: 1635..=1635 } in "./tmp/8/delegation_map_v.rs"
+verus failed with time: 9298ms, reverting
+commenting out line Lines { lines: 1636..=1636 } in "./tmp/8/delegation_map_v.rs"
+verus failed with time: 9386ms, reverting
+commenting out line Lines { lines: 1633..=1637 } in "./tmp/8/delegation_map_v.rs"
+verus failed with time: 9495ms, reverting
+commenting out line Lines { lines: 1643..=1643 } in "./tmp/8/delegation_map_v.rs"
+verus succeeded with time: 10409ms, keeping it commented out
+commenting out line Lines { lines: 1644..=1644 } in "./tmp/8/delegation_map_v.rs"
+verus succeeded with time: 10362ms, keeping it commented out
+commenting out line Lines { lines: 1645..=1645 } in "./tmp/8/delegation_map_v.rs"
+verus succeeded with time: 10355ms, keeping it commented out
+commenting out line Lines { lines: 1642..=1646 } in "./tmp/8/delegation_map_v.rs"
+verus succeeded with time: 10387ms, keeping it commented out
+commenting out line Lines { lines: 1664..=1664 } in "./tmp/8/delegation_map_v.rs"
+verus succeeded with time: 10676ms, keeping it commented out
+commenting out line Lines { lines: 1665..=1665 } in "./tmp/8/delegation_map_v.rs"
+verus succeeded with time: 10404ms, keeping it commented out
+commenting out line Lines { lines: 1666..=1666 } in "./tmp/8/delegation_map_v.rs"
+verus succeeded with time: 10493ms, keeping it commented out
+commenting out line Lines { lines: 1667..=1667 } in "./tmp/8/delegation_map_v.rs"
+verus succeeded with time: 10411ms, keeping it commented out
+commenting out line Lines { lines: 1668..=1668 } in "./tmp/8/delegation_map_v.rs"
+verus succeeded with time: 10303ms, keeping it commented out
+commenting out line Lines { lines: 1669..=1669 } in "./tmp/8/delegation_map_v.rs"
+verus succeeded with time: 10345ms, keeping it commented out
+commenting out line Lines { lines: 1670..=1670 } in "./tmp/8/delegation_map_v.rs"
+verus failed with time: 9514ms, reverting
+commenting out line Lines { lines: 1674..=1674 } in "./tmp/8/delegation_map_v.rs"
+verus succeeded with time: 10456ms, keeping it commented out
+commenting out line Lines { lines: 1679..=1679 } in "./tmp/8/delegation_map_v.rs"
+verus failed with time: 9586ms, reverting
+commenting out line Lines { lines: 1677..=1680 } in "./tmp/8/delegation_map_v.rs"
+verus failed with time: 9339ms, reverting
+commenting out line Lines { lines: 1683..=1683 } in "./tmp/8/delegation_map_v.rs"
+verus failed with time: 9333ms, reverting
+commenting out line Lines { lines: 1684..=1684 } in "./tmp/8/delegation_map_v.rs"
+verus failed with time: 9535ms, reverting
+commenting out line Lines { lines: 1681..=1685 } in "./tmp/8/delegation_map_v.rs"
+verus failed with time: 9490ms, reverting
+commenting out line Lines { lines: 1717..=1717 } in "./tmp/8/delegation_map_v.rs"
+verus succeeded with time: 10357ms, keeping it commented out
+commenting out line Lines { lines: 1716..=1718 } in "./tmp/8/delegation_map_v.rs"
+verus succeeded with time: 10422ms, keeping it commented out
+commenting out line Lines { lines: 1721..=1721 } in "./tmp/8/delegation_map_v.rs"
+verus failed with time: 9300ms, reverting
+minimization of ./tmp/8/delegation_map_v.rs is completed

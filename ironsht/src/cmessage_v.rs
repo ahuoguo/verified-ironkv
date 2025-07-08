@@ -91,21 +91,21 @@ impl CMessage {
   pub proof fn view_equal_spec()
     ensures forall |x: &CMessage, y: &CMessage| #[trigger] x.view_equal(y) <==> x@ == y@
   {
-    assert forall |x: &CMessage, y: &CMessage|
-      #[trigger] x.view_equal(y) <==> x@ == y@ by
-    {
-      match (x, y) {
-        (CMessage::GetRequest { k: k1 }, CMessage::GetRequest { k: k2 }) => {},
-        (CMessage::SetRequest { k: k1, v: v1 }, CMessage::SetRequest { k: k2, v: v2 }) => {},
-        (CMessage::Reply { k: k1, v: v1 }, CMessage::Reply { k: k2, v: v2 }) => {},
-        (CMessage::Redirect { k: k1, id: id1 }, CMessage::Redirect { k: k2, id: id2 }) => {},
-        (CMessage::Shard { kr: kr1, recipient: r1 }, CMessage::Shard { kr: kr2, recipient: r2 }) => {},
-        (CMessage::Delegate { range: r1, h: h1 }, CMessage::Delegate { range: r2, h: h2 }) => {},
-        _ => {
-          assert(!x.view_equal(y) && x@ != y@);
-        }
-      }
-    }
+//    assert forall |x: &CMessage, y: &CMessage|
+//      #[trigger] x.view_equal(y) <==> x@ == y@ by
+//    {
+//      match (x, y) {
+//        (CMessage::GetRequest { k: k1 }, CMessage::GetRequest { k: k2 }) => {},
+//        (CMessage::SetRequest { k: k1, v: v1 }, CMessage::SetRequest { k: k2, v: v2 }) => {},
+//        (CMessage::Reply { k: k1, v: v1 }, CMessage::Reply { k: k2, v: v2 }) => {},
+//        (CMessage::Redirect { k: k1, id: id1 }, CMessage::Redirect { k: k2, id: id2 }) => {},
+//        (CMessage::Shard { kr: kr1, recipient: r1 }, CMessage::Shard { kr: kr2, recipient: r2 }) => {},
+//        (CMessage::Delegate { range: r1, h: h1 }, CMessage::Delegate { range: r2, h: h2 }) => {},
+//        _ => {
+////          assert(!x.view_equal(y) && x@ != y@);
+//        }
+//      }
+//    }
   }
 
   // This would be better if we had a View trait.
@@ -231,22 +231,22 @@ impl CSingleMessage {
   pub proof fn view_equal_spec()
     ensures forall |x: &CSingleMessage, y: &CSingleMessage| #[trigger] x.view_equal(y) <==> x@ == y@
   {
-    assert forall |x: &CSingleMessage, y: &CSingleMessage| #[trigger] x.view_equal(y) <==> x@ == y@ by {
-      match (x, y) {
-        (CSingleMessage::Message { seqno: seqno1, dst: dst1, m: m1, },
-        CSingleMessage::Message { seqno: seqno2, dst: dst2, m: m2, }) => {
-          CMessage::view_equal_spec();
-          assert(seqno1.view_equal(seqno2) <==> seqno1 == seqno2);
-          assert(dst1.view_equal(dst2) <==> dst1@ == dst2@);
-          assert(m1.view_equal(m2) <==> m1@ == m2@);
-        }
-        (CSingleMessage::InvalidMessage {  }, CSingleMessage::InvalidMessage {  }) => {}
-        (CSingleMessage::Ack { ack_seqno: x1 }, CSingleMessage::Ack { ack_seqno: x2 }) => {}
-        _ => {
-          assert(!x.view_equal(y) && x@ != y@);
-        }
-      }
-    }
+//    assert forall |x: &CSingleMessage, y: &CSingleMessage| #[trigger] x.view_equal(y) <==> x@ == y@ by {
+//      match (x, y) {
+//        (CSingleMessage::Message { seqno: seqno1, dst: dst1, m: m1, },
+//        CSingleMessage::Message { seqno: seqno2, dst: dst2, m: m2, }) => {
+//          CMessage::view_equal_spec();
+////          assert(seqno1.view_equal(seqno2) <==> seqno1 == seqno2);
+////          assert(dst1.view_equal(dst2) <==> dst1@ == dst2@);
+////          assert(m1.view_equal(m2) <==> m1@ == m2@);
+//        }
+//        (CSingleMessage::InvalidMessage {  }, CSingleMessage::InvalidMessage {  }) => {}
+//        (CSingleMessage::Ack { ack_seqno: x1 }, CSingleMessage::Ack { ack_seqno: x2 }) => {}
+//        _ => {
+////          assert(!x.view_equal(y) && x@ != y@);
+//        }
+//      }
+//    }
   }
 
   pub fn clone_up_to_view(&self) -> (c: Self)
