@@ -55,10 +55,10 @@ pub proof fn lemma_flatten_sets_union_auto<A>()
     ensures forall |sets1: Set<Set<A>>, sets2: Set<Set<A>>| #![all_triggers]
          flatten_sets(sets1.union(sets2)) == flatten_sets(sets1).union(flatten_sets(sets2))
 {
-    assert forall |sets1: Set<Set<A>>, sets2: Set<Set<A>>| #![all_triggers]
-         flatten_sets(sets1.union(sets2)) == flatten_sets(sets1).union(flatten_sets(sets2)) by {
-        lemma_flatten_sets_union(sets1, sets2);
-    }
+//    assert forall |sets1: Set<Set<A>>, sets2: Set<Set<A>>| #![all_triggers]
+//         flatten_sets(sets1.union(sets2)) == flatten_sets(sets1).union(flatten_sets(sets2)) by {
+//        lemma_flatten_sets_union(sets1, sets2);
+//    }
 }
 
 pub proof fn set_map_union<A, B>(s1: Set<A>, s2: Set<A>, f: spec_fn(A) -> B)
@@ -101,10 +101,10 @@ pub proof fn seq_map_values_concat_auto<A, B>()
 ensures forall |s1: Seq<A>, s2: Seq<A>, f: spec_fn(A) -> B| #![all_triggers]
      (s1 + s2).map_values(f) == s1.map_values(f) + s2.map_values(f)
 {
-    assert forall |s1: Seq<A>, s2: Seq<A>, f: spec_fn(A) -> B| #![all_triggers]
-         ((s1 + s2).map_values(f)) == s1.map_values(f) + s2.map_values(f) by {
-        seq_map_values_concat(s1, s2, f);
-    }
+//    assert forall |s1: Seq<A>, s2: Seq<A>, f: spec_fn(A) -> B| #![all_triggers]
+//         ((s1 + s2).map_values(f)) == s1.map_values(f) + s2.map_values(f) by {
+//        seq_map_values_concat(s1, s2, f);
+//    }
 }
 
 pub open spec fn flatten_set_seq<A>(sets: Seq<Set<A>>) -> Set<A>
@@ -133,8 +133,8 @@ pub proof fn lemma_flatten_set_seq_spec<A>(sets: Seq<Set<A>>)
         assert forall |x:A, i:int| #![all_triggers] 0 <= i < sets.len() &&  sets[i].contains(x) implies
             flatten_set_seq(sets).contains(x) by {
             if i == sets.len() - 1 {
-                assert(sets.last().contains(x));
-                assert(flatten_set_seq(sets) == flatten_set_seq(sets.drop_last()).union(sets.last()));
+//                assert(sets.last().contains(x));
+//                assert(flatten_set_seq(sets) == flatten_set_seq(sets.drop_last()).union(sets.last()));
             } else {
                 assert(0 <= i < sets.drop_last().len() && sets.drop_last()[i].contains(x));
             }
@@ -189,9 +189,9 @@ requires
 ensures
     forall |s: Seq<A>| #![all_triggers] s.map_values(f) == s.map(g)
 {
-    assert forall |s: Seq<A>| #![all_triggers] s.map_values(f) == s.map(g) by {
-        assert_seqs_equal!(s.map_values(f), s.map(g));
-    }
+//    assert forall |s: Seq<A>| #![all_triggers] s.map_values(f) == s.map(g) by {
+//        assert_seqs_equal!(s.map_values(f), s.map(g));
+//    }
 }
 
 pub proof fn lemma_to_set_distributes_over_addition<A>(s: Seq<A>, t: Seq<A>)
@@ -200,7 +200,7 @@ ensures (s+t).to_set() == s.to_set() + t.to_set()
     let left = (s+t).to_set();
     let right = s.to_set() + t.to_set();
     assert forall |x| #![all_triggers] right.contains(x) implies left.contains(x) by {
-        assert(s.to_set()+t.to_set() == s.to_set().union(t.to_set()));
+//        assert(s.to_set()+t.to_set() == s.to_set().union(t.to_set()));
         if s.to_set().contains(x) {
             let si = choose |si| 0<=si<s.len() && s[si] == x;
             assert((s+t)[si] == x);
